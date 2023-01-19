@@ -1,0 +1,95 @@
+:root {
+  --borderColor: #DDDDDD;
+  --primaryColor: #118C4F;
+}
+
+.loginCon {
+  border: 2px solid var(--borderColor);
+  min-width: 450px;
+  width: 30%;
+  max-width: 500px;
+  margin: 0 auto;
+  border-radius: 6px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.sperator {
+  border: 1px solid var(--borderColor);
+}
+
+.gLogin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 20px;
+  border: 2px solid var(--borderColor);
+  padding: 1rem 2rem;
+  border-radius: 3px;
+}
+
+.gIcon {
+  font-size: 20px;
+}
+
+.fieldVal {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.label {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.inpField {
+  width: 100%;
+  border: 2px solid var(--borderColor);
+  padding: 11.5px 12px;
+  border-radius: 3px;
+}
+
+.emailCon {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.4rem;
+}
+
+::placeholder {
+  font-size: 1rem;
+  font-family: "Inter"
+}
+
+.forgotPass {
+  display: flex;
+  justify-content: flex-end;
+  color: var(--primaryColor);
+  font-weight: 700;
+}
+
+.loginBtn {
+  color: white;
+  background-color: var(--primaryColor);
+  font-family: "Inter";
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 1rem 12px;
+  border-radius: 3px;
+  border: none;
+}
+
+.signUp {
+  display: flex;
+  justify-content: center;
+  column-gap: 10px;
+  font-weight: 500;
+}
+
+.signBtn,
+.forgotBtn {
+  font-weight: 600;
+  color: var(--primaryColor);
+  text-decoration: none;
+}
