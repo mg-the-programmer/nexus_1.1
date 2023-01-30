@@ -12,10 +12,16 @@ app.get("/users", (req, res) => {
 
 app.post("/users", (req, res) => {
   const { name, age } = req.body;
-  data.push({ name, age });
-  fs.writeFileSync("data.json", JSON.stringify(data));
+  data.push({ id: 5, name: "New User" });
+  fs.writeFile("./users.json", JSON.stringify(data), (err) => {
+    if (err) {
+      console.log(err);
+    }
+  });
+
+  // fs.writeFileSync("data.json",  JSON.stringify(data));
+
   res.json({ message: "success" });
-  s;
 });
 
 app.listen(5000, () => {
