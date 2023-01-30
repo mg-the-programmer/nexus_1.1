@@ -1,16 +1,22 @@
 import "./App.css";
 import React from "react";
-import ResumeBuilder from "./ResumeBuilder";
-import Login from "./Login";
-import Users from "./Users";
-import Test from "./Test";
+import Login from "./Pages/Login";
+
+import Signup from "./Pages/Signup";
+import { useState } from "react";
 
 function App() {
+  const [isdarkmode, setisdarkmode] = useState(true);
+
+  const mode = isdarkmode ? "dark" : "light";
+
   return (
-    <div className="App">
+    <div className={`App ${mode}`}>
+      {/* <h1>Hello</h1> */}
       {/* <Test /> */}
       {/* <ResumeBuilder /> */}
-      <Login />
+      {/* <Login /> */}
+      <Signup />
       {/* <Users /> */}
     </div>
   );
