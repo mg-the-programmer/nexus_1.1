@@ -11,8 +11,8 @@ app.get("/users", (req, res) => {
 });
 
 app.post("/users", (req, res) => {
-  const { name, age } = req.body;
-  data.push({ id: 5, name: "New User" });
+  const { mail, pass } = req.body;
+  data.push({ mailid: mail, password: pass });
   fs.writeFile("./users.json", JSON.stringify(data), (err) => {
     if (err) {
       console.log(err);

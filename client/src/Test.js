@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-function Users() {
+function Test() {
   const [localUsers, setUsers] = useState([]);
 
   useEffect(() => {
@@ -53,4 +53,4 @@ function Users() {
   );
 }
 
-export default Users;
+export default Test;

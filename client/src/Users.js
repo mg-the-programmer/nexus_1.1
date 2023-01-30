@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function App() {
+function Users() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -32,9 +32,10 @@ function App() {
           </div>
         );
       })}
+
       <button onClick={handleSubmit}>Submit</button>
     </div>
   );
 }
 
-export default App;
+export default Users;
