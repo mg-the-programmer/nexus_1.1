@@ -30,19 +30,13 @@ export default function Login() {
   return (
     <div className="h-[100vh] flex items-center">
       <div
-        className={classNames(
-          borderProperties,
-          "w-[35%] mx-auto min-w-[450px] flex flex-col gap-y-5 p-[2rem]"
-        )}>
+        className={`${borderProperties} w-[35%] mx-auto min-w-[450px] flex flex-col gap-y-5 p-[2rem]`}>
         <div
-          className={classNames(
-            borderProperties,
-            "flex w-full justify-center rounded-sm px-[2rem] py-[1rem] gap-x-[20px]"
-          )}>
+          className={`${borderProperties} flex w-full justify-center rounded-sm px-[2rem] py-[1rem] gap-x-[20px]`}>
           <GoogleIcon />
           <span className="font-bold">Login with Google</span>
         </div>
-        <div className={classNames(borderProperties)}></div>
+        <div className={`${borderProperties}`}></div>
         <div className="emailCon">
           <p className="emailLab label">Email</p>
           <input
