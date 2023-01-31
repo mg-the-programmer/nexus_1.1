@@ -17,6 +17,11 @@ function App() {
       {/* <ResumeBuilder /> */}
       {/* <Login /> */}
       <Signup />
+      <button
+        className="fixed top-4 right-4 bg-blue-500 p-2 rounded-md"
+        onClick={() => setisdarkmode(!isdarkmode)}>
+        Change Mode
+      </button>
       {/* <Users /> */}
     </div>
   );
