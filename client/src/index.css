@@ -17,15 +17,21 @@ code {
 }
 
 @keyframes my-animation {
-  from {
+  0% {
     transform: translateX(30rem);
   }
 
-  to {
+  100% {
     transform: translateX(0);
   }
+
+  /* 100% {
+    transform: translateX(30rem);
+  } */
+
 }
 
 .animate-on-load {
-  animation: my-animation 0.5s ease-in-out;
+  animation: my-animation 2s ease-in-out;
+
 }

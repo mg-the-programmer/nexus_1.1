@@ -5,6 +5,7 @@ import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
 import { useState } from "react";
 import ErrorAlert from "./components/ErrorAlert";
+import Test from "./Test";
 
 function App() {
   const [isdarkmode, setisdarkmode] = useState(true);
@@ -19,6 +20,7 @@ function App() {
       {/* <ResumeBuilder /> */}
       {/* <Login /> */}
       <Signup />
+      {/* <Test /> */}
       <button
         className="fixed top-4 right-4 bg-blue-500 p-2 rounded-md"
         onClick={() => setisdarkmode(!isdarkmode)}>

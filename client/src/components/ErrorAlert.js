@@ -1,11 +1,10 @@
 import React from "react";
 
 export default function ErrorAlert({ head, message }) {
-  // const customAnimation =
-  // "animate-on-load transition-all duration-500 ease-in-out transform translate-x-1";
+  
   return (
     <div
-      className={`z-10 flex animate-on-load fixed bottom-7 right-7 w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800`}>
+      className={`z-10 flex animate-on-load w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800`}>
       <div className="flex items-center justify-center w-12 bg-red-500">
         <svg
           className="w-6 h-6 text-white fill-current"

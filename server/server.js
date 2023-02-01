@@ -24,6 +24,16 @@ app.post("/users", (req, res) => {
   res.json({ message: "success" });
 });
 
+app.post("/users/signup", (req, res) => {
+  const { data } = req.body;
+  data.push({ data });
+  fs.writeFile("./users.json", JSON.stringify(data), (err) => {
+    if (err) {
+      console.log(err);
+    }
+  });
+});
+
 app.listen(5000, () => {
   console.log("Server started on port 5000");
 });

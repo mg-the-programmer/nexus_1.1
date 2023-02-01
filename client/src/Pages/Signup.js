@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import ErrorAlert from "../components/ErrorAlert";
 
@@ -5,15 +6,14 @@ const backgroundImg =
   "https://images.unsplash.com/photo-1494621930069-4fd4b2e24a11?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80";
 export default function Signup() {
   const [accountType, setAccountType] = useState("client");
-  const [firstName, setFirstName] = useState("");
+  const [firstName, setFirstName] = useState("sfsd");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [password, setPassword] = useState("dfdff");
+  const [confirmPassword, setConfirmPassword] = useState("dfdf");
   const [isPasswordShown, setIsPasswordShown] = useState(false);
   const [isConfirmPasswordShown, setIsConfirmPasswordShown] = useState(false);
-  const [isError, setIsError] = useState([]);
 
   const selectedAccountType =
     "flex justify-center w-full px-6 py-3 text-white bg-blue-500 rounded-lg md:w-auto md:mx-2 focus:outline-none";
@@ -21,15 +21,44 @@ export default function Signup() {
   const unselectedAccountType =
     "flex justify-center w-full px-6 py-3 mt-4 text-blue-500 border border-blue-500 rounded-lg md:mt-0 md:w-auto md:mx-2 dark:border-blue-400 dark:text-blue-400 focus:outline-none";
 
-  const handleSubmit = (e) => {
+  const [isError, setIsError] = useState([]);
+  const formValidation = (e) => {
     e.preventDefault();
     console.log("submitted");
 
+    // hidden code
+    if (phone.length !== 10) {
+      setIsError(["Phone", "Phone number must be 10 digits"]);
+    } else if (password.length < 6) {
+      setIsError(["Password", "Password must be at least 6 characters"]);
+    }
+
     if (password !== confirmPassword) {
-      setIsError(["Password", "Passwords do not match"]);
+      setIsError(["Password", "Password does not match"]);
     } else {
       console.log("password matched");
     }
+  };
+
+  const handleSubmit = (e) => {
+    formValidation();
+    e.preventDefault();
+    axios
+      .post("/users/signup", [
+        firstName,
+        lastName,
+        email,
+        phone,
+        password,
+        accountType,
+      ])
+      .then((res) => {
+        console.log(res);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const errorHandler = () => {
@@ -114,6 +143,8 @@ export default function Signup() {
                   </label>
                   <input
                     required
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
                     type="text"
                     placeholder="John"
                     className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
@@ -125,6 +156,8 @@ export default function Signup() {
                   </label>
                   <input
                     type="text"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
                     placeholder="Snow"
                     className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                   />
@@ -139,7 +172,7 @@ export default function Signup() {
                       setPhone(e.target.value);
                     }}
                     type="text"
-                    placeholder="XXX-XX-XXXX-XXX"
+                    placeholder="XXXX-XXXXXX"
                     className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                   />
                 </div>
@@ -149,6 +182,10 @@ export default function Signup() {
                   </label>
                   <input
                     type="email"
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                    }}
                     placeholder="johnsnow@example.com"
                     className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                   />
@@ -202,7 +239,14 @@ export default function Signup() {
           </div>
         </div>
       </section>
-      {isError === [] && <ErrorAlert head={isError[0]} message={isError[1]} />}
+      <div className="notifications fixed bottom-7 right-7 flex flex-col gap-y-3 ">
+        {isError.length !== 0 ? (
+          <ErrorAlert head={isError[0]} message={isError[1]} />
+        ) : null}
+        <ErrorAlert head={"Phone"} message={isError[1]} />
+
+        {/* {isError && <ErrorAlert head={"dfsf"} message={"sfsdf"} />} */}
+      </div>
     </>
   );
 }
