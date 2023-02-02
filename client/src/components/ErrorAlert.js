@@ -24,3 +24,36 @@ export default function ErrorAlert({ head, message }) {
     </div>
   );
 }
+
+//multi line comment
+
+// const FadeOutComponent = () => {
+//   const [show, setShow] = useState(true);
+
+//   useEffect(() => {
+//     setTimeout(() => {
+//       setShow(false);
+//     }, 2000);
+//   }, []);
+
+//   return (
+//     <div>
+//       {show && (
+//         <div
+//           style={{
+//             opacity: show ? 1 : 0,
+//             transition: 'opacity 1s ease-out'
+//           }}
+//         >
+//           <h2>This component will fade out after 2 seconds</h2>
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default FadeOutComponent;
+
+
+
+

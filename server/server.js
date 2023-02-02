@@ -1,9 +1,11 @@
 const express = require("express");
-// const users = require("./users.json");
 const bodyParser = require("body-parser");
+
 const fs = require("fs");
 let data = JSON.parse(fs.readFileSync("./users.json"));
+
 const app = express();
+const port = process.env.PORT || 5000;
 app.use(bodyParser.json());
 
 app.get("/users", (req, res) => {
@@ -25,15 +27,23 @@ app.post("/users", (req, res) => {
 });
 
 app.post("/users/signup", (req, res) => {
-  const { data } = req.body;
-  data.push({ data });
+  const { firstName, lastName, email, phone, password, accountType } = req.body;
+  data.push({
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+    phone: phone,
+    password: password,
+    accountType: accountType,
+  });
   fs.writeFile("./users.json", JSON.stringify(data), (err) => {
     if (err) {
       console.log(err);
     }
   });
+  res.json({ message: "success" });
 });
 
-app.listen(5000, () => {
+app.listen(port, () => {
   console.log("Server started on port 5000");
 });

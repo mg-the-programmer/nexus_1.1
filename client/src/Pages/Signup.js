@@ -6,32 +6,30 @@ const backgroundImg =
   "https://images.unsplash.com/photo-1494621930069-4fd4b2e24a11?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80";
 export default function Signup() {
   const [accountType, setAccountType] = useState("client");
-  const [firstName, setFirstName] = useState("sfsd");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+  const [firstName, setFirstName] = useState("Mani");
+  const [lastName, setLastName] = useState("Gandan");
+  const [email, setEmail] = useState("alphagameroffical@gmail.com");
+  const [phone, setPhone] = useState("9843029028");
   const [password, setPassword] = useState("dfdff");
   const [confirmPassword, setConfirmPassword] = useState("dfdf");
   const [isPasswordShown, setIsPasswordShown] = useState(false);
   const [isConfirmPasswordShown, setIsConfirmPasswordShown] = useState(false);
 
   const selectedAccountType =
-    "flex justify-center w-full px-6 py-3 text-white bg-blue-500 rounded-lg md:w-auto md:mx-2 focus:outline-none";
+    "flex justify-center w-full px-6 py-3 mt-4 text-white bg-blue-500 rounded-lg md:w-auto md:mt-0 md:mx-2 focus:outline-none";
 
   const unselectedAccountType =
     "flex justify-center w-full px-6 py-3 mt-4 text-blue-500 border border-blue-500 rounded-lg md:mt-0 md:w-auto md:mx-2 dark:border-blue-400 dark:text-blue-400 focus:outline-none";
 
   const [isError, setIsError] = useState([]);
   const formValidation = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     console.log("submitted");
 
-    // hidden code
-    if (phone.length !== 10) {
+    phone.length !== 10 &&
       setIsError(["Phone", "Phone number must be 10 digits"]);
-    } else if (password.length < 6) {
+    password.length < 6 &&
       setIsError(["Password", "Password must be at least 6 characters"]);
-    }
 
     if (password !== confirmPassword) {
       setIsError(["Password", "Password does not match"]);
@@ -41,19 +39,19 @@ export default function Signup() {
   };
 
   const handleSubmit = (e) => {
-    formValidation();
+    // formValidation();
     e.preventDefault();
     axios
-      .post("/users/signup", [
+      .post("/users/signup", {
         firstName,
         lastName,
         email,
         phone,
         password,
         accountType,
-      ])
+      })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         console.log(res.data);
       })
       .catch((err) => {
