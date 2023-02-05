@@ -1,20 +1,15 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost:27017/nexusdb", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  strictQuery: false,
+const uri =
+  "mongodb+srv://manigandan:manigandan@cluster0.oyky4iz.mongodb.net/nexusdb";
+
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+const connection = mongoose.connection;
+
+connection.once("open", () => {
+  console.log("MongoDB database connection established successfully");
 });
-
-// const connection = mongoose.connection;
-
-// connection.once("open", () => {
-//   console.log("MongoDB database connection established successfully!");
-// });
-
-// connection.on("error", (error) => {
-//   console.log(error);
-// });
 
 const Schema = mongoose.Schema;
 
@@ -31,7 +26,16 @@ const blogSchema = new Schema({
   },
 });
 
-const Blog = mongoose.model("Blog", blogSchema);
+const userSchema = new Schema({
+  firstName: String,
+  lastName: String,
+  email: String,
+  phone: String,
+  password: String,
+  accountType: String,
+});
+
+const signedupUsers = mongoose.model("signedupUsers", userSchema);
 
 const newBlog = new Blog({
   title: "A new blog post",

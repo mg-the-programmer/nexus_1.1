@@ -1,25 +1,53 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-
+const mongoose = require("mongoose");
 const fs = require("fs");
-let data = JSON.parse(fs.readFileSync("./users.json"));
+
+const uri =
+  "mongodb+srv://manigandan:manigandan@cluster0.oyky4iz.mongodb.net/nexusdb";
+
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+const connection = mongoose.connection;
+
+connection.once("open", () => {
+  console.log("MongoDB database connection established successfully");
+});
+const Schema = mongoose.Schema;
+const userSchema = new Schema({
+  firstName: String,
+  lastName: String,
+  email: String,
+  phone: String,
+  password: String,
+  accountType: String,
+});
+
+const signedupUsers = mongoose.model("signedupUsers", userSchema);
 
 const app = express();
 const port = process.env.PORT || 5000;
 app.use(bodyParser.json());
 
 app.get("/users", (req, res) => {
-  res.send(data);
+  signedupUsers.find({}, (error, users) => {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log(users);
+      res.json(users);
+    }
+  });
 });
 
 app.post("/users", (req, res) => {
   const { mail, pass } = req.body;
-  data.push({ mailid: mail, password: pass });
-  fs.writeFile("./users.json", JSON.stringify(data), (err) => {
-    if (err) {
-      console.log(err);
-    }
-  });
+  // data.push({ mailid: mail, password: pass });
+  // fs.writeFile("./users.json", JSON.stringify(data), (err) => {
+  //   if (err) {
+  //     console.log(err);
+  //   }
+  // });
 
   // fs.writeFileSync("data.json",  JSON.stringify(data));
 
@@ -28,7 +56,7 @@ app.post("/users", (req, res) => {
 
 app.post("/users/signup", (req, res) => {
   const { firstName, lastName, email, phone, password, accountType } = req.body;
-  data.push({
+  const newuser = new signedupUsers({
     firstName: firstName,
     lastName: lastName,
     email: email,
@@ -36,11 +64,27 @@ app.post("/users/signup", (req, res) => {
     password: password,
     accountType: accountType,
   });
-  fs.writeFile("./users.json", JSON.stringify(data), (err) => {
-    if (err) {
-      console.log(err);
+  newuser.save((error) => {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("New User saved successfully!");
     }
   });
+
+  // data.push({
+  //   firstName: firstName,
+  //   lastName: lastName,
+  //   email: email,
+  //   phone: phone,
+  //   password: password,
+  //   accountType: accountType,
+  // });
+  // fs.writeFile("./users.json", JSON.stringify(data), (err) => {
+  //   if (err) {
+  //     console.log(err);
+  //   }
+  // });
   res.json({ message: "success" });
 });
 
