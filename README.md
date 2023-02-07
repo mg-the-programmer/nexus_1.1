@@ -14,12 +14,12 @@ This is a guide for running the MERN stack application from the GitHub repositor
 ## Install dependencies
 
 1. Install the server-side dependencies using npm:
-  cd server
-  npm install
+  `cd server`
+  `npm install`
   
 2. Install the client-side dependencies using npm:
-  cd client
-  npm install
+  `cd client`
+  `npm install`
   
 This will start the server-side application on `http://localhost:5000` and the client-side application on `http://localhost:3000`.
 
