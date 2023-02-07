@@ -1,4 +1,4 @@
-# nexus_1.1-backend
+# nexus_1.1
 # Running the MERN stack application
 
 This is a guide for running the MERN stack application from the GitHub repository. Before getting started, make sure that you have [Node.js](https://nodejs.org/en/) and [MongoDB](https://www.mongodb.com/) installed on your computer.
