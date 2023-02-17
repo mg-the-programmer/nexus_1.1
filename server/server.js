@@ -72,19 +72,6 @@ app.post("/users/signup", (req, res) => {
     }
   });
 
-  // data.push({
-  //   firstName: firstName,
-  //   lastName: lastName,
-  //   email: email,
-  //   phone: phone,
-  //   password: password,
-  //   accountType: accountType,
-  // });
-  // fs.writeFile("./users.json", JSON.stringify(data), (err) => {
-  //   if (err) {
-  //     console.log(err);
-  //   }
-  // });
   res.json({ message: "success" });
 });
 

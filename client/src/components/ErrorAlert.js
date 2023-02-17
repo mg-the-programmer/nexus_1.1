@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-export default function ErrorAlert({ head, message }) {
-  
+export default function ErrorAlert({
+  head = "Error",
+  message = "Something went wrong",
+}) {
+  const [show, setShow] = useState(true);
+
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setShow(false);
+  //   }, 10000);
+  //   return () => clearTimeout(timer);
+  // }, []);
+
+  if (!show) return null;
   return (
     <div
       className={`z-10 flex animate-on-load w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800`}>
@@ -24,36 +36,3 @@ export default function ErrorAlert({ head, message }) {
     </div>
   );
 }
-
-//multi line comment
-
-// const FadeOutComponent = () => {
-//   const [show, setShow] = useState(true);
-
-//   useEffect(() => {
-//     setTimeout(() => {
-//       setShow(false);
-//     }, 2000);
-//   }, []);
-
-//   return (
-//     <div>
-//       {show && (
-//         <div
-//           style={{
-//             opacity: show ? 1 : 0,
-//             transition: 'opacity 1s ease-out'
-//           }}
-//         >
-//           <h2>This component will fade out after 2 seconds</h2>
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default FadeOutComponent;
-
-
-
-

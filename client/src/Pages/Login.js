@@ -9,12 +9,13 @@ export default function Login() {
 
   const [mail, setmail] = useState("");
   const [pass, setpass] = useState("");
+  const [accountType, setAccountType] = useState("client");
 
   const handleSumbit = (e) => {
     e.preventDefault();
     // alert("hello");
     axios
-      .post("/users", { mail, pass })
+      .post("/users/signin", { mail, pass, accountType })
       .then((res) => {
         console.log(res.data);
         setmail("");

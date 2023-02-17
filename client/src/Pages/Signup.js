@@ -39,7 +39,7 @@ export default function Signup() {
   };
 
   const handleSubmit = (e) => {
-    // formValidation();
+    formValidation();
     e.preventDefault();
     axios
       .post("/users/signup", {
@@ -238,12 +238,10 @@ export default function Signup() {
         </div>
       </section>
       <div className="notifications fixed bottom-7 right-7 flex flex-col gap-y-3 ">
-        {isError.length !== 0 ? (
+        {/* {isError.length !== 0 ? (
           <ErrorAlert head={isError[0]} message={isError[1]} />
-        ) : null}
-        <ErrorAlert head={"Phone"} message={isError[1]} />
-
-        {/* {isError && <ErrorAlert head={"dfsf"} message={"sfsdf"} />} */}
+        ) : null} */}
+        <ErrorAlert />
       </div>
     </>
   );
