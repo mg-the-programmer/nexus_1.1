@@ -6,6 +6,7 @@ import Signup from "./Pages/Signup";
 import { useState } from "react";
 import ErrorAlert from "./components/ErrorAlert";
 import Test from "./Test";
+import FreelancerForm from "./Pages/FreelancerForm";
 
 function App() {
   const [isdarkmode, setisdarkmode] = useState(true);
@@ -19,13 +20,14 @@ function App() {
       {/* <Test /> */}
       {/* <ResumeBuilder /> */}
       {/* <Login /> */}
-      <Signup />
+      {/* <Signup /> */}
       {/* <Test /> */}
       <button
-        className="fixed top-4 right-4 bg-blue-500 p-2 rounded-md"
+        className="fixed top-4 right-4 rounded-md bg-blue-500 p-2"
         onClick={() => setisdarkmode(!isdarkmode)}>
         Change Mode
       </button>
+      <FreelancerForm />
       {/* <ErrorAlert head={"Password"} message={"Password does not match"} /> */}
       {/* <Users /> */}
     </div>
