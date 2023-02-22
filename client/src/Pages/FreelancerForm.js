@@ -1,5 +1,7 @@
 import { useState } from "react";
 import TagSection from "../components/TagSection.js";
+import ToggleButton from "react-toggle-button";
+import { FaGithub } from "react-icons/fa";
 
 function FreelancerForm({ darkmode }) {
   const [name, setName] = useState("");
@@ -7,6 +9,11 @@ function FreelancerForm({ darkmode }) {
   const [skills, setSkills] = useState([]);
   const [rate, setRate] = useState("");
   const [resume, setResume] = useState(null);
+  const [isAvailable, setIsAvailable] = useState(false);
+  const [githubLink, setGithubLink] = useState("");
+  const [experience, setExperience] = useState("");
+  const [jobTitle, setJobTitle] = useState("");
+  const [description, setDescription] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -87,6 +94,62 @@ function FreelancerForm({ darkmode }) {
           onChange={handleResumeChange}
           className="w-full rounded-md border p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
           required
+        />
+      </div>
+      <div className="mb-6">
+        <label className="mb-2 block font-bold text-gray-700">
+          Availability
+        </label>
+        <ToggleButton
+          value={isAvailable}
+          onToggle={(value) => setIsAvailable(value)}
+        />
+        <span className="ml-2 text-gray-700">
+          {isAvailable ? "Available" : "Unavailable"}
+        </span>
+      </div>
+      <div className="mb-6">
+        <label className="mb-2 block font-bold text-gray-700">
+          GitHub Link
+        </label>
+        <div className="flex items-center">
+          <FaGithub className="mr-2" size={25} />
+          <input
+            type="url"
+            placeholder="https://github.com/your-username"
+            className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 focus:outline-none"
+            value={githubLink}
+            onChange={(event) => setGithubLink(event.target.value)}
+          />
+        </div>
+      </div>
+      <div className="mb-6">
+        <label className="mb-2 block font-bold text-gray-700">Experience</label>
+        <input
+          type="text"
+          className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 focus:outline-none"
+          value={experience}
+          onChange={(event) => setExperience(event.target.value)}
+        />
+      </div>
+      <div className="mb-6">
+        <label className="mb-2 block font-bold text-gray-700">Job Title</label>
+        <input
+          type="text"
+          className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 focus:outline-none"
+          value={jobTitle}
+          onChange={(event) => setJobTitle(event.target.value)}
+        />
+      </div>
+      <div className="mb-6">
+        <label className="mb-2 block font-bold text-gray-700">
+          Description
+        </label>
+        <textarea
+          className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 focus:outline-none"
+          rows="4"
+          value={description}
+          onChange={(event) => setDescription(event.target.value)}
         />
       </div>
       <button
