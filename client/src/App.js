@@ -5,8 +5,8 @@ import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
 import { useState } from "react";
 import ErrorAlert from "./components/ErrorAlert";
-import Test from "./Test";
 import FreelancerForm from "./Pages/FreelancerForm";
+import FreelancerInfo from "./Pages/FreelancerInfo";
 
 function App() {
   const [isdarkmode, setisdarkmode] = useState(true);
@@ -16,20 +16,13 @@ function App() {
   return (
     <div className={`App ${mode}`}>
       {/* <ErrorAlert head={"Error"} message={"Something went wrong"} /> */}
-      {/* <h1>Hello</h1> */}
-      {/* <Test /> */}
-      {/* <ResumeBuilder /> */}
-      {/* <Login /> */}
-      {/* <Signup /> */}
-      {/* <Test /> */}
       <button
         className="fixed top-4 right-4 rounded-md bg-blue-500 p-2"
         onClick={() => setisdarkmode(!isdarkmode)}>
         Change Mode
       </button>
-      <FreelancerForm />
-      {/* <ErrorAlert head={"Password"} message={"Password does not match"} /> */}
-      {/* <Users /> */}
+      <FreelancerInfo />
+      {/* <FreelancerForm /> */}
     </div>
   );
 }

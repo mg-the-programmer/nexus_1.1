@@ -41,7 +41,7 @@ function TagSection({ onTagsChange }) {
       ))}
       <br />
       <textarea
-        className="tags-input  w-full rounded-md border  p-2 py-1 px-2 text-sm focus:outline-none focus:ring-2  focus:ring-blue-400"
+        className="tags-input  w-full rounded-md border p-2 py-1 px-2 focus:outline-none focus:ring-2  focus:ring-blue-400"
         placeholder="Add tags (separated by commas)"
         onKeyDown={handleKeyDown}
       />
