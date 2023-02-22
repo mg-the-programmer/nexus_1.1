@@ -2,7 +2,7 @@ import { PaperClipIcon } from "@heroicons/react/20/solid";
 
 export default function Example() {
   return (
-    <div className="mx-auto w-5/6 overflow-hidden bg-white shadow sm:w-4/6 sm:rounded-lg">
+    <div className="mx-auto max-w-7xl overflow-hidden bg-white shadow sm:w-4/6 sm:rounded-lg">
       <div className="px-4 py-5 sm:px-6">
         <h3 className="text-lg font-bold leading-6 text-gray-900">
           Applicant Information
@@ -14,7 +14,7 @@ export default function Example() {
       <div className="border-t border-gray-200">
         <dl>
           <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt className="text-sm font-bold text-gray-500">Full name</dt>  
+            <dt className="text-sm font-bold text-gray-500">Full name</dt>
             <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
               Margot Foster
             </dd>
