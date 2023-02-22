@@ -12,6 +12,7 @@
     "**/.factorypath": true,
     "client/public": true,
     "client/.vscode": true,
+<<<<<<< HEAD
     "client/node_modules": true,
     "client/src/reportWebVitals.js": true,
     "client/tailwind.config.js": true,
@@ -41,4 +42,9 @@
     "server/.gitignore",
     "server/package-lock.json"
   ]
+=======
+    "client/node_modules": true
+  },
+  "hide-files.files": ["client/public", "client/.vscode", "client/node_modules"]
+>>>>>>> 8fb61c6db088de178d67691e5b9be005a97a42b0
 }
