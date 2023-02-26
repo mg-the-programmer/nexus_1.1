@@ -6,6 +6,8 @@ import ErrorPage from "./Pages/ErrorPage";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./Pages/Login";
+import FreelanceProfile from "./Pages/Freelancer/FreelanceProfile";
+import FreelancerSettings from "./Pages/Freelancer/FreelancerSettings";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +18,14 @@ const router = createBrowserRouter([
   {
     path: "/signin",
     element: <Login />,
+  },
+  {
+    path: "/profile",
+    element: <FreelanceProfile />,
+  },
+  {
+    path: "/settings",
+    element: <FreelancerSettings />,
   },
 ]);
 const root = ReactDOM.createRoot(document.getElementById("root"));

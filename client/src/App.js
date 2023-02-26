@@ -1,14 +1,14 @@
 import "./App.css";
 import React from "react";
 import Login from "./Pages/Login";
-import FreelancerSettings from "./Pages/FreelancerSettings";
+import FreelancerSettings from "./Pages/Freelancer/FreelancerSettings";
 
 import Signup from "./Pages/Signup";
 import { useState } from "react";
 import ErrorAlert from "./components/ErrorAlert";
 import Navbar from "./components/Navbar";
-import FreelancerForm from "./Pages/FreelancerForm";
-import FreelancerInfo from "./Pages/FreelancerInfo";
+import FreelancerForm from "./Pages/Freelancer/FreelancerForm";
+import FreelancerInfo from "./Pages/Freelancer/FreelancerInfo";
 
 function App() {
   const [isdarkmode, setisdarkmode] = useState(true);
@@ -19,7 +19,7 @@ function App() {
     <div className={`App ${mode}`}>
       {/* <ErrorAlert head={"Error"} message={"Something went wrong"} /> */}
       {/* <button
-        className="fixed top-4 right-4 rounded-md bg-blue-500 p-2"
+        className="fixed p-2 bg-blue-500 rounded-md top-4 right-4"
         onClick={() => setisdarkmode(!isdarkmode)}>
         Change Mode
       </button> */}
