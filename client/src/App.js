@@ -7,6 +7,7 @@ import Signup from "./Pages/Signup";
 import { useState } from "react";
 import ErrorAlert from "./components/ErrorAlert";
 import Navbar from "./components/Navbar";
+import Dashboard from "./Pages/Client/Dashboard";
 import FreelancerForm from "./Pages/Freelancer/FreelancerForm";
 import FreelancerInfo from "./Pages/Freelancer/FreelancerInfo";
 
@@ -24,7 +25,8 @@ function App() {
         Change Mode
       </button> */}
       <Navbar />
-      <FreelancerSettings />
+      {/* <FreelancerSettings /> */}
+      <Dashboard />
       {/* <FreelancerInfo /> */}
       {/* <FreelancerForm /> */}
     </div>

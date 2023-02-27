@@ -3,7 +3,7 @@ import React from "react";
 export default function FreelanceProfile() {
   return (
     <main className="profile-page">
-      <section className="h-500-px relative block">
+      <section className="relative block h-[500px]">
         <div
           className="absolute top-0 h-full w-full bg-cover bg-center"
           style={{
@@ -16,7 +16,7 @@ export default function FreelanceProfile() {
           />
         </div>
         <div
-          className="h-70-px pointer-events-none absolute bottom-0 left-0 right-0 top-auto w-full overflow-hidden"
+          className="pointer-events-none absolute bottom-0 left-0 right-0 top-auto h-[70px] w-full overflow-hidden"
           style={{ transform: "translateZ(0px)" }}>
           <svg
             className="absolute bottom-0 overflow-hidden"
@@ -43,7 +43,7 @@ export default function FreelanceProfile() {
                     <img
                       alt="..."
                       src="https://demos.creative-tim.com/notus-js/assets/img/team-2-800x800.jpg"
-                      className="max-w-150-px absolute -m-16 -ml-20 h-auto rounded-full border-none align-middle shadow-xl lg:-ml-16"
+                      className="absolute -m-16 -ml-20 h-auto max-w-[150px] rounded-full border-none align-middle shadow-xl lg:-ml-16"
                     />
                   </div>
                 </div>
