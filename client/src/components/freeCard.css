@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+.cardContainer {
+  /* box-sizing: border-box; */
+
+  position: relative;
+  width: 1118px;
+  height: 398px;
+  left: 401px;
+  top: 177px;
+  background-color: white;
+  border-radius: 19px;
+  margin-bottom: 20px;
+}
+
+.profilePic {
+  position: absolute;
+  width: 108.06px;
+  height: 107px;
+  left: 58.58px;
+  top: 47px;
+  border-radius: 50%;
+}
+
+.fName {
+
+  position: absolute;
+  width: 205.02px;
+  height: 31px;
+  left: 180.78px;
+  top: 49px;
+
+  font-family: 'Gotham Black';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 31px;
+  /* identical to box height */
+  color: #000000;
+}
+
+.rating {
+  /* background-image: url("../Assests/star.png"); */
+  background-size: cover;
+  position: absolute;
+  width: 117px;
+  height: 22px;
+  left: 176px;
+  top: 83px;
+}
+
+.status {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 24px;
+  gap: 10px;
+
+  position: absolute;
+  top: 115px;
+  left: 179px;
+
+  width: 123px;
+  height: 23px;
+
+  /* background: #FFFFFF; */
+  border: 1px solid #16F28B;
+  border-radius: 8px;
+}
+
+.status>span {
+  /* width: 105px; */
+  /* height: 24px; */
+
+  font-family: 'Gotham';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  /* identical to box height, or 171% */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.2px;
+
+  color: #15BF81;
+
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.field {
+  display: flex;
+  padding: 8px 24px;
+  gap: 10px;
+
+  position: relative;
+  /* width: 147.45px; */
+  /* height: 36px; */
+  left: 43px;
+  top: 167px;
+
+  /* Gray 1 */
+
+  /* border: 1px solid #333333; */
+  border-radius: 8px;
+
+}
+
+.field>span {
+  /* box-sizing: border-box; */
+  font-family: 'Gotham';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 24px;
+  width: 147.45px;
+  height: 36px;
+  border: 1px solid #333333;
+  border-radius: 8px;
+  letter-spacing: 0.2px;
+  padding-top: 4px;
+  padding-left: 7px;
+  /* position: absolute; */
+}
+
+.rate {
+  position: absolute;
+  width: 71px;
+  height: 30px;
+  left: 67px;
+  top: 230px;
+
+  font-family: 'Gowun Batang';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 135.5%;
+}
+
+.earned {
+  position: absolute;
+  width: 140px;
+  height: 30px;
+  left: 197px;
+  top: 230px;
+
+  font-family: 'Gowun Batang';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 135.5%;
+}
+
+.level {
+  position: absolute;
+  width: 200px;
+  height: 30px;
+  left: 386px;
+  top: 230px;
+
+  font-family: 'Gowun Batang';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 135.5%;
+}
+
+.description {
+  position: absolute;
+  width: 934.19px;
+  height: 90px;
+  left: 68px;
+  top: 275px;
+
+  font-family: 'Gowun Batang';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 135.5%;
+  /* or 30px */
+}

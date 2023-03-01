@@ -1,17 +1,3 @@
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
 import { Fragment, useState } from "react";
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
@@ -22,6 +8,7 @@ import {
   PlusIcon,
   Squares2X2Icon,
 } from "@heroicons/react/20/solid";
+import FProfileCard from "../../components/FProfileCard";
 
 const sortOptions = [
   { name: "Most Popular", href: "#", current: true },
@@ -31,36 +18,52 @@ const sortOptions = [
   { name: "Price: High to Low", href: "#", current: false },
 ];
 const subCategories = [
-  { name: "Totes", href: "#" },
-  { name: "Backpacks", href: "#" },
-  { name: "Messenger Bags", href: "#" },
-  { name: "Briefcases", href: "#" },
-  { name: "Laptop Bags", href: "#" },
-  { name: "Duffel Bags", href: "#" },
-  { name: "Travel Accessories", href: "#" },
+  { name: "Full-Stack Developer", href: "#" },
+  { name: "Android Developer", href: "#" },
+  { name: "Blockchain Developer", href: "#" },
+  { name: "Web3 Developer", href: "#" },
+  { name: "JavaScript Development", href: "#" },
 ];
 const filters = [
   {
-    id: "color",
-    name: "Color",
+    id: "amount",
+    name: "Amount",
     options: [
-      { value: "white", label: "White", checked: false },
-      { value: "beige", label: "Beige", checked: false },
-      { value: "blue", label: "Blue", checked: true },
-      { value: "brown", label: "Brown", checked: false },
-      { value: "green", label: "Green", checked: false },
-      { value: "purple", label: "Purple", checked: false },
+      {
+        value: "Any Amount Earned",
+        label: "Any Amount Earned",
+        checked: false,
+      },
+      { value: "₹10k+ Earned", label: "₹10k Earned", checked: false },
+      { value: "₹50k+ Earned", label: "₹50k+ Earned", checked: true },
+      { value: "₹100k+ Earned", label: "₹100k+ Earned", checked: false },
     ],
   },
   {
     id: "category",
     name: "Category",
     options: [
-      { value: "new-arrivals", label: "New Arrivals", checked: false },
-      { value: "sale", label: "Sale", checked: false },
-      { value: "travel", label: "Travel", checked: true },
-      { value: "organization", label: "Organization", checked: false },
-      { value: "accessories", label: "Accessories", checked: false },
+      {
+        value: "Full-Stack Developer",
+        label: "Full-Stack Developer",
+        checked: false,
+      },
+      {
+        value: "Android Developer",
+        label: "Android Developer",
+        checked: false,
+      },
+      {
+        value: "Blockchain Developer",
+        label: "Blockchain Developer",
+        checked: true,
+      },
+      { value: "Web3 Developer", label: "Web3 Developer", checked: false },
+      {
+        value: "JavaScript Development",
+        label: "JavaScript Development",
+        checked: false,
+      },
     ],
   },
   {
@@ -73,6 +76,26 @@ const filters = [
       { value: "Contract", label: "Contract", checked: false },
     ],
   },
+];
+const posts = [
+  {
+    id: 1,
+    title: "Boost your conversion rate",
+    href: "#",
+    description:
+      "Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.",
+    date: "Mar 16, 2020",
+    datetime: "2020-03-16",
+    category: { title: "Marketing", href: "#" },
+    author: {
+      name: "Michael Foster",
+      role: "Co-Founder / CTO",
+      href: "#",
+      imageUrl:
+        "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+    },
+  },
+  // More posts...
 ];
 
 function classNames(...classes) {
@@ -201,9 +224,9 @@ export default function Example() {
           </Dialog>
         </Transition.Root>
 
-        <main className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <div className="flex items-baseline justify-between border-b border-gray-200 pt-24 pb-6">
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900">
+        <main className="mx-auto max-w-7xl sm:px-6 lg:px-8 ">
+          <div className="flex items-baseline justify-between border-b border-gray-200 bg-white pt-6 pb-6 ">
+            <h1 className="text-4xl font-bold tracking-tight text-gray-900 ">
               Dashboard
             </h1>
 
@@ -251,12 +274,12 @@ export default function Example() {
                 </Transition>
               </Menu>
 
-              <button
+              {/* <button
                 type="button"
-                className="-m-2 ml-5 p-2 text-gray-400 hover:text-gray-500 sm:ml-7">
+                className="p-2 ml-5 -m-2 text-gray-400 hover:text-gray-500 sm:ml-7">
                 <span className="sr-only">View grid</span>
-                <Squares2X2Icon className="h-5 w-5" aria-hidden="true" />
-              </button>
+                <Squares2X2Icon className="w-5 h-5" aria-hidden="true" />
+              </button> */}
               <button
                 type="button"
                 className="-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden"
@@ -344,8 +367,13 @@ export default function Example() {
 
               {/* Product grid */}
               <div className="lg:col-span-3">
+                <div className="mx-auto grid max-w-2xl grid-cols-1 gap-y-16 gap-x-8 lg:mx-0 lg:max-w-none ">
+                  {posts.map((post) => (
+                    <FProfileCard post={post} />
+                  ))}
+                </div>
                 {/* Replace with your content */}
-                <div className="h-96 rounded-lg border-4 border-dashed border-gray-200 lg:h-full" />
+                {/* <div className="border-4 border-gray-200 border-dashed rounded-lg h-96 lg:h-full" /> */}
                 {/* /End replace */}
               </div>
             </div>

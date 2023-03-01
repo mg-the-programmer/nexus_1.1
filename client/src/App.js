@@ -17,7 +17,8 @@ function App() {
   const mode = isdarkmode ? "dark" : "light";
 
   return (
-    <div className={`App ${mode}`}>
+    <div
+      className={`App ${mode} scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-gray-400`}>
       {/* <ErrorAlert head={"Error"} message={"Something went wrong"} /> */}
       {/* <button
         className="fixed p-2 bg-blue-500 rounded-md top-4 right-4"
