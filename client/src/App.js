@@ -12,7 +12,7 @@ import FreelancerForm from "./Pages/Freelancer/FreelancerForm";
 import FreelancerInfo from "./Pages/Freelancer/FreelancerInfo";
 
 function App() {
-  const [isdarkmode, setisdarkmode] = useState(true);
+  const [isdarkmode, setisdarkmode] = useState(false);
 
   const mode = isdarkmode ? "dark" : "light";
 

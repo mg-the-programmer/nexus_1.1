@@ -84,9 +84,34 @@ const posts = [
     href: "#",
     description:
       "Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.",
+    available: true,
+    datetime: "2020-03-16",
+    category: [
+      { title: "Android Dev", href: "#" },
+      { title: "Full Stack", href: "#" },
+      { title: "UI/UX", href: "#" },
+    ],
+    author: {
+      name: "Manigandan C",
+      role: "Full Stack MERN Developer",
+      href: "#",
+      imageUrl:
+        "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80",
+    },
+  },
+  {
+    id: 1,
+    title: "Boost your conversion rate",
+    href: "#",
+    description:
+      "Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.",
     date: "Mar 16, 2020",
     datetime: "2020-03-16",
-    category: { title: "Marketing", href: "#" },
+    category: [
+      { title: "Android Dev", href: "#" },
+      { title: "Full Stack", href: "#" },
+      { title: "UI/UX", href: "#" },
+    ],
     author: {
       name: "Michael Foster",
       role: "Co-Founder / CTO",
@@ -224,8 +249,8 @@ export default function Example() {
           </Dialog>
         </Transition.Root>
 
-        <main className="mx-auto max-w-7xl sm:px-6 lg:px-8 ">
-          <div className="flex items-baseline justify-between border-b border-gray-200 bg-white pt-6 pb-6 ">
+        <main className="mx-auto max-w-7xl  sm:px-6 lg:px-8 ">
+          <div className="flex items-center justify-between border-b border-gray-200 bg-white px-3 pt-6 pb-6 sm:px-0 ">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 ">
               Dashboard
             </h1>
@@ -290,7 +315,7 @@ export default function Example() {
             </div>
           </div>
 
-          <section aria-labelledby="products-heading" className="pt-6 pb-24">
+          <section aria-labelledby="products-heading" className="py-6">
             <h2 id="products-heading" className="sr-only">
               Products
             </h2>
@@ -366,8 +391,8 @@ export default function Example() {
               </form>
 
               {/* Product grid */}
-              <div className="lg:col-span-3">
-                <div className="mx-auto grid max-w-2xl grid-cols-1 gap-y-16 gap-x-8 lg:mx-0 lg:max-w-none ">
+              <div className=" lg:col-span-3">
+                <div className="mx-auto grid max-w-2xl grid-cols-1 gap-y-7 gap-x-8 lg:mx-0 lg:max-w-none ">
                   {posts.map((post) => (
                     <FProfileCard post={post} />
                   ))}

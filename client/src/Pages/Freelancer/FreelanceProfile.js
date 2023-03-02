@@ -3,7 +3,7 @@ import React from "react";
 export default function FreelanceProfile() {
   return (
     <main className="profile-page">
-      <section className="relative block h-[500px]">
+      <section className="relative block h-[400px]">
         <div
           className="absolute top-0 h-full w-full bg-cover bg-center"
           style={{
@@ -48,9 +48,9 @@ export default function FreelanceProfile() {
                   </div>
                 </div>
                 <div className="w-full px-4 lg:order-3 lg:w-4/12 lg:self-center lg:text-right">
-                  <div className="mt-32 px-3 py-6 sm:mt-0">
+                  <div className="px-3 py-6 sm:mt-0">
                     <button
-                      className="mb-1 rounded bg-pink-500 px-4 py-2 text-xs font-bold uppercase text-white shadow outline-none transition-all duration-150 ease-linear hover:shadow-md focus:outline-none active:bg-pink-600 sm:mr-2"
+                      className="mb-1 rounded bg-pink-500 px-4 py-2 text-xs font-bold uppercase text-white shadow outline-none transition-all duration-150 ease-linear focus:outline-none hover:shadow-md active:bg-pink-600 sm:mr-2"
                       type="button">
                       Connect
                     </button>
