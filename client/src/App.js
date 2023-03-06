@@ -10,6 +10,7 @@ import Navbar from "./components/Navbar";
 import Dashboard from "./Pages/Client/Dashboard";
 import FreelancerForm from "./Pages/Freelancer/FreelancerForm";
 import FreelancerInfo from "./Pages/Freelancer/FreelancerInfo";
+import ChatPage from "./Pages/ChatPage";
 
 function App() {
   const [isdarkmode, setisdarkmode] = useState(false);
@@ -27,7 +28,8 @@ function App() {
       </button> */}
       <Navbar />
       {/* <FreelancerSettings /> */}
-      <Dashboard />
+      {/* <Dashboard /> */}
+      <ChatPage />
       {/* <FreelancerInfo /> */}
       {/* <FreelancerForm /> */}
     </div>
