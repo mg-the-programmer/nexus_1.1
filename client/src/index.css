@@ -11,6 +11,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -33,5 +37,23 @@ code {
 }
 
 .animate-on-load {
-  animation: my-animation  ease-in-out;
+  animation: my-animation ease-in-out;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #aaa;
+  border-radius: 12px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #999;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 12px;
 }

@@ -1,7 +1,14 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import {
+  Bars3Icon,
+  BellIcon,
+  ChatBubbleOvalLeftIcon,
+  InboxIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
 import MainLogo from "../Assests/mainlogo.png";
+import { Link } from "@mui/material";
 
 const user = {
   name: "Tom Cook",
@@ -10,7 +17,7 @@ const user = {
     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
 };
 const navigation = [
-  { name: "Dashboard", href: "#", current: false },
+  { name: "Dashboard", href: "/dashboard", current: false },
   { name: "Projects", href: "#", current: false },
 ];
 
@@ -31,19 +38,19 @@ export default function Example() {
         <Disclosure as="nav" className="bg-gray-800">
           {({ open }) => (
             <>
-              <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-                <div className="flex items-center justify-between h-16">
+              <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div className="flex h-16 items-center justify-between">
                   <div className="flex items-center ">
                     <div className="flex-shrink-0">
                       <img
                         className="h-[1.2rem] hover:cursor-pointer"
                         src={MainLogo}
-                        href="#"
+                        href="dashboard"
                         alt="Your Company"
                       />
                     </div>
                     <div className="hidden md:block">
-                      <div className="flex items-center justify-center ml-10 space-x-4">
+                      <div className="ml-10 flex items-center justify-center space-x-4">
                         {navigation.map((item) => (
                           <a
                             key={item.name}
@@ -62,21 +69,27 @@ export default function Example() {
                     </div>
                   </div>
                   <div className="hidden md:block">
-                    <div className="flex items-center ml-4 md:ml-6">
+                    <div className="ml-4 flex items-center md:ml-6">
                       <button
                         type="button"
-                        className="p-1 text-gray-400 bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 hover:text-white">
+                        className="rounded-full bg-gray-800 p-1 text-gray-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 hover:text-white">
                         <span className="sr-only">View notifications</span>
-                        <BellIcon className="w-6 h-6" aria-hidden="true" />
+
+                        <a href="/messages">
+                          <ChatBubbleOvalLeftIcon
+                            className="h-6 w-6"
+                            aria-hidden="true"
+                          />
+                        </a>
                       </button>
 
                       {/* Profile dropdown */}
                       <Menu as="div" className="relative ml-3">
                         <div>
-                          <Menu.Button className="flex items-center max-w-xs text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                          <Menu.Button className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                             <span className="sr-only">Open user menu</span>
                             <img
-                              className="w-8 h-8 rounded-full"
+                              className="h-8 w-8 rounded-full"
                               src={user.imageUrl}
                               alt=""
                             />
@@ -90,7 +103,7 @@ export default function Example() {
                           leave="transition ease-in duration-75"
                           leaveFrom="transform opacity-100 scale-100"
                           leaveTo="transform opacity-0 scale-95">
-                          <Menu.Items className="absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                          <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                             {userNavigation.map((item) => (
                               <Menu.Item key={item.name}>
                                 {({ active }) => (
@@ -110,18 +123,18 @@ export default function Example() {
                       </Menu>
                     </div>
                   </div>
-                  <div className="flex -mr-2 md:hidden">
+                  <div className="-mr-2 flex md:hidden">
                     {/* Mobile menu button */}
-                    <Disclosure.Button className="inline-flex items-center justify-center p-2 text-gray-400 bg-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 hover:bg-gray-700 hover:text-white">
+                    <Disclosure.Button className="inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 hover:bg-gray-700 hover:text-white">
                       <span className="sr-only">Open main menu</span>
                       {open ? (
                         <XMarkIcon
-                          className="block w-6 h-6"
+                          className="block h-6 w-6"
                           aria-hidden="true"
                         />
                       ) : (
                         <Bars3Icon
-                          className="block w-6 h-6"
+                          className="block h-6 w-6"
                           aria-hidden="true"
                         />
                       )}
@@ -131,7 +144,7 @@ export default function Example() {
               </div>
 
               <Disclosure.Panel className="md:hidden">
-                <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
                   {navigation.map((item) => (
                     <Disclosure.Button
                       key={item.name}
@@ -148,11 +161,11 @@ export default function Example() {
                     </Disclosure.Button>
                   ))}
                 </div>
-                <div className="pt-4 pb-3 border-t border-gray-700">
+                <div className="border-t border-gray-700 pt-4 pb-3">
                   <div className="flex items-center px-5">
                     <div className="flex-shrink-0">
                       <img
-                        className="w-10 h-10 rounded-full"
+                        className="h-10 w-10 rounded-full"
                         src={user.imageUrl}
                         alt=""
                       />
@@ -167,18 +180,23 @@ export default function Example() {
                     </div>
                     <button
                       type="button"
-                      className="flex-shrink-0 p-1 ml-auto text-gray-400 bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 hover:text-white">
+                      className="ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 hover:text-white">
                       <span className="sr-only">View notifications</span>
-                      <BellIcon className="w-6 h-6" aria-hidden="true" />
+                      <a href="/messages">
+                        <ChatBubbleOvalLeftIcon
+                          className="h-6 w-6"
+                          aria-hidden="true"
+                        />
+                      </a>
                     </button>
                   </div>
-                  <div className="px-2 mt-3 space-y-1">
+                  <div className="mt-3 space-y-1 px-2">
                     {userNavigation.map((item) => (
                       <Disclosure.Button
                         key={item.name}
                         as="a"
                         href={item.href}
-                        className="block px-3 py-2 text-base font-medium text-gray-400 rounded-md hover:bg-gray-700 hover:text-white">
+                        className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">
                         {item.name}
                       </Disclosure.Button>
                     ))}

@@ -4,21 +4,22 @@ export default function FProfileCard({ post }) {
   return (
     <article
       key={post.id}
-      className="mx-2 flex flex-col items-start justify-between gap-y-2.5 rounded-md p-5 shadow ">
+      className="mx-2 flex flex-col items-start justify-between gap-y-2.5 rounded-md bg-white p-5 shadow hover:shadow-md ">
       <div className="relative flex items-center gap-x-4">
         <div className="hs-tooltip inline-block">
-          <a className="hs-tooltip-toggle relative inline-block" href="#">
+          <a className="hs-tooltip-toggle relative " href="#">
             <img
               className="inline-block h-[2.875rem] w-[2.875rem] rounded-full ring-2 ring-gray-800"
               src={post.author.imageUrl}
               alt="Image Description"
             />
+
             <span
-              className={`absolute bottom-0 right-0 block h-3 w-3 rounded-full ${
+              className={`absolute top-6 right-0 block h-3 w-3 rounded-full ${
                 post.available ? "bg-green-400" : "bg-red-400"
-              }  ring-2 ring-white`}></span>
+              } ring-2 ring-white`}></span>
             <div
-              className="hs-tooltip-content invisible absolute z-10 inline-block rounded-md bg-gray-900 py-1 px-2 text-xs font-medium text-white opacity-0 shadow-sm transition-opacity hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 dark:bg-slate-700"
+              className="hs-tooltip-content invisible absolute z-10 inline-block rounded-md bg-gray-900 px-2 py-1 text-xs font-medium text-white opacity-0 shadow-sm transition-opacity hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 dark:bg-slate-700"
               role="tooltip">
               Maria Wanner is online
             </div>

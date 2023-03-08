@@ -5,7 +5,7 @@ export default function FreelancerSettings() {
   return (
     <>
       <Header title="Settings" />
-      <div className="mx-auto w-[75%]">
+      <div className="mx-auto max-w-6xl">
         <div>
           <div className=" md:grid md:grid-cols-3 md:gap-6">
             <div className="md:col-span-1">
@@ -22,7 +22,7 @@ export default function FreelancerSettings() {
             <div className="mt-5 md:col-span-2 md:mt-0">
               <form action="#" method="POST">
                 <div className="shadow sm:overflow-hidden sm:rounded-md">
-                  <div className="px-4 py-5 space-y-6 bg-white sm:p-6">
+                  <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
                     <div className="grid grid-cols-3 gap-6">
                       <div className="col-span-3 sm:col-span-2">
                         <label
@@ -30,15 +30,15 @@ export default function FreelancerSettings() {
                           className="block text-sm font-medium text-gray-700">
                           Portfolio Website
                         </label>
-                        <div className="flex mt-1 rounded-md shadow-sm">
-                          <span className="inline-flex items-center px-3 text-sm text-gray-500 border border-r-0 border-gray-300 rounded-l-md bg-gray-50">
+                        <div className="mt-1 flex rounded-md shadow-sm">
+                          <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">
                             https://
                           </span>
                           <input
                             type="text"
                             name="company-website"
                             id="company-website"
-                            className="flex-1 block w-full border-gray-300 rounded-none rounded-r-md focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                            className="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                             placeholder="www.example.com"
                           />
                         </div>
@@ -56,7 +56,7 @@ export default function FreelancerSettings() {
                           id="about"
                           name="about"
                           rows={3}
-                          className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                           placeholder="Write about your experience"
                           defaultValue={""}
                         />
@@ -71,10 +71,10 @@ export default function FreelancerSettings() {
                       <label className="block text-sm font-medium text-gray-700">
                         Photo
                       </label>
-                      <div className="flex items-center mt-1">
-                        <span className="inline-block w-12 h-12 overflow-hidden bg-gray-100 rounded-full">
+                      <div className="mt-1 flex items-center">
+                        <span className="inline-block h-12 w-12 overflow-hidden rounded-full bg-gray-100">
                           <svg
-                            className="w-full h-full text-gray-300"
+                            className="h-full w-full text-gray-300"
                             fill="currentColor"
                             viewBox="0 0 24 24">
                             <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
@@ -82,7 +82,7 @@ export default function FreelancerSettings() {
                         </span>
                         <button
                           type="button"
-                          className="px-3 py-2 ml-5 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                          className="ml-5 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 hover:bg-gray-50">
                           Change
                         </button>
                       </div>
@@ -92,10 +92,10 @@ export default function FreelancerSettings() {
                       <label className="block text-sm font-medium text-gray-700">
                         Cover photo
                       </label>
-                      <div className="flex justify-center px-6 pt-5 pb-6 mt-1 border-2 border-gray-300 border-dashed rounded-md">
+                      <div className="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
                         <div className="space-y-1 text-center">
                           <svg
-                            className="w-12 h-12 mx-auto text-gray-400"
+                            className="mx-auto h-12 w-12 text-gray-400"
                             stroke="currentColor"
                             fill="none"
                             viewBox="0 0 48 48"
@@ -110,7 +110,7 @@ export default function FreelancerSettings() {
                           <div className="flex text-sm text-gray-600">
                             <label
                               htmlFor="file-upload"
-                              className="relative font-medium text-indigo-600 bg-white rounded-md cursor-pointer focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
+                              className="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
                               <span>Upload a file</span>
                               <input
                                 id="file-upload"
@@ -128,10 +128,10 @@ export default function FreelancerSettings() {
                       </div>
                     </div>
                   </div>
-                  <div className="px-4 py-3 text-right bg-gray-50 sm:px-6">
+                  <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
                     <button
                       type="submit"
-                      className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                      className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 hover:bg-indigo-700">
                       Save
                     </button>
                   </div>
@@ -162,7 +162,7 @@ export default function FreelancerSettings() {
             <div className="mt-5 md:col-span-2 md:mt-0">
               <form action="#" method="POST">
                 <div className="overflow-hidden shadow sm:rounded-md">
-                  <div className="px-4 py-5 bg-white sm:p-6">
+                  <div className="bg-white px-4 py-5 sm:p-6">
                     <div className="grid grid-cols-6 gap-6">
                       <div className="col-span-6 sm:col-span-3">
                         <label
@@ -175,7 +175,7 @@ export default function FreelancerSettings() {
                           name="first-name"
                           id="first-name"
                           autoComplete="given-name"
-                          className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         />
                       </div>
 
@@ -190,7 +190,7 @@ export default function FreelancerSettings() {
                           name="last-name"
                           id="last-name"
                           autoComplete="family-name"
-                          className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         />
                       </div>
 
@@ -205,7 +205,7 @@ export default function FreelancerSettings() {
                           name="email-address"
                           id="email-address"
                           autoComplete="email"
-                          className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         />
                       </div>
 
@@ -219,7 +219,7 @@ export default function FreelancerSettings() {
                           id="country"
                           name="country"
                           autoComplete="country-name"
-                          className="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                          className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
                           <option>United States</option>
                           <option>Canada</option>
                           <option>Mexico</option>
@@ -237,7 +237,7 @@ export default function FreelancerSettings() {
                           name="street-address"
                           id="street-address"
                           autoComplete="street-address"
-                          className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         />
                       </div>
 
@@ -252,7 +252,7 @@ export default function FreelancerSettings() {
                           name="city"
                           id="city"
                           autoComplete="address-level2"
-                          className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         />
                       </div>
 
@@ -267,7 +267,7 @@ export default function FreelancerSettings() {
                           name="region"
                           id="region"
                           autoComplete="address-level1"
-                          className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         />
                       </div>
 
@@ -282,15 +282,15 @@ export default function FreelancerSettings() {
                           name="postal-code"
                           id="postal-code"
                           autoComplete="postal-code"
-                          className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         />
                       </div>
                     </div>
                   </div>
-                  <div className="px-4 py-3 text-right bg-gray-50 sm:px-6">
+                  <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
                     <button
                       type="submit"
-                      className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                      className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 hover:bg-indigo-700">
                       Save
                     </button>
                   </div>
@@ -321,7 +321,7 @@ export default function FreelancerSettings() {
             <div className="mt-5 md:col-span-2 md:mt-0">
               <form action="#" method="POST">
                 <div className="overflow-hidden shadow sm:rounded-md">
-                  <div className="px-4 py-5 space-y-6 bg-white sm:p-6">
+                  <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
                     <fieldset>
                       <legend className="sr-only">By Email</legend>
                       <div
@@ -331,12 +331,12 @@ export default function FreelancerSettings() {
                       </div>
                       <div className="mt-4 space-y-4">
                         <div className="flex items-start">
-                          <div className="flex items-center h-5">
+                          <div className="flex h-5 items-center">
                             <input
                               id="comments"
                               name="comments"
                               type="checkbox"
-                              className="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                              className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                             />
                           </div>
                           <div className="ml-3 text-sm">
@@ -352,12 +352,12 @@ export default function FreelancerSettings() {
                           </div>
                         </div>
                         <div className="flex items-start">
-                          <div className="flex items-center h-5">
+                          <div className="flex h-5 items-center">
                             <input
                               id="candidates"
                               name="candidates"
                               type="checkbox"
-                              className="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                              className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                             />
                           </div>
                           <div className="ml-3 text-sm">
@@ -372,12 +372,12 @@ export default function FreelancerSettings() {
                           </div>
                         </div>
                         <div className="flex items-start">
-                          <div className="flex items-center h-5">
+                          <div className="flex h-5 items-center">
                             <input
                               id="offers"
                               name="offers"
                               type="checkbox"
-                              className="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                              className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                             />
                           </div>
                           <div className="ml-3 text-sm">
@@ -395,7 +395,7 @@ export default function FreelancerSettings() {
                       </div>
                     </fieldset>
                     <fieldset>
-                      <legend className="text-base font-medium text-gray-900 contents">
+                      <legend className="contents text-base font-medium text-gray-900">
                         Push Notifications
                       </legend>
                       <p className="text-sm text-gray-500">
@@ -407,11 +407,11 @@ export default function FreelancerSettings() {
                             id="push-everything"
                             name="push-notifications"
                             type="radio"
-                            className="w-4 h-4 text-indigo-600 border-gray-300 focus:ring-indigo-500"
+                            className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
                           />
                           <label
                             htmlFor="push-everything"
-                            className="block ml-3 text-sm font-medium text-gray-700">
+                            className="ml-3 block text-sm font-medium text-gray-700">
                             Everything
                           </label>
                         </div>
@@ -420,11 +420,11 @@ export default function FreelancerSettings() {
                             id="push-email"
                             name="push-notifications"
                             type="radio"
-                            className="w-4 h-4 text-indigo-600 border-gray-300 focus:ring-indigo-500"
+                            className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
                           />
                           <label
                             htmlFor="push-email"
-                            className="block ml-3 text-sm font-medium text-gray-700">
+                            className="ml-3 block text-sm font-medium text-gray-700">
                             Same as email
                           </label>
                         </div>
@@ -433,21 +433,21 @@ export default function FreelancerSettings() {
                             id="push-nothing"
                             name="push-notifications"
                             type="radio"
-                            className="w-4 h-4 text-indigo-600 border-gray-300 focus:ring-indigo-500"
+                            className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
                           />
                           <label
                             htmlFor="push-nothing"
-                            className="block ml-3 text-sm font-medium text-gray-700">
+                            className="ml-3 block text-sm font-medium text-gray-700">
                             No push notifications
                           </label>
                         </div>
                       </div>
                     </fieldset>
                   </div>
-                  <div className="px-4 py-3 text-right bg-gray-50 sm:px-6">
+                  <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
                     <button
                       type="submit"
-                      className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                      className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 hover:bg-indigo-700">
                       Save
                     </button>
                   </div>

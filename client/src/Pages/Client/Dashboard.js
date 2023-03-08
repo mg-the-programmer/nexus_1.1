@@ -131,7 +131,7 @@ export default function Example() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   return (
-    <div className="bg-white">
+    <div className="h-[100vh] bg-gray-100 ">
       <div>
         {/* Mobile filter dialog */}
         <Transition.Root show={mobileFiltersOpen} as={Fragment}>
@@ -249,13 +249,13 @@ export default function Example() {
           </Dialog>
         </Transition.Root>
 
-        <main className="mx-auto max-w-7xl  sm:px-6 lg:px-8 ">
-          <div className="flex items-center justify-between border-b border-gray-200 bg-white px-3 pt-6 pb-6 sm:px-0 ">
+        <div className="border-b border-gray-200 bg-white ">
+          <div className="mx-auto flex max-w-7xl items-center justify-between px-0 pt-6 pb-6 sm:px-6 lg:px-8 ">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 ">
               Dashboard
             </h1>
 
-            <div className="flex items-center">
+            <div className="flex items-center pr-2 ">
               <Menu as="div" className="relative inline-block text-left">
                 <div>
                   <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
@@ -314,7 +314,8 @@ export default function Example() {
               </button>
             </div>
           </div>
-
+        </div>
+        <main className="mx-auto max-w-7xl sm:px-6 lg:px-8 ">
           <section aria-labelledby="products-heading" className="py-6">
             <h2 id="products-heading" className="sr-only">
               Products
@@ -322,7 +323,7 @@ export default function Example() {
 
             <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
               {/* Filters */}
-              <form className="hidden lg:block">
+              <form className="hidden rounded-md bg-white p-3 shadow lg:block">
                 <h3 className="sr-only">Categories</h3>
                 <ul
                   role="list"

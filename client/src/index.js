@@ -8,24 +8,13 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./Pages/Login";
 import FreelanceProfile from "./Pages/Freelancer/FreelanceProfile";
 import FreelancerSettings from "./Pages/Freelancer/FreelancerSettings";
+import Navbar from "./components/Navbar";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "*",
     element: <App />,
     errorElement: <ErrorPage />,
-  },
-  {
-    path: "/signin",
-    element: <Login />,
-  },
-  {
-    path: "/profile",
-    element: <FreelanceProfile />,
-  },
-  {
-    path: "/settings",
-    element: <FreelancerSettings />,
   },
 ]);
 const root = ReactDOM.createRoot(document.getElementById("root"));
