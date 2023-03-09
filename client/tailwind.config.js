@@ -38,9 +38,5 @@ module.exports = {
     },
     variants: {},
   },
-  plugins: [
-    require("@tailwindcss/forms"),
-    require("tailwind-scrollbar"),
-    require("preline/plugin"),
-  ],
+  plugins: [require("@tailwindcss/forms"), require("preline/plugin")],
 };

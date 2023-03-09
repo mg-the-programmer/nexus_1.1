@@ -17,13 +17,14 @@ import FreelancerInfo from "./Pages/Freelancer/FreelancerInfo";
 import ChatPage from "./Pages/ChatPage";
 
 function App() {
-  const [isdarkmode, setisdarkmode] = useState(false);
-
-  const mode = isdarkmode ? "dark" : "light";
   const routing = useRoutes([
     {
       path: "/signin",
       element: <Login />,
+    },
+    {
+      path: "/signup",
+      element: <Signup />,
     },
     {
       path: "/profile",
@@ -48,6 +49,11 @@ function App() {
   ]);
 
   // const routing = useRoutes(routes);
+  let mode = "dark";
+  const handleDataFromChild = (data) => {
+    console.log(data);
+    return (mode = data ? "dark" : "light");
+  };
 
   return (
     <div className={`App ${mode}  `}>
@@ -57,7 +63,7 @@ function App() {
         onClick={() => setisdarkmode(!isdarkmode)}>
         Change Mode
       </button> */}
-      <Navbar />
+      <Navbar darkMode={handleDataFromChild()} />
       {routing}
       {/* <FreelancerSettings /> */}
       {/* <Dashboard /> */}
