@@ -51,12 +51,13 @@ export default function Example(props) {
                 <div className="flex h-16 items-center justify-between">
                   <div className="flex items-center ">
                     <div className="flex-shrink-0">
-                      <img
-                        className="h-[1.2rem] hover:cursor-pointer"
-                        src={MainLogo}
-                        href="dashboard"
-                        alt="Your Company"
-                      />
+                      <a href="dashboard">
+                        <img
+                          className="h-[1.2rem] hover:cursor-pointer"
+                          src={MainLogo}
+                          alt="Your Company"
+                        />
+                      </a>
                     </div>
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-center justify-center space-x-4">

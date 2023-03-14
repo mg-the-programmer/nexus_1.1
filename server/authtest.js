@@ -30,7 +30,7 @@ const port = process.env.PORT || 5000;
 app.use(bodyParser.json());
 
 // create a post request to store sign in users email and password
-app.post("/users/signin", (req, res) => {
+app.post("/signin", (req, res) => {
   const { mail, pass, accountType } = req.body;
   const newuser = new signedInUsers({
     email: mail,
