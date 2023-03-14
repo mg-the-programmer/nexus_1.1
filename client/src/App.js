@@ -2,6 +2,8 @@ import "./App.css";
 import React from "react";
 import Login from "./Pages/Login";
 import FreelancerSettings from "./Pages/Freelancer/FreelancerSettings";
+import { useLocation } from "react-router-dom";
+
 import { useRoutes } from "react-router-dom";
 import "./index.css";
 import ErrorPage from "./Pages/ErrorPage";
@@ -55,6 +57,9 @@ function App() {
     return (mode = data ? "dark" : "light");
   };
 
+  const currentPath = useLocation().pathname;
+  const isAuthPage = currentPath === "/login" || currentPath === "/signup";
+
   return (
     <div className={`App ${mode}  `}>
       {/* <ErrorAlert head={"Error"} message={"Something went wrong"} /> */}
@@ -63,7 +68,8 @@ function App() {
         onClick={() => setisdarkmode(!isdarkmode)}>
         Change Mode
       </button> */}
-      <Navbar darkMode={handleDataFromChild()} />
+      {!isAuthPage && <Navbar darkMode={handleDataFromChild()} />}
+
       {routing}
       {/* <FreelancerSettings /> */}
       {/* <Dashboard /> */}
