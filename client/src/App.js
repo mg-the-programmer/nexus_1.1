@@ -51,14 +51,14 @@ function App() {
   ]);
 
   // const routing = useRoutes(routes);
-  let mode = "dark";
+  let mode = "light";
   const handleDataFromChild = (data) => {
     console.log(data);
     return (mode = data ? "dark" : "light");
   };
 
   const currentPath = useLocation().pathname;
-  const isAuthPage = currentPath === "/login" || currentPath === "/signup";
+  const isAuthPage = currentPath === "/signin" || currentPath === "/signup";
 
   return (
     <div className={`App ${mode}  `}>

@@ -237,7 +237,7 @@ export default function Signup() {
           </div>
         </div>
       </section>
-      <div className="notifications fixed bottom-7 right-7 flex flex-col gap-y-3 ">
+      <div className="fixed flex flex-col notifications bottom-7 right-7 gap-y-3 ">
         {/* {isError.length !== 0 ? (
           <ErrorAlert head={isError[0]} message={isError[1]} />
         ) : null} */}

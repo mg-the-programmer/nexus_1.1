@@ -27,6 +27,11 @@ export default function Login() {
 
     // console.log(mail, pass);
   };
+  const selectedAccountType =
+    "flex justify-center w-full px-6 py-3 mt-4 text-white bg-blue-500 rounded-lg md:w-auto md:mt-0 md:mx-2 focus:outline-none";
+
+  const unselectedAccountType =
+    "flex justify-center w-full px-6 py-3 mt-4 text-blue-500 border border-blue-500 rounded-lg md:mt-0 md:w-auto md:mx-2 dark:border-blue-400 dark:text-blue-400 focus:outline-none";
 
   return (
     // <div className="flex h-[100vh] items-center">
@@ -74,7 +79,7 @@ export default function Login() {
     //     </div>
     //   </div>
     // </div>
-    <div className="mx-auto mt-20 flex w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg dark:bg-gray-800 lg:max-w-4xl">
+    <div className="h mx-auto flex max-w-sm overflow-hidden rounded-lg bg-white shadow-lg dark:bg-gray-800 lg:max-w-4xl">
       <div
         className="hidden bg-cover lg:block lg:w-1/2"
         style={{
@@ -130,8 +135,59 @@ export default function Login() {
           <span className="w-1/5 border-b dark:border-gray-400 lg:w-1/4" />
         </div>
         <div className="mt-4">
+          <div className="mt-6">
+            <h1 className="text-sm font-medium text-gray-600 dark:text-gray-200">
+              Select type of account
+            </h1>
+            <div className="mt-3 md:-mx-2 md:flex md:items-center">
+              <button
+                className={`${
+                  accountType === "client"
+                    ? selectedAccountType
+                    : unselectedAccountType
+                }`}
+                onClick={() => setAccountType("Client")}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  />
+                </svg>
+                <span className="mx-2 ">client</span>
+              </button>
+              <button
+                className={`${
+                  accountType === "worker"
+                    ? selectedAccountType
+                    : unselectedAccountType
+                }`}
+                onClick={() => setAccountType("worker")}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                  />
+                </svg>
+                <span className="mx-2">worker</span>
+              </button>
+            </div>
+          </div>
           <label
-            className="mb-2 block text-sm font-medium text-gray-600 dark:text-gray-200"
+            className="mt-4 mb-2 block text-sm font-medium text-gray-600 dark:text-gray-200"
             htmlFor="LoggingEmailAddress">
             Email Address
           </label>
