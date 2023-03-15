@@ -6,7 +6,6 @@ export default function FProfileCard({ post }) {
   post.price = "120K";
   post.hourRate = "18";
   post.jobSuccess = "100%";
-  post.title = "Frontend Developer";
   post.imageUrl =
     "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80";
   return (
@@ -24,7 +23,7 @@ export default function FProfileCard({ post }) {
 
             <span
               className={`absolute top-6 right-0 block h-3 w-3 rounded-full ${
-                post.available ? "bg-green-400" : "bg-red-400"
+                post.isAvailable ? "bg-green-400" : "bg-red-400"
               } ring-2 ring-white`}></span>
             <div
               className="hs-tooltip-content invisible absolute z-10 inline-block rounded-md bg-gray-900 px-2 py-1 text-xs font-medium text-white opacity-0 shadow-sm transition-opacity hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 dark:bg-slate-700"
@@ -54,7 +53,7 @@ export default function FProfileCard({ post }) {
       </div>
       <div className="skils flex items-center gap-x-3 text-xs">
         {post.skills.map((option) => (
-          <a className="relative z-10 rounded-full bg-gray-100 py-1.5 px-3 font-medium text-gray-800 hover:bg-gray-200">
+          <a className="relative z-0 rounded-full bg-gray-100 py-1.5 px-3 font-medium text-gray-800 hover:bg-gray-200">
             {option}
           </a>
         ))}
@@ -81,7 +80,7 @@ export default function FProfileCard({ post }) {
         <h3 className="text-lg font-semibold leading-6 text-gray-900 hover:text-gray-600">
           <a href={post.href}>
             <span />
-            {post.title}
+            {post.jobTitle}
           </a>
         </h3>
         <p className="line-clamp-3 text-sm leading-6 ">{post.description}</p>
