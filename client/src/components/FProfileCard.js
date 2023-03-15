@@ -51,14 +51,14 @@ export default function FProfileCard({ post }) {
           />
         </div>
       </div>
-      <div className="skils flex items-center gap-x-3 text-xs">
+      <div className="skils flex flex-wrap items-center gap-y-2 gap-x-3 text-xs">
         {post.skills.map((option) => (
           <a className="relative z-0 rounded-full bg-gray-100 py-1.5 px-3 font-medium text-gray-800 hover:bg-gray-200">
             {option}
           </a>
         ))}
       </div>
-      <div className="pricing mt-1 flex w-full justify-evenly">
+      <div className="pricing mt-1 flex w-full flex-wrap justify-evenly gap-y-2">
         <p className="text-md font-medium text-gray-900">
           <span className="text-bold text-gray-900"> ${post.rate}</span>
           <span className="text-gray-600">/hr</span>

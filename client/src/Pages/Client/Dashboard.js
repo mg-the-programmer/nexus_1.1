@@ -147,7 +147,7 @@ export default function Example() {
   }, []);
 
   return (
-    <div className="h-[100vh] bg-gray-100 ">
+    <div className="h-full bg-gray-100 ">
       <div>
         {/* Mobile filter dialog */}
         <Transition.Root show={mobileFiltersOpen} as={Fragment}>
@@ -266,7 +266,7 @@ export default function Example() {
         </Transition.Root>
 
         <div className="border-b border-gray-200 bg-white ">
-          <div className="mx-auto flex max-w-7xl items-center justify-between px-0 pt-6 pb-6 sm:px-6 lg:px-8 ">
+          <div className="mx-auto flex max-w-7xl items-center justify-between px-2 pt-6 pb-6 sm:px-6 lg:px-8 ">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 ">
               Dashboard
             </h1>
