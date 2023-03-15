@@ -50,19 +50,21 @@ function FreelancerForm({ darkmode }) {
         jobSuccessRate,
       })
       .then((res) => {
+        alert("Freelancer added successfully");
+        window.location.href = "/dashboard";
         console.log(res);
       })
       .catch((err) => {
         console.log(err);
       });
 
-    try {
-      const response = await axios.post("/freelancer/info");
-      console.log("response:", response);
-    } catch (error) {
-      console.error("error:", error);
-      alert(error.response.data.error);
-    }
+    // try {
+    //   const response = await axios.post("/freelancer/info");
+    //   console.log("response:", response);
+    // } catch (error) {
+    //   console.error("error:", error);
+    //   alert(error.response.data.error);
+    // }
 
     // Send form data to server or do something else
   };

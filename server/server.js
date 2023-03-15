@@ -25,17 +25,16 @@ const userSchema = new Schema({
 
 const signedupUsers = mongoose.model("signedupUsers", userSchema);
 const freelancerSchema = new Schema({
-  name: String,
-  email: String,
-  skills: { type: [String] },
-  rate: String,
-  // resume: String,
-  isAvailable: Boolean,
-  githubLink: String,
-  experience: String,
-  jobTitle: String,
-  description: String,
-  jobSuccess: Number,
+  name: { type: String, required: true },
+  email: { type: String, required: true },
+  skills: { type: [String], required: true },
+  rate: { type: String, required: true },
+  isAvailable: { type: Boolean, required: true },
+  jobTitle: { type: String, required: true },
+  description: { type: String, required: true },
+  jobSuccess: { type: Number, required: true },
+  experience: { type: String, required: true },
+  githubLink: { type: String },
 });
 const freelancer = mongoose.model("freelancer", freelancerSchema);
 
@@ -91,13 +90,13 @@ app.post("/freelancer/info", async (req, res) => {
     jobSuccessRate,
   } = req.body;
 
-  const existingUser = await freelancer.findOne({ email });
-  console.log(existingUser);
-  if (existingUser) {
-    return res
-      .status(400)
-      .json({ error: "User with the same email already exists" });
-  }
+  // const existingUser = await freelancer.findOne({ email });
+  // console.log(existingUser);
+  // if (existingUser) {
+  //   return res
+  //     .status(400)
+  //     .json({ error: "User with the same email already exists" });
+  // }
 
   const newFreelancer = new freelancer({
     name: name,

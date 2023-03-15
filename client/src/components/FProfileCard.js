@@ -37,13 +37,13 @@ export default function FProfileCard({ post }) {
         <div className="text-sm leading-6">
           <p className="font-semibold text-gray-900">
             <a>
-              <span className="absolute inset-0" />
+              <span className="absolute " />
               {post.name}
             </a>
           </p>
           <p className="text-gray-600">{post.jobTitle}</p>
         </div>
-        <div className="bookmark z-10 ml-auto mr-1">
+        <div className="bookmark z-[2px] ml-auto mr-1">
           <BookmarkIcon
             className={`h-6 w-6 text-black ${
               isBookmarked ? "fill-blue-500 " : "fill-none"
