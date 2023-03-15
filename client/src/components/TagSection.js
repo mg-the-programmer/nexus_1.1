@@ -2,7 +2,7 @@ import { useState } from "react";
 
 function TagSection({ onTagsChange }) {
   const [tags, setTags] = useState([]);
-
+  
   const handleKeyDown = (e) => {
     if (e.key === "," || e.key === "Enter") {
       e.preventDefault();
@@ -26,11 +26,11 @@ function TagSection({ onTagsChange }) {
   };
 
   return (
-    <div className="tags-container flex flex-wrap items-center">
+    <div className="flex flex-wrap items-center tags-container">
       {tags.map((tag) => (
         <div
           key={tag}
-          className="tag mr-2 mb-2 flex items-center rounded-md bg-blue-500 py-1 px-2 text-sm text-white">
+          className="flex items-center px-2 py-1 mb-2 mr-2 text-sm text-white bg-blue-500 rounded-md tag">
           <span>{tag}</span>
           <button
             onClick={() => handleDeleteTag(tag)}
@@ -41,7 +41,7 @@ function TagSection({ onTagsChange }) {
       ))}
       <br />
       <textarea
-        className="tags-input  w-full rounded-md border p-2 py-1 px-2 focus:outline-none focus:ring-2  focus:ring-blue-400"
+        className="w-full p-2 px-2 py-1 border rounded-md tags-input focus:outline-none focus:ring-2 focus:ring-blue-400"
         placeholder="Add tags (separated by commas)"
         onKeyDown={handleKeyDown}
       />

@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import {
@@ -9,6 +9,7 @@ import {
   Squares2X2Icon,
 } from "@heroicons/react/20/solid";
 import FProfileCard from "../../components/FProfileCard";
+import axios from "axios";
 
 const sortOptions = [
   { name: "Most Popular", href: "#", current: true },
@@ -77,51 +78,52 @@ const filters = [
     ],
   },
 ];
-const posts = [
-  {
-    id: 1,
-    title: "Boost your conversion rate",
-    href: "#",
-    description:
-      "Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.",
-    available: true,
-    datetime: "2020-03-16",
-    category: [
-      { title: "Android Dev", href: "#" },
-      { title: "Full Stack", href: "#" },
-      { title: "UI/UX", href: "#" },
-    ],
-    author: {
-      name: "Manigandan C",
-      role: "Full Stack MERN Developer",
-      href: "#",
-      imageUrl:
-        "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80",
-    },
-  },
-  {
-    id: 1,
-    title: "Boost your conversion rate",
-    href: "#",
-    description:
-      "Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.",
-    date: "Mar 16, 2020",
-    datetime: "2020-03-16",
-    category: [
-      { title: "Android Dev", href: "#" },
-      { title: "Full Stack", href: "#" },
-      { title: "UI/UX", href: "#" },
-    ],
-    author: {
-      name: "Michael Foster",
-      role: "Co-Founder / CTO",
-      href: "#",
-      imageUrl:
-        "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    },
-  },
-  // More posts...
-];
+
+// const posts = [
+//   {
+//     id: 1,
+//     title: "Boost your conversion rate",
+//     href: "#",
+//     description:
+//       "Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.",
+//     available: true,
+//     datetime: "2020-03-16",
+//     category: [
+//       { title: "Android Dev", href: "#" },
+//       { title: "Full Stack", href: "#" },
+//       { title: "UI/UX", href: "#" },
+//     ],
+//     author: {
+//       name: "Manigandan C",
+//       role: "Full Stack MERN Developer",
+//       href: "#",
+//       imageUrl:
+//         "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80",
+//     },
+//   },
+//   {
+//     id: 1,
+//     title: "Boost your conversion rate",
+//     href: "#",
+//     description:
+//       "Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.",
+//     date: "Mar 16, 2020",
+//     datetime: "2020-03-16",
+//     category: [
+//       { title: "Android Dev", href: "#" },
+//       { title: "Full Stack", href: "#" },
+//       { title: "UI/UX", href: "#" },
+//     ],
+//     author: {
+//       name: "Michael Foster",
+//       role: "Co-Founder / CTO",
+//       href: "#",
+//       imageUrl:
+//         "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+//     },
+//   },
+//   // More posts...
+// ];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -129,6 +131,20 @@ function classNames(...classes) {
 
 export default function Example() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const [posts, setPosts] = useState([]);
+  // use the freelancer info from the backend
+  useEffect(() => {
+    axios
+      .get("/freelancer/info")
+      .then((res) => {
+        setPosts([...res.data]);
+        console.log(res.data);
+      })
+      .catch((error) => {
+        // handle error
+        console.log(error);
+      });
+  }, []);
 
   return (
     <div className="h-[100vh] bg-gray-100 ">

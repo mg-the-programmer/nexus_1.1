@@ -45,6 +45,10 @@ function App() {
       element: <Dashboard />,
     },
     {
+      path: "/freelancer/info",
+      element: <FreelancerForm />,
+    },
+    {
       path: "*",
       element: <Dashboard />,
     },

@@ -26,7 +26,7 @@ const navigation = [
 const userNavigation = [
   { name: "Your Profile", href: "/profile" },
   { name: "Settings", href: "/settings" },
-  { name: "Sign out", href: "#" },
+  { name: "Sign out", href: "/signin" },
 ];
 
 function classNames(...classes) {
@@ -43,7 +43,7 @@ export default function Example(props) {
 
   return (
     <>
-      <div className="min-h-full ">
+      <div className="sticky top-0 z-50 w-full">
         <Disclosure as="nav" className="bg-gray-800">
           {({ open }) => (
             <>

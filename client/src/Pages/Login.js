@@ -226,7 +226,7 @@ export default function Login() {
         <div className="mt-4 flex items-center justify-between">
           <span className="w-1/5 border-b dark:border-gray-600 md:w-1/4" />
           <a
-            href="#"
+            href="/signup"
             className="text-xs uppercase text-gray-500 hover:underline dark:text-gray-400">
             or sign up
           </a>

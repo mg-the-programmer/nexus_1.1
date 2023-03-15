@@ -6,6 +6,9 @@ export default function FProfileCard({ post }) {
   post.price = "120K";
   post.hourRate = "18";
   post.jobSuccess = "100%";
+  post.title = "Frontend Developer";
+  post.imageUrl =
+    "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80";
   return (
     <article
       key={post.id}
@@ -15,7 +18,7 @@ export default function FProfileCard({ post }) {
           <a className="hs-tooltip-toggle relative " href="#">
             <img
               className="inline-block h-[2.875rem] w-[2.875rem] rounded-full ring-2 ring-gray-800"
-              src={post.author.imageUrl}
+              src={post.imageUrl}
               alt="Image Description"
             />
 
@@ -33,14 +36,14 @@ export default function FProfileCard({ post }) {
 
         <div className="text-sm leading-6">
           <p className="font-semibold text-gray-900">
-            <a href={post.author.href}>
+            <a>
               <span className="absolute inset-0" />
-              {post.author.name}
+              {post.name}
             </a>
           </p>
-          <p className="text-gray-600">{post.author.role}</p>
+          <p className="text-gray-600">{post.jobTitle}</p>
         </div>
-        <div className="bookmark z-50 ml-auto mr-1">
+        <div className="bookmark z-10 ml-auto mr-1">
           <BookmarkIcon
             className={`h-6 w-6 text-black ${
               isBookmarked ? "fill-blue-500 " : "fill-none"
@@ -50,17 +53,15 @@ export default function FProfileCard({ post }) {
         </div>
       </div>
       <div className="skils flex items-center gap-x-3 text-xs">
-        {post.category.map((option) => (
-          <a
-            href={option.href}
-            className="relative z-10 rounded-full bg-gray-100 py-1.5 px-3 font-medium text-gray-800 hover:bg-gray-200">
-            {option.title}
+        {post.skills.map((option) => (
+          <a className="relative z-10 rounded-full bg-gray-100 py-1.5 px-3 font-medium text-gray-800 hover:bg-gray-200">
+            {option}
           </a>
         ))}
       </div>
-      <div className="pricing flex w-full justify-evenly">
+      <div className="pricing mt-1 flex w-full justify-evenly">
         <p className="text-md font-medium text-gray-900">
-          <span className="text-bold text-gray-900"> ${post.hourRate}</span>
+          <span className="text-bold text-gray-900"> ${post.rate}</span>
           <span className="text-gray-600">/hr</span>
         </p>
         <p className="text-md font-medium">
@@ -70,7 +71,7 @@ export default function FProfileCard({ post }) {
         <p className="text-md font-medium">
           <span className="text-bold text-gray-900"> {post.jobSuccess}</span>
           <span className="text-gray-600"> Job Success</span>
-          <div className="h-1 w-full rounded-full bg-gray-200  dark:bg-gray-700">
+          <div className="h-1 w-full rounded-full bg-gray-200 dark:bg-gray-700">
             <div
               className={`h-1 w-[${post.jobSuccess}] rounded-full bg-blue-600 dark:bg-blue-500`}></div>
           </div>
