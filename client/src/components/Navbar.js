@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
@@ -11,6 +11,7 @@ import {
 } from "@heroicons/react/24/outline";
 import MainLogo from "../Assests/mainlogo.png";
 import { Link } from "@mui/material";
+import axios from "axios";
 
 const user = {
   name: "Tom Cook",
@@ -36,10 +37,39 @@ function classNames(...classes) {
 export default function Example(props) {
   const [isdarkmode, setisdarkmode] = useState(true);
 
-  const handleData = (isdarkmode) => {
-    // setisdarkmode(!isdarkmode);
-    props.darkMode("isdarkmode");
-  };
+  useEffect(() => {
+    axios
+      .get("/freelancer/64115415247d2e83c2af8532")
+      .then((res) => {
+        console.log(res.data);
+
+        // setisdarkmode(res.data.darkMode);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  // change the darkmode in the database
+  useEffect(() => {
+    axios
+      .put("/freelancer/64115415247d2e83c2af8532", {
+        skills: ["HTML", "CSS", "JS"],
+      })
+      .then((res) => {
+        console.log(res.data);
+        // alert("success");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [isdarkmode]);
+
+  // useEffect(() => {
+  //   alert("hello");
+  // }, [isdarkmode]);
+
+  //use the darkmode from /freelancer/info api
 
   return (
     <>
