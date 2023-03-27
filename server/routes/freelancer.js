@@ -63,13 +63,32 @@ router.get("/freelancer/:id", (req, res) => {
     if (error) {
       console.log(error);
     } else {
-      console.log(freelancer);
+      // console.log(freelancer);
       res.json(freelancer);
     }
   });
 });
 
 // update a freelancer profile by id
+
+//create a put request to update a darkmode value
+router.put("/freelancer/darkmode/:id", (req, res) => {
+  Freelancer.findById(req.params.id, (error, freelancer) => {
+    if (error) {
+      console.log(error);
+    } else {
+      freelancer.darkMode = req.body.darkMode;
+      freelancer.save((error) => {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log(freelancer.darkMode);
+          console.log("Darkmode updated successfully!");
+        }
+      });
+    }
+  });
+});
 
 router.put("/freelancer/:id", (req, res) => {
   Freelancer.findById(req.params.id, (error, freelancer) => {

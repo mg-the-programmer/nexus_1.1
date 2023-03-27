@@ -92,7 +92,7 @@ export default function Example() {
       .get("/freelancer/info")
       .then((res) => {
         setPosts([...res.data]);
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch((error) => {
         // handle error

@@ -35,15 +35,14 @@ function classNames(...classes) {
 }
 
 export default function Example(props) {
-  const [isdarkmode, setisdarkmode] = useState(true);
+  const [isdarkmode, setisdarkmode] = useState();
 
   useEffect(() => {
     axios
       .get("/freelancer/64115415247d2e83c2af8532")
       .then((res) => {
-        console.log(res.data);
-
-        // setisdarkmode(res.data.darkMode);
+        console.log(res.data.darkMode);
+        setisdarkmode(res.data.darkMode);
       })
       .catch((err) => {
         console.log(err);
@@ -51,23 +50,24 @@ export default function Example(props) {
   }, []);
 
   // change the darkmode in the database
+  const changeDarkmode = () => {
+    setisdarkmode(!isdarkmode);
+    props.onDarkModeChange(!isdarkmode);
+  };
+
   useEffect(() => {
     axios
-      .put("/freelancer/64115415247d2e83c2af8532", {
-        skills: ["HTML", "CSS", "JS"],
+      .put("/freelancer/darkmode/64115415247d2e83c2af8532", {
+        darkMode: isdarkmode,
       })
       .then((res) => {
-        console.log(res.data);
+        console.log(res.data.darkMode);
         // alert("success");
       })
       .catch((err) => {
         console.log(err);
       });
   }, [isdarkmode]);
-
-  // useEffect(() => {
-  //   alert("hello");
-  // }, [isdarkmode]);
 
   //use the darkmode from /freelancer/info api
 
@@ -110,7 +110,7 @@ export default function Example(props) {
                   </div>
                   <div className="hidden md:block">
                     <div className="ml-4 flex items-center md:ml-6">
-                      <button onClick={() => setisdarkmode(!isdarkmode)}>
+                      <button onClick={() => changeDarkmode()}>
                         {isdarkmode ? (
                           <MoonIcon className="h-6 w-6 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" />
                         ) : (
