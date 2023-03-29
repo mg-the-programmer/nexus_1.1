@@ -37,17 +37,17 @@ function classNames(...classes) {
 export default function Example(props) {
   const [isdarkmode, setisdarkmode] = useState();
 
-  useEffect(() => {
-    axios
-      .get("/freelancer/64115415247d2e83c2af8532")
-      .then((res) => {
-        console.log(res.data.darkMode);
-        setisdarkmode(res.data.darkMode);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get("/freelancer/64115415247d2e83c2af8532")
+  //     .then((res) => {
+  //       console.log(res.data.darkMode);
+  //       setisdarkmode(res.data.darkMode);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
 
   // change the darkmode in the database
   const changeDarkmode = () => {

@@ -56,7 +56,7 @@ function App() {
   ]);
 
   // const routing = useRoutes(routes);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState();
   //create a loading state
   const [loading, setLoading] = useState(true);
   useEffect(() => {

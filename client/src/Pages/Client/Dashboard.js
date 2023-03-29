@@ -101,7 +101,7 @@ export default function Example() {
   }, []);
 
   return (
-    <div className="h-full bg-gray-100 ">
+    <div className="+++++++++++bg-gray-100 ">
       <div>
         {/* Mobile filter dialog */}
         <Transition.Root show={mobileFiltersOpen} as={Fragment}>
@@ -293,7 +293,7 @@ export default function Example() {
 
             <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
               {/* Filters */}
-              <form className="hidden h-auto rounded-md bg-white p-3 shadow lg:block">
+              <form className="hidden rounded-md bg-white p-3 shadow lg:block">
                 <h3 className="sr-only">Categories</h3>
                 <ul
                   role="list"

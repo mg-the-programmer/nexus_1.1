@@ -15,7 +15,7 @@ router.get("/users", (req, res) => {
 
 router.post("/signup", (req, res) => {
   const { firstName, lastName, email, phone, password, accountType } = req.body;
-  const newuser = new signedupUsers({
+  const newUser = new signedupUsers({
     firstName: firstName,
     lastName: lastName,
     email: email,
@@ -35,11 +35,15 @@ router.post("/signup", (req, res) => {
         res.json({ head: "Phone", message: "Phone number already exists!" });
       }
     } else {
-      newuser.save((error) => {
+      signedupUsers.register(newUser, password, (error, user) => {
         if (error) {
           console.log(error);
         } else {
-          console.log("New User saved successfully!"); // new user data saved
+          passport.authenticate("local")(req, res, () => {
+            // res.render("/dashboard");
+            res.redirect("/dashboard");
+            console.log("User authenticated successfully!");
+          });
         }
       });
     }

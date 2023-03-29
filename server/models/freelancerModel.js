@@ -16,7 +16,7 @@ const freelancerSchema = new Schema({
   jobSuccess: { type: Number },
   experience: { type: String },
   githubLink: { type: String },
-  darkMode: { type: Boolean, default: true },
+  darkMode: { type: Boolean },
   // set a default value for darkMode
 });
 

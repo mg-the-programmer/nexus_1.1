@@ -30,8 +30,10 @@ router.post("/login", (req, res) => {
     if (error) {
       console.log(error);
     } else {
+      //check the user is there are in db or not
       passport.authenticate("local")(req, res, () => {
-        res.render("/dashboard");
+        // res.render("/dashboard");
+        res.redirect("/dashboard");
         console.log("User authenticated successfully!");
       });
     }
