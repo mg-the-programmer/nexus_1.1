@@ -2,7 +2,7 @@
 const colors = require("tailwindcss/colors");
 
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  content: ["./src/**/*.{js,jsx,ts,tsx}", "node_modules/preline/dist/*.js"],
   darkMode: "class",
   theme: {
     colors: {
@@ -38,5 +38,5 @@ module.exports = {
     },
     variants: {},
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/forms"), require("preline/plugin")],
 };

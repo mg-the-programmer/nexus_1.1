@@ -1,11 +1,15 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const fs = require("fs");
+const cors = require("cors");
+const passport = require("passport");
+const session = require("express-session");
+// const cookieParser = require("cookie-parser");
 
 const uri =
   "mongodb+srv://manigandan:manigandan@cluster0.oyky4iz.mongodb.net/nexusdb";
 
+// use cookie
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const connection = mongoose.connection;
@@ -13,80 +17,34 @@ const connection = mongoose.connection;
 connection.once("open", () => {
   console.log("MongoDB database connection established successfully");
 });
-const Schema = mongoose.Schema;
-const userSchema = new Schema({
-  firstName: String,
-  lastName: String,
-  email: String,
-  phone: String,
-  password: String,
-  accountType: String,
-});
 
-const signedupUsers = mongoose.model("signedupUsers", userSchema);
+// const Schema = mongoose.Schema;
 
 const app = express();
 const port = process.env.PORT || 5000;
+
+// use session
+app.use(
+  session({
+    secret: "Our little secret.",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
+//use cors to allow cross origin resource sharing
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+//use the freelance.js file for all the freelancer related routes
+app.use("/", require("./routes/freelancer"));
 
-app.get("/users", (req, res) => {
-  signedupUsers.find({}, (error, users) => {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log(users);
-      res.json(users);
-    }
-  });
-});
+//use the users.js file for all the user related routes
+app.use("/", require("./routes/users"));
 
-app.post("/users", (req, res) => {
-  const { mail, pass } = req.body;
-  // data.push({ mailid: mail, password: pass });
-  // fs.writeFile("./users.json", JSON.stringify(data), (err) => {
-  //   if (err) {
-  //     console.log(err);
-  //   }
-  // });
-
-  // fs.writeFileSync("data.json",  JSON.stringify(data));
-
-  res.json({ message: "success" });
-});
-
-app.post("/users/signup", (req, res) => {
-  const { firstName, lastName, email, phone, password, accountType } = req.body;
-  const newuser = new signedupUsers({
-    firstName: firstName,
-    lastName: lastName,
-    email: email,
-    phone: phone,
-    password: password,
-    accountType: accountType,
-  });
-  newuser.save((error) => {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log("New User saved successfully!");
-    }
-  });
-
-  // data.push({
-  //   firstName: firstName,
-  //   lastName: lastName,
-  //   email: email,
-  //   phone: phone,
-  //   password: password,
-  //   accountType: accountType,
-  // });
-  // fs.writeFile("./users.json", JSON.stringify(data), (err) => {
-  //   if (err) {
-  //     console.log(err);
-  //   }
-  // });
-  res.json({ message: "success" });
-});
+//use the auth.js file for all the authentication related routes
+app.use("/", require("./routes/auth"));
 
 app.listen(port, () => {
   console.log("Server started on port 5000");

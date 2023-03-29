@@ -5,17 +5,16 @@ import App from "./App";
 import ErrorPage from "./Pages/ErrorPage";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Users from "./Users";
+import Login from "./Pages/Login";
+import FreelanceProfile from "./Pages/Freelancer/FreelanceProfile";
+import FreelancerSettings from "./Pages/Freelancer/FreelancerSettings";
+import Navbar from "./components/Navbar";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "*",
     element: <App />,
     errorElement: <ErrorPage />,
-  },
-  {
-    path: "/users",
-    element: <Users />,
   },
 ]);
 const root = ReactDOM.createRoot(document.getElementById("root"));
