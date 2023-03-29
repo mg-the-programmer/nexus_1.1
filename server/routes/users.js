@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const signedupUsers = require("../models/usersModel");
+const { signedupUsers, signedinUsers } = require("../models/usersModel");
 
 router.get("/users", (req, res) => {
   signedupUsers.find({}, (error, users) => {
@@ -23,15 +23,27 @@ router.post("/signup", (req, res) => {
     password: password,
     accountType: accountType,
   });
-  newuser.save((error) => {
-    if (error) {
-      console.log(error);
+
+  //create a new user check if the user already exists
+  signedupUsers.findOne({ $or: [{ email }, { phone }] }, (err, user) => {
+    if (user) {
+      if (user.email === email) {
+        console.log("Email already exists!"); // email already exists
+        res.json({ head: "Email", message: "Email already exists!" });
+      } else {
+        console.log("Phone number already exists!"); // phone number already exists
+        res.json({ head: "Phone", message: "Phone number already exists!" });
+      }
     } else {
-      console.log("New User saved successfully!");
+      newuser.save((error) => {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log("New User saved successfully!"); // new user data saved
+        }
+      });
     }
   });
-
-  res.json({ message: "success" });
 });
 
 module.exports = router;

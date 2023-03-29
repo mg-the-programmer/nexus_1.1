@@ -4,25 +4,39 @@
 const express = require("express");
 const passport = require("passport");
 const router = express.Router();
-
 const { signedinUsers, signedupUsers } = require("../models/usersModel");
 
 // use the users model thats is exported from server.js
+router.use(passport.initialize());
+router.use(passport.session());
+
 passport.use(signedinUsers.createStrategy());
+
+// passport.use(new LocalStrategy(signedinUsers.authenticate()));
 passport.serializeUser(signedinUsers.serializeUser());
 passport.deserializeUser(signedinUsers.deserializeUser());
 
-router.post("/login/auth", (req, res) => {
-  const { email, password, accountType } = req.body;
+router.post("/login", (req, res) => {
+  const { email, password } = req.body;
   console.log(req.body);
+  const newUser = new signedinUsers({
+    username: email,
+    email: email,
+    password: password,
+  });
 
   // use the authenticate method of passport-local-mongoose to authenticate the user
-  signedinUsers.authenticate()(email, password, (error, user) => {
+  signedinUsers.register(newUser, password, (error, user) => {
     if (error) {
       console.log(error);
     } else {
-      console.log(user);
-      res.json(user);
+      passport.authenticate("local")(req, res, () => {
+        res.render("/dashboard");
+        console.log("User authenticated successfully!");
+      });
     }
   });
+  // res.json({ message: "success" });
 });
+
+module.exports = router;

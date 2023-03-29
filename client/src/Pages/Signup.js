@@ -27,12 +27,24 @@ export default function Signup() {
     console.log("submitted");
 
     phone.length !== 10 &&
-      setIsError(["Phone", "Phone number must be 10 digits"]);
+      setIsError([
+        ...isError,
+        { head: "Phone", message: "Phone number must be 10 digits" },
+      ]);
     password.length < 6 &&
-      setIsError(["Password", "Password must be at least 6 characters"]);
+      setIsError([
+        ...isError,
+        {
+          head: "Password",
+          message: "Password must be at least 6 characters",
+        },
+      ]);
 
     if (password !== confirmPassword) {
-      setIsError(["Password", "Password does not match"]);
+      setIsError([
+        ...isError,
+        { head: "Password", message: "Password does not match" },
+      ]);
     } else {
       console.log("password matched");
     }
@@ -42,7 +54,7 @@ export default function Signup() {
     formValidation();
     e.preventDefault();
     axios
-      .post("/users/signup", {
+      .post("/signup", {
         firstName,
         lastName,
         email,
@@ -52,12 +64,14 @@ export default function Signup() {
       })
       .then((res) => {
         // console.log(res);
+        setIsError((prevError) => [...prevError, res.data]);
         console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
   };
+  console.log(isError);
 
   const errorHandler = () => {
     console.log("error handler");
@@ -242,10 +256,10 @@ export default function Signup() {
         </div>
       </section>
       <div className="notifications fixed bottom-7 right-7 flex flex-col gap-y-3 ">
-        {/* {isError.length !== 0 ? (
-          <ErrorAlert head={isError[0]} message={isError[1]} />
-        ) : null} */}
-        <ErrorAlert />
+        {isError.map((error) => (
+          <ErrorAlert head={error.head} message={error.message} />
+          //create a timeout for .5s
+        ))}
       </div>
     </>
   );

@@ -63,7 +63,6 @@ function App() {
     axios
       .get("/freelancer/64115415247d2e83c2af8532")
       .then((res) => {
-        console.log(res.data.darkMode);
         setIsDarkMode(res.data.darkMode);
         setLoading(false);
       })
@@ -87,20 +86,8 @@ function App() {
       <div>Loading...</div>
     ) : (
       <div className={`App ${mode}  `}>
-        {/* <ErrorAlert head={"Error"} message={"Something went wrong"} /> */}
-        {/* <button
-        className="fixed p-2 bg-blue-500 rounded-md top-4 right-4"
-        onClick={() => setisdarkmode(!isdarkmode)}>
-        Change Mode
-      </button> */}
         {!isAuthPage && <Navbar onDarkModeChange={handleDarkModeChange} />}
-
         {routing}
-        {/* <FreelancerSettings /> */}
-        {/* <Dashboard /> */}
-        {/* <ChatPage /> */}
-        {/* <FreelancerInfo /> */}
-        {/* <FreelancerForm /> */}
       </div>
     )
   );

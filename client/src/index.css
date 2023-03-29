@@ -21,23 +21,19 @@ code {
 }
 
 @keyframes my-animation {
-  0% {
-    transform: translateX(30rem);
+  from {
+    transform: translateX(100%);
   }
 
-  50% {
-    transform: translateX(0);
+  to {
+    transform: translateX(0%);
   }
 
-  100% {
-    transform: translateX(30rem);
-
-    /* animation-delay: 10s; */
-  }
+  /* animation-delay: 10s; */
 }
 
 .animate-on-load {
-  animation: my-animation ease-in-out;
+  animation: my-animation 0.5s ease-in;
 }
 
 ::-webkit-scrollbar {
