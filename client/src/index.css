@@ -39,6 +39,7 @@ code {
 ::-webkit-scrollbar {
   width: 10px;
   border-radius: 12px;
+  background-color: unset;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -52,4 +53,6 @@ code {
 
 ::-webkit-scrollbar-track {
   border-radius: 12px;
+  background-color: unset;
+  /* or background-color: unset; */
 }

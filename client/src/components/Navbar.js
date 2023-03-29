@@ -3,6 +3,7 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
   BellIcon,
+  BookmarkIcon,
   ChatBubbleOvalLeftIcon,
   InboxIcon,
   MoonIcon,
@@ -109,7 +110,7 @@ export default function Example(props) {
                     </div>
                   </div>
                   <div className="hidden md:block">
-                    <div className="ml-4 flex items-center md:ml-6">
+                    <div className="ml-4 flex items-center gap-x-2 md:ml-6">
                       <button onClick={() => changeDarkmode()}>
                         {isdarkmode ? (
                           <MoonIcon className="h-6 w-6 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" />
@@ -120,7 +121,7 @@ export default function Example(props) {
 
                       <button
                         type="button"
-                        className="ml-2 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                        className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         <span className="sr-only">View notifications</span>
 
                         <a href="/messages">
@@ -129,6 +130,9 @@ export default function Example(props) {
                             aria-hidden="true"
                           />
                         </a>
+                      </button>
+                      <button className="-m-1 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none ">
+                        <BookmarkIcon className={`h-6 w-6`} />
                       </button>
 
                       {/* Profile dropdown */}
