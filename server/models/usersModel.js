@@ -16,21 +16,21 @@ const userRegister = new Schema({
 });
 
 //create a user login
-const userLogin = new Schema({
-  email: { type: String, required: true },
-  password: { type: String, required: true },
-});
+// const userLogin = new Schema({
+//   email: { type: String, required: true },
+//   password: { type: String, required: true },
+// });
 
 //create a user schema for login authentication
-userLogin.plugin(passportLocalMongoose);
+userRegister.plugin(passportLocalMongoose);
 
 // create a user model
 const signedupUsers = mongoose.model("signedupUsers", userRegister);
 
 // create a user model for login authentication
-const signedinUsers = mongoose.model("signedinUsers", userLogin);
+// const signedinUsers = mongoose.model("signedinUsers", userLogin);
 
 // exports the two models to be used in the auth.js file
 //one exports the user model for signup
 //the other exports the user model for login authentication
-module.exports = { signedupUsers, signedinUsers };
+module.exports = signedupUsers;

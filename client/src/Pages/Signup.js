@@ -10,8 +10,8 @@ export default function Signup() {
   const [lastName, setLastName] = useState("Gandan");
   const [email, setEmail] = useState("alphagameroffical@gmail.com");
   const [phone, setPhone] = useState("9843029028");
-  const [password, setPassword] = useState("dfdff");
-  const [confirmPassword, setConfirmPassword] = useState("dfdf");
+  const [password, setPassword] = useState("12345678");
+  const [confirmPassword, setConfirmPassword] = useState("12345678");
   const [isPasswordShown, setIsPasswordShown] = useState(false);
   const [isConfirmPasswordShown, setIsConfirmPasswordShown] = useState(false);
 

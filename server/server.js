@@ -44,7 +44,7 @@ app.use("/", require("./routes/freelancer"));
 app.use("/", require("./routes/users"));
 
 //use the auth.js file for all the authentication related routes
-app.use("/", require("./routes/auth"));
+// app.use("/", require("./routes/auth"));
 
 app.listen(port, () => {
   console.log("Server started on port 5000");

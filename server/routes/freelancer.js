@@ -51,7 +51,7 @@ router.get("/freelancer/info", (req, res) => {
     if (error) {
       console.log(error);
     } else {
-      console.log(freelancers);
+      // console.log(freelancers);cccl
       res.json(freelancers);
     }
   });
