@@ -19,22 +19,7 @@ function FreelancerForm({ darkmode }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // alert(JSON.stringify({ name, email, skills, rate, resume }, null, 2));
-    //send data to server
-    // const formData = new FormData();
-    // formData.append("name", name);
-    // formData.append("email", email);
-    // formData.append("skills", skills);
-    // formData.append("rate", rate);
-    // formData.append("resume", resume);
-    // formData.append("isAvailable", isAvailable);
-    // formData.append("githubLink", githubLink);
-    // formData.append("experience", experience);
-    // formData.append("jobTitle", jobTitle);
-    // formData.append("description", description);
-
-    //use axios to send data to server
-    console.log(skills);
+    
     axios
       .post("/freelancer/info", {
         name,
@@ -48,11 +33,13 @@ function FreelancerForm({ darkmode }) {
         jobTitle,
         description,
         jobSuccessRate,
-      })
+      }
+      )
       .then((res) => {
         alert("Freelancer added successfully");
-        window.location.href = "/dashboard";
         console.log(res);
+        // window.location.href = res.request.responseURL;
+
       })
       .catch((err) => {
         console.log(err);
@@ -82,9 +69,9 @@ function FreelancerForm({ darkmode }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mx-auto mt-8 flex max-w-md flex-col gap-y-4 px-5">
+      className="flex flex-col max-w-md px-5 mx-auto mt-8 gap-y-4">
       <div>
-        <label htmlFor="name" className="mb-2 block font-bold text-gray-700">
+        <label htmlFor="name" className="block mb-2 font-bold text-gray-700">
           Name
         </label>
         <input
@@ -93,12 +80,12 @@ function FreelancerForm({ darkmode }) {
           name="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="w-full rounded-md border p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
           required
         />
       </div>
       <div>
-        <label htmlFor="email" className="mb-2 block font-bold text-gray-700">
+        <label htmlFor="email" className="block mb-2 font-bold text-gray-700">
           Email
         </label>
         <input
@@ -107,38 +94,38 @@ function FreelancerForm({ darkmode }) {
           name="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full rounded-md border p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
           required
         />
       </div>
       <div className="">
-        <label className="mb-2 block font-bold text-gray-700">Job Title</label>
+        <label className="block mb-2 font-bold text-gray-700">Job Title</label>
         <input
           type="text"
-          className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 focus:outline-none"
+          className="w-full px-3 py-2 leading-tight text-gray-700 border rounded appearance-none focus:shadow-outline focus:outline-none"
           value={jobTitle}
           onChange={(event) => setJobTitle(event.target.value)}
         />
       </div>
       <div className="">
-        <label className="mb-2 block font-bold text-gray-700">
+        <label className="block mb-2 font-bold text-gray-700">
           Description
         </label>
         <textarea
-          className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 focus:outline-none"
+          className="w-full px-3 py-2 leading-tight text-gray-700 border rounded appearance-none focus:shadow-outline focus:outline-none"
           rows="4"
           value={description}
           onChange={(event) => setDescription(event.target.value)}
         />
       </div>
       <div>
-        <label htmlFor="skills" className="mb-2 block font-bold text-gray-700">
+        <label htmlFor="skills" className="block mb-2 font-bold text-gray-700">
           Skills
         </label>
         <TagSection onTagsChange={handleTagsChange} />
       </div>
       <div>
-        <label htmlFor="rate" className="mb-2 block font-bold text-gray-700">
+        <label htmlFor="rate" className="block mb-2 font-bold text-gray-700">
           Rate (per hour) in $
         </label>
         <input
@@ -147,12 +134,12 @@ function FreelancerForm({ darkmode }) {
           name="rate"
           value={rate}
           onChange={(e) => setRate(e.target.value)}
-          className="w-full rounded-md border p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
           required
         />
       </div>
       <div>
-        <label htmlFor="resume" className="mb-2 block font-bold text-gray-700">
+        <label htmlFor="resume" className="block mb-2 font-bold text-gray-700">
           Resume
         </label>
         <input
@@ -160,12 +147,12 @@ function FreelancerForm({ darkmode }) {
           id="resume"
           name="resume"
           onChange={handleResumeChange}
-          className="w-full rounded-md border p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
           required
         />
       </div>
       <div className="">
-        <label className="mb-2 block font-bold text-gray-700">
+        <label className="block mb-2 font-bold text-gray-700">
           Availability
         </label>
         <div className="flex gap-x-2">
@@ -180,7 +167,7 @@ function FreelancerForm({ darkmode }) {
         </div>
       </div>
       <div className="">
-        <label className="mb-2 block font-bold text-gray-700">
+        <label className="block mb-2 font-bold text-gray-700">
           GitHub Link
         </label>
         <div className="flex items-center">
@@ -188,28 +175,28 @@ function FreelancerForm({ darkmode }) {
           <input
             type="url"
             placeholder="https://github.com/your-username"
-            className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 focus:outline-none"
+            className="w-full px-3 py-2 leading-tight text-gray-700 border rounded appearance-none focus:shadow-outline focus:outline-none"
             value={githubLink}
             onChange={(event) => setGithubLink(event.target.value)}
           />
         </div>
       </div>
       <div className="">
-        <label className="mb-2 block font-bold text-gray-700">Experience</label>
+        <label className="block mb-2 font-bold text-gray-700">Experience</label>
         <input
           type="text"
-          className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 focus:outline-none"
+          className="w-full px-3 py-2 leading-tight text-gray-700 border rounded appearance-none focus:shadow-outline focus:outline-none"
           value={experience}
           onChange={(event) => setExperience(event.target.value)}
         />
       </div>
       <div className="">
-        <label className="mb-2 block font-bold text-gray-700">
+        <label className="block mb-2 font-bold text-gray-700">
           Job Success Rate
         </label>
         <input
           type="number"
-          className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 focus:outline-none"
+          className="w-full px-3 py-2 leading-tight text-gray-700 border rounded appearance-none focus:shadow-outline focus:outline-none"
           value={jobSuccessRate}
           onChange={(event) => setJobSuccessRate(event.target.value)}
         />
@@ -217,7 +204,7 @@ function FreelancerForm({ darkmode }) {
 
       <button
         type="submit"
-        className="w-full rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600">
+        className="w-full px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600">
         Submit
       </button>
     </form>

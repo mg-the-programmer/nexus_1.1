@@ -39,10 +39,11 @@ router.post("/freelancer/info", (req, res) => {
       console.log(error);
     } else {
       console.log("New Freelancer saved successfully!");
+      res.json({ message: "success" });
+      // res.redirect("/dashboard");
     }
   });
 
-  res.json({ message: "success" });
 });
 
 // get all freelancer profiles

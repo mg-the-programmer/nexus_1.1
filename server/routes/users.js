@@ -64,7 +64,7 @@ router.post("/signup", (req, res) => {
       passport.authenticate("local")(req, res, () => {
         // res.render("/dashboard");
         console.log("User Registered and Authenticated successfully!");
-        res.redirect("/dashboard");
+        return res.render("/dashboard");
       });
     }
   });
