@@ -22,16 +22,13 @@ router.get("/users", (req, res) => {
   });
 });
 
-// router.get("/dashboard", (req, res) => {
-//   if (req.isAuthenticated()) {
-//     console.log("User is authenticated");
-//     res.redirect("/dashboard");
-//   } else {
-//     console.log("User is not authenticated");
-//     res.redirect("/login");
-//   }
-//   // console.log(req.user);
-// });
+router.get("/dashboard", (req, res) => {
+  if (req.isAuthenticated()) {
+    console.log("User is authenticated");
+    res.send("verified");
+  }
+  // console.log(req.user);
+});
 
 router.post("/signup", (req, res) => {
   const { firstName, lastName, email, phone, password, accountType } = req.body;
@@ -62,9 +59,8 @@ router.post("/signup", (req, res) => {
       res.json({ head: error.name, message: error.message });
     } else {
       passport.authenticate("local")(req, res, () => {
-        // res.render("/dashboard");
         console.log("User Registered and Authenticated successfully!");
-        return res.render("/dashboard");
+        res.send("Authenticated");
       });
     }
   });

@@ -33,8 +33,8 @@ router.post("/login", (req, res) => {
       //check the user is there are in db or not
       passport.authenticate("local")(req, res, () => {
         // res.render("/dashboard");
-        res.redirect("/dashboard");
         console.log("User authenticated successfully!");
+        // res.redirect("/dashboard");
       });
     }
   });

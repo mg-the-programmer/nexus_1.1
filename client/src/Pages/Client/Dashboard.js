@@ -86,8 +86,19 @@ function classNames(...classes) {
 export default function Example() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const [posts, setPosts] = useState([]);
+  const [isAuthenticated,setIsAuthenticated] = useState(false);
   // use the freelancer info from the backend
+
+
+
   useEffect(() => {
+    axios.get("/dashboard").then((res) => {
+      if(res.data === "verified"){
+        setIsAuthenticated(true);
+      }else{
+        window.location.href = "/signin";
+      }
+    }).catch((error) => {});
     axios
       .get("/freelancer/info")
       .then((res) => {
@@ -101,6 +112,7 @@ export default function Example() {
   }, []);
 
   return (
+    
     <div className="bg-gray-100 ">
       <div>
         {/* Mobile filter dialog */}

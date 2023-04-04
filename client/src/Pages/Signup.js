@@ -65,10 +65,15 @@ export default function Signup() {
       .then((res) => {
         // console.log(res);
         setIsError((prevError) => [...prevError, res.data]);
+        if (res.data === "Authenticated") {
+          window.location.href = "/dashboard";
+        }
+        // console.log(res.status);
         // console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
+
       });
   };
 
@@ -229,9 +234,7 @@ export default function Signup() {
                     className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-400 focus:ring-opacity-40 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:placeholder-gray-600 dark:focus:border-blue-400"
                   />
                 </div>
-                <a
-                  href="dashboard
-                ">
+                
                   <button
                     className="flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
                     type="submit">
@@ -248,7 +251,6 @@ export default function Signup() {
                       />
                     </svg>
                   </button>
-                </a>
               </form>
             </div>
           </div>
