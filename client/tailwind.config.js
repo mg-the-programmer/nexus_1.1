@@ -10,6 +10,7 @@ module.exports = {
       borderColor: "#DDDDDD",
       transparent: "transparent",
       current: "currentColor",
+      darkBg : "#050A2E",
       black: colors.black,
       white: colors.white,
       rose: colors.rose,

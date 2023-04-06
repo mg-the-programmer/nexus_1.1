@@ -113,7 +113,7 @@ export default function Example() {
 
   return (
     
-    <div className="bg-gray-100 ">
+    <div className="bg-gray-100 dark:bg-darkBg ">
       <div>
         {/* Mobile filter dialog */}
         <Transition.Root show={mobileFiltersOpen} as={Fragment}>
