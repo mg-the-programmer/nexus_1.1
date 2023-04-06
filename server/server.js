@@ -13,9 +13,6 @@ const path = require("path");
 const uri =
   "mongodb+srv://manigandan:manigandan@cluster0.oyky4iz.mongodb.net/nexusdb";
 
-
-
-
 // use cookie
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 

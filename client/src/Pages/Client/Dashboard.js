@@ -141,7 +141,7 @@ export default function Example() {
                 leave="transition ease-in-out duration-300 transform"
                 leaveFrom="translate-x-0"
                 leaveTo="translate-x-full">
-                <Dialog.Panel className="relative flex flex-col w-full h-full max-w-xs py-4 pb-12 ml-auto overflow-y-auto bg-white shadow-xl">
+                <Dialog.Panel className="relative flex flex-col w-full h-full max-w-xs py-4 pb-12 mt-16 ml-auto overflow-y-auto bg-white shadow-xl">
                   <div className="flex items-center justify-between px-4">
                     <h2 className="text-lg font-medium text-gray-900">
                       Filters
@@ -306,7 +306,7 @@ export default function Example() {
             <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
               {/* Filters */}
               <form className="hidden p-3 bg-white rounded-md shadow lg:block">
-                <h3 className="sr-only">Categories</h3>
+                <h3 className="pt-1 pb-4 font-medium">Categories</h3>
                 <ul
                   role="list"
                   className="pb-6 space-y-4 text-sm font-medium text-gray-900 border-b border-gray-200">
@@ -373,16 +373,12 @@ export default function Example() {
                 ))}
               </form>
 
-              {/* Product grid */}
               <div className=" lg:col-span-3">
                 <div className="grid max-w-2xl grid-cols-1 mx-auto gap-y-7 gap-x-8 lg:mx-0 lg:max-w-none ">
                   {posts.map((post) => (
                     <FProfileCard post={post} />
                   ))}
                 </div>
-                {/* Replace with your content */}
-                {/* <div className="border-4 border-gray-200 border-dashed rounded-lg h-96 lg:h-full" /> */}
-                {/* /End replace */}
               </div>
             </div>
           </section>

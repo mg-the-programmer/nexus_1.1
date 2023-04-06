@@ -11,11 +11,11 @@ import FreelanceProfile from "./Pages/Freelancer/FreelanceProfile";
 
 import Signup from "./Pages/Signup";
 import { useState } from "react";
-import ErrorAlert from "./components/ErrorAlert";
 import Navbar from "./components/Navbar";
 import Dashboard from "./Pages/Client/Dashboard";
 import FreelancerForm from "./Pages/Freelancer/FreelancerForm";
 import FreelancerInfo from "./Pages/Freelancer/FreelancerInfo";
+import ProjectsView from "./Pages/Client/ProjectsView";
 import ChatPage from "./Pages/ChatPage";
 import axios from "axios";
 
@@ -46,6 +46,10 @@ function App() {
       element: <Dashboard />,
     },
     {
+      path: "/projects",
+      element: <ProjectsView />,
+    },
+    {
       path: "/freelancer/info",
       element: <FreelancerForm />,
     },
@@ -53,6 +57,7 @@ function App() {
       path: "*",
       element: <Dashboard />,
     },
+
   ]);
 
   // const routing = useRoutes(routes);
