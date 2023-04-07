@@ -21,11 +21,11 @@ export default function ProjectCard({
   };
   return (
     <div
-      className={`${customStyle} inline-block min-w-[280px] rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800  `}
+      className={`${customStyle} inline-block max-w-[280px] rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800  `}
     >
-      <div className=" relative h-auto w-auto min-w-[280px] ">
+      <div className=" relative h-auto w-auto max-w-[280px] ">
         <img
-          className="h-full rounded-t-lg cursor-pointer "
+          className="h-full cursor-pointer rounded-t-lg "
           src={img}
           alt="Project Preview"
         />
@@ -34,7 +34,7 @@ export default function ProjectCard({
           target="_blank"
           class="absolute inset-0  flex items-center justify-center rounded-t-lg opacity-0 transition duration-300 ease-in-out hover:bg-gray-900 hover:bg-opacity-50 hover:opacity-100"
         >
-          <LinkIcon className="w-6 h-6 text-white" />
+          <LinkIcon className="h-6 w-6 text-white" />
         </a>
       </div>
       <div className="flex flex-row justify-between p-5">
@@ -42,10 +42,10 @@ export default function ProjectCard({
           <img
             src={dp}
             alt="Profile Pic"
-            className="mr-2 rounded-full h-7 w-7 "
+            className="mr-2 h-7 w-7 rounded-full "
           />
 
-          <h5 className="font-medium tracking-tight text-gray-900 text-md dark:text-white">
+          <h5 className="text-md font-medium tracking-tight text-gray-900 dark:text-white">
             {name}
           </h5>
         </div>

@@ -60,7 +60,7 @@ router.post("/signup", (req, res) => {
     } else {
       passport.authenticate("local")(req, res, () => {
         console.log("User Registered and Authenticated successfully!");
-        res.send("Authenticated");
+        res.render("/dashboard");
       });
     }
   });

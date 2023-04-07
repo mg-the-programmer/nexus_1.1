@@ -115,16 +115,16 @@ export default function ProjectsView() {
               leaveFrom="translate-x-0"
               leaveTo="translate-x-full"
             >
-              <Dialog.Panel className="relative flex flex-col w-full h-full max-w-xs py-4 pb-12 mt-16 ml-auto overflow-y-auto bg-white shadow-xl">
+              <Dialog.Panel className="relative mt-16 ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white py-4 pb-12 shadow-xl">
                 <div className="flex items-center justify-between px-4">
                   <h2 className="text-lg font-medium text-gray-900">Filters</h2>
                   <button
                     type="button"
-                    className="flex items-center justify-center w-10 h-10 p-2 -mr-2 text-gray-400 bg-white rounded-md"
+                    className="-mr-2 flex h-10 w-10 items-center justify-center rounded-md bg-white p-2 text-gray-400"
                     onClick={() => setMobileFiltersOpen(false)}
                   >
                     <span className="sr-only">Close menu</span>
-                    <XMarkIcon className="w-6 h-6" aria-hidden="true" />
+                    <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                   </button>
                 </div>
 
@@ -148,24 +148,24 @@ export default function ProjectsView() {
                     <Disclosure
                       as="div"
                       key={section.id}
-                      className="px-4 py-6 border-t border-gray-200"
+                      className="border-t border-gray-200 px-4 py-6"
                     >
                       {({ open }) => (
                         <>
-                          <h3 className="flow-root -mx-2 -my-3">
-                            <Disclosure.Button className="flex items-center justify-between w-full px-2 py-3 text-gray-400 bg-white hover:text-gray-500">
+                          <h3 className="-mx-2 -my-3 flow-root">
+                            <Disclosure.Button className="flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-500">
                               <span className="font-medium text-gray-900">
                                 {section.name}
                               </span>
-                              <span className="flex items-center ml-6">
+                              <span className="ml-6 flex items-center">
                                 {open ? (
                                   <MinusIcon
-                                    className="w-5 h-5"
+                                    className="h-5 w-5"
                                     aria-hidden="true"
                                   />
                                 ) : (
                                   <PlusIcon
-                                    className="w-5 h-5"
+                                    className="h-5 w-5"
                                     aria-hidden="true"
                                   />
                                 )}
@@ -185,11 +185,11 @@ export default function ProjectsView() {
                                     defaultValue={option.value}
                                     type="checkbox"
                                     defaultChecked={option.checked}
-                                    className="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                                    className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                   />
                                   <label
                                     htmlFor={`filter-mobile-${section.id}-${optionIdx}`}
-                                    className="flex-1 min-w-0 ml-3 text-gray-500"
+                                    className="ml-3 min-w-0 flex-1 text-gray-500"
                                   >
                                     {option.label}
                                   </label>
@@ -207,8 +207,8 @@ export default function ProjectsView() {
           </div>
         </Dialog>
       </Transition.Root>
-      <div className="bg-white border-b border-gray-200 ">
-        <div className="flex items-center justify-between px-2 pt-6 pb-6 mx-auto max-w-7xl sm:px-6 lg:px-8 ">
+      <div className="border-b border-gray-200 bg-white ">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-2 pt-6 pb-6 sm:px-6 lg:px-8 ">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 ">
             Projects
           </h1>
@@ -216,10 +216,10 @@ export default function ProjectsView() {
           <div className="flex items-center pr-2 ">
             <Menu as="div" className="relative inline-block text-left">
               <div>
-                <Menu.Button className="inline-flex justify-center text-sm font-medium text-gray-700 group hover:text-gray-900">
+                <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
                   Sort
                   <ChevronDownIcon
-                    className="flex-shrink-0 w-5 h-5 ml-1 -mr-1 text-gray-400 group-hover:text-gray-500"
+                    className="ml-1 -mr-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                     aria-hidden="true"
                   />
                 </Menu.Button>
@@ -234,7 +234,7 @@ export default function ProjectsView() {
                 leaveFrom="transform opacity-100 scale-100"
                 leaveTo="transform opacity-0 scale-95"
               >
-                <Menu.Items className="absolute right-0 z-10 w-40 mt-2 origin-top-right bg-white rounded-md shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <Menu.Items className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
                   <div className="z-30 py-1">
                     {sortOptions.map((option) => (
                       <Menu.Item key={option.name}>
@@ -267,92 +267,95 @@ export default function ProjectsView() {
               </button> */}
             <button
               type="button"
-              className="p-2 ml-4 -m-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden"
+              className="-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden"
               onClick={() => setMobileFiltersOpen(true)}
             >
               <span className="sr-only">Filters</span>
-              <FunnelIcon className="w-5 h-5" aria-hidden="true" />
+              <FunnelIcon className="h-5 w-5" aria-hidden="true" />
             </button>
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 px-8 pt-6 mx-auto grid-auto-flow max-w-7xl gap-y-5 gap-x-8 overflow-clip sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {/* <Filter /> */}
-        <form className="sticky z-20 hidden w-64 row-span-2 p-3 bg-white rounded-md shadow top-20 lg:block">
-          <h3 className="pt-1 pb-4 font-medium">Categories</h3>
-          <ul
-            role="list"
-            className="pb-6 space-y-4 text-sm font-medium text-gray-900 border-b border-gray-200"
-          >
-            {subCategories.map((category) => (
-              <li key={category.name}>
-                <a href={category.href}>{category.name}</a>
-              </li>
-            ))}
-          </ul>
-
-          {filters.map((section) => (
-            <Disclosure
-              as="div"
-              key={section.id}
-              className="py-6 border-b border-gray-200"
+      <main className="mx-auto max-w-7xl sm:px-6 lg:px-8 ">
+        <div className="grid grid-cols-1 gap-x-8 gap-y-10 pt-6 lg:grid-cols-4">
+          {/* Filters */}
+          <form className="sticky top-20 hidden h-[600px] rounded-md bg-white p-3 shadow lg:block">
+            <h3 className="pt-1 pb-4 font-medium">Categories</h3>
+            <ul
+              role="list"
+              className="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900"
             >
-              {({ open }) => (
-                <>
-                  <h3 className="flow-root -my-3">
-                    <Disclosure.Button className="flex items-center justify-between w-full py-3 text-sm text-gray-400 bg-white hover:text-gray-500">
-                      <span className="font-medium text-gray-900">
-                        {section.name}
-                      </span>
-                      <span className="flex items-center ml-6">
-                        {open ? (
-                          <MinusIcon className="w-5 h-5" aria-hidden="true" />
-                        ) : (
-                          <PlusIcon className="w-5 h-5" aria-hidden="true" />
-                        )}
-                      </span>
-                    </Disclosure.Button>
-                  </h3>
-                  <Disclosure.Panel className="pt-6">
-                    <div className="space-y-4">
-                      {section.options.map((option, optionIdx) => (
-                        <div key={option.value} className="flex items-center">
-                          <input
-                            id={`filter-${section.id}-${optionIdx}`}
-                            name={`${section.id}[]`}
-                            defaultValue={option.value}
-                            type="checkbox"
-                            defaultChecked={option.checked}
-                            className="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
-                          />
-                          <label
-                            htmlFor={`filter-${section.id}-${optionIdx}`}
-                            className="ml-3 text-sm text-gray-600"
-                          >
-                            {option.label}
-                          </label>
-                        </div>
-                      ))}
-                    </div>
-                  </Disclosure.Panel>
-                </>
-              )}
-            </Disclosure>
-          ))}
-        </form>
-        {/* <div className="col-start-2 "> */}
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        {/* </div> */}
-      </div>
+              {subCategories.map((category) => (
+                <li key={category.name}>
+                  <a href={category.href}>{category.name}</a>
+                </li>
+              ))}
+            </ul>
+
+            {filters.map((section) => (
+              <Disclosure
+                as="div"
+                key={section.id}
+                className="border-b border-gray-200 py-6"
+              >
+                {({ open }) => (
+                  <>
+                    <h3 className="-my-3 flow-root">
+                      <Disclosure.Button className="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500">
+                        <span className="font-medium text-gray-900">
+                          {section.name}
+                        </span>
+                        <span className="ml-6 flex items-center">
+                          {open ? (
+                            <MinusIcon className="h-5 w-5" aria-hidden="true" />
+                          ) : (
+                            <PlusIcon className="h-5 w-5" aria-hidden="true" />
+                          )}
+                        </span>
+                      </Disclosure.Button>
+                    </h3>
+                    <Disclosure.Panel className="pt-6">
+                      <div className="space-y-4">
+                        {section.options.map((option, optionIdx) => (
+                          <div key={option.value} className="flex items-center">
+                            <input
+                              id={`filter-${section.id}-${optionIdx}`}
+                              name={`${section.id}[]`}
+                              defaultValue={option.value}
+                              type="checkbox"
+                              defaultChecked={option.checked}
+                              className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                            />
+                            <label
+                              htmlFor={`filter-${section.id}-${optionIdx}`}
+                              className="ml-3 text-sm text-gray-600"
+                            >
+                              {option.label}
+                            </label>
+                          </div>
+                        ))}
+                      </div>
+                    </Disclosure.Panel>
+                  </>
+                )}
+              </Disclosure>
+            ))}
+          </form>
+
+          <div className="col-span-1 lg:col-span-3">
+            <div className="mx-3 mx-auto grid grid-cols-1 justify-items-center gap-y-7 gap-x-8 sm:grid-cols-2 md:grid-cols-3 lg:mx-0 lg:max-w-none ">
+              <ProjectCard />
+              <ProjectCard />
+              <ProjectCard />
+              <ProjectCard />
+              <ProjectCard />
+              <ProjectCard />
+              <ProjectCard />
+              <ProjectCard />
+            </div>
+          </div>
+        </div>
+      </main>
     </div>
   );
 }
