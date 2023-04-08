@@ -43,7 +43,8 @@ app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 //use express session to maintain session data
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
+// app.use(bodyParser.urlencoded({ extended: true }));
 //use the freelance.js file for all the freelancer related routes
 app.use("/", require("./routes/freelancer"));
 

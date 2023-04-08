@@ -26,6 +26,9 @@ router.get("/dashboard", (req, res) => {
   if (req.isAuthenticated()) {
     console.log("User is authenticated");
     res.send("verified");
+  } else {
+    console.log("User is not authenticated");
+    res.send("not verified");
   }
   // console.log(req.user);
 });
@@ -60,7 +63,7 @@ router.post("/signup", (req, res) => {
     } else {
       passport.authenticate("local")(req, res, () => {
         console.log("User Registered and Authenticated successfully!");
-        res.render("/dashboard");
+        res.send("verified");
       });
     }
   });

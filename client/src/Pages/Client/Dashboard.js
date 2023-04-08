@@ -32,21 +32,22 @@ export default function Example() {
       .then((res) => {
         if (res.data === "verified") {
           setIsAuthenticated(true);
-        } else {
+          axios
+            .get("/freelancer/info")
+            .then((res) => {
+              setPosts([...res.data]);
+              // console.log(res.data);
+            })
+            .catch((error) => {
+              // handle error
+              console.log(error);
+            });
+        }
+        if (res.data === "not verified") {
           window.location.href = "/signin";
         }
       })
       .catch((error) => {});
-    axios
-      .get("/freelancer/info")
-      .then((res) => {
-        setPosts([...res.data]);
-        // console.log(res.data);
-      })
-      .catch((error) => {
-        // handle error
-        console.log(error);
-      });
   }, []);
 
   return (
