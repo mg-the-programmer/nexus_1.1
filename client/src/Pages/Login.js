@@ -17,7 +17,9 @@ export default function Login() {
     axios
       .post("/login", { email, password, accountType })
       .then((res) => {
-        console.log(res.data);
+        if (res.data === "verified") {
+          window.location.href = "/dashboard";
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -32,7 +34,7 @@ export default function Login() {
     "flex justify-center w-full px-4 py-2.5 mt-4 text-blue-500 border border-blue-500 rounded-lg md:mt-0 md:w-full md:mx-2 dark:border-blue-400 dark:text-blue-400 focus:outline-none";
 
   return (
-    <div className="flex h-screen items-center justify-center">
+    <div className="flex items-center justify-center h-screen">
       <div className="mx-auto flex overflow-hidden rounded-lg bg-white shadow-lg dark:bg-gray-800 lg:w-[800px]">
         <div
           className="hidden bg-cover lg:block lg:w-1/2"
@@ -42,21 +44,21 @@ export default function Login() {
           }}
         />
         <div className="w-full px-6 py-8 md:px-8 lg:w-1/2">
-          <div className="mx-auto flex justify-center">
+          <div className="flex justify-center mx-auto">
             <img
-              className="h-7 w-auto sm:h-8"
+              className="w-auto h-7 sm:h-8"
               src="https://merakiui.com/images/logo.svg"
               alt=""
             />
           </div>
-          <p className="mt-3 text-center text-xl text-gray-600 dark:text-gray-200">
+          <p className="mt-3 text-xl text-center text-gray-600 dark:text-gray-200">
             Welcome back!
           </p>
           <a
             href="#"
-            className="mt-4 flex transform items-center justify-center rounded-lg border text-gray-600 transition-colors duration-300 hover:bg-gray-50 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-600">
+            className="flex items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg hover:bg-gray-50 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-600">
             <div className="px-4 py-2">
-              <svg className="h-6 w-6" viewBox="0 0 40 40">
+              <svg className="w-6 h-6" viewBox="0 0 40 40">
                 <path
                   d="M36.3425 16.7358H35V16.6667H20V23.3333H29.4192C28.045 27.2142 24.3525 30 20 30C14.4775 30 10 25.5225 10 20C10 14.4775 14.4775 9.99999 20 9.99999C22.5492 9.99999 24.8683 10.9617 26.6342 12.5325L31.3483 7.81833C28.3717 5.04416 24.39 3.33333 20 3.33333C10.7958 3.33333 3.33335 10.7958 3.33335 20C3.33335 29.2042 10.7958 36.6667 20 36.6667C29.2042 36.6667 36.6667 29.2042 36.6667 20C36.6667 18.8825 36.5517 17.7917 36.3425 16.7358Z"
                   fill="#FFC107"
@@ -75,15 +77,15 @@ export default function Login() {
                 />
               </svg>
             </div>
-            <span className="w-5/6 px-4 py-3 text-center font-bold">
+            <span className="w-5/6 px-4 py-3 font-bold text-center">
               Sign in with Google
             </span>
           </a>
-          <div className="mt-4 flex items-center justify-between">
+          <div className="flex items-center justify-between mt-4">
             <span className="w-1/5 border-b dark:border-gray-600 lg:w-1/4" />
             <a
               href="#"
-              className="text-center text-xs uppercase text-gray-500 hover:underline dark:text-gray-400">
+              className="text-xs text-center text-gray-500 uppercase hover:underline dark:text-gray-400">
               or login with email
             </a>
             <span className="w-1/5 border-b dark:border-gray-400 lg:w-1/4" />
@@ -103,7 +105,7 @@ export default function Login() {
                   onClick={() => setAccountType("client")}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
+                    className="w-6 h-6"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -125,7 +127,7 @@ export default function Login() {
                   onClick={() => setAccountType("worker")}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
+                    className="w-6 h-6"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -141,13 +143,13 @@ export default function Login() {
               </div>
             </div>
             <label
-              className="mt-4 mb-2 block text-sm font-medium text-gray-600 dark:text-gray-200"
+              className="block mt-4 mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
               htmlFor="LoggingEmailAddress">
               Email Address
             </label>
             <input
               id="LoggingEmailAddress"
-              className="block w-full rounded-lg border bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-300"
+              className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-300"
               type="email"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
@@ -156,7 +158,7 @@ export default function Login() {
           <div className="mt-4">
             <div className="flex justify-between">
               <label
-                className="mb-2 block text-sm font-medium text-gray-600 dark:text-gray-200"
+                className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
                 htmlFor="loggingPassword">
                 Password
               </label>
@@ -168,7 +170,7 @@ export default function Login() {
             </div>
             <input
               id="loggingPassword"
-              className="block w-full rounded-lg border bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-300"
+              className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-300"
               type="password"
               onChange={(e) => setPassword(e.target.value)}
               value={password}
@@ -177,15 +179,15 @@ export default function Login() {
           <div className="mt-6">
             <button
               onClick={handleSumbit}
-              className="w-full transform rounded-lg bg-gray-800 px-6 py-3 text-sm font-medium capitalize tracking-wide text-white transition-colors duration-300 hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50">
+              className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50">
               Sign In
             </button>
           </div>
-          <div className="mt-4 flex items-center justify-between">
+          <div className="flex items-center justify-between mt-4">
             <span className="w-1/5 border-b dark:border-gray-600 md:w-1/4" />
             <a
               href="/signup"
-              className="text-xs uppercase text-gray-500 hover:underline dark:text-gray-400">
+              className="text-xs text-gray-500 uppercase hover:underline dark:text-gray-400">
               or sign up
             </a>
             <span className="w-1/5 border-b dark:border-gray-600 md:w-1/4" />
