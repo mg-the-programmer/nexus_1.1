@@ -43,7 +43,6 @@ router.post("/freelancer/info", (req, res) => {
       // res.redirect("/dashboard");
     }
   });
-
 });
 
 // get all freelancer profiles
@@ -83,7 +82,7 @@ router.put("/freelancer/darkmode/:id", (req, res) => {
         if (error) {
           console.log(error);
         } else {
-          console.log(freelancer.darkMode);
+          // console.log(freelancer.darkMode);
           console.log("Darkmode updated successfully!");
         }
       });

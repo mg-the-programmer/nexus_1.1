@@ -141,7 +141,7 @@ router.get("/checkauth", (req, res) => {
 // Logout
 router.get("/logout", (req, res) => {
   req.logout();
-  res.status(200).json({ success: true, message: "User logged out!" });
+  res.send("/signin");
 });
 
 module.exports = router;

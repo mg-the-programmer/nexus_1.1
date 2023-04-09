@@ -28,7 +28,7 @@ const navigation = [
 const userNavigation = [
   { name: "Your Profile", href: "/profile" },
   { name: "Settings", href: "/settings" },
-  { name: "Sign out", href: "/signin" },
+  { name: "Sign out" },
 ];
 
 function classNames(...classes) {
@@ -243,14 +243,31 @@ export default function Example(props) {
                     </button>
                   </div>
                   <div className="px-2 mt-3 space-y-1">
-                    {userNavigation.map((item) => (
-                      <Disclosure.Button
-                        key={item.name}
-                        as="a"
-                        href={item.href}
-                        className="block px-3 py-2 text-base font-medium text-gray-400 rounded-md hover:bg-gray-700 hover:text-white">
-                        {item.name}
-                      </Disclosure.Button>
+                    <Disclosure.Button
+                      key="Your Profile"
+                      as="a"
+                      href="/profile"
+                      className="block px-3 py-2 text-base font-medium text-gray-400 rounded-md hover:bg-gray-700 hover:text-white">
+                      Your Profile
+                    </Disclosure.Button>
+                    <Disclosure.Button
+                      key="Settings"
+                      as="a"
+                      href="/settings"
+                      className="block px-3 py-2 text-base font-medium text-gray-400 rounded-md hover:bg-gray-700 hover:text-white">
+                      Settings
+                    </Disclosure.Button>
+                    <Disclosure.Button
+                      key="Sign out"
+                      as="a"
+                      onClick={() => {
+                        axios.get("/logout").then((res) => {
+                          window.location.href = res.data;
+                        });
+                      }}
+                      className="block px-3 py-2 text-base font-medium text-gray-400 rounded-md hover:bg-gray-700 hover:text-white">
+                      Sign out
+                    </Disclosure.Button>
                     ))}
                   </div>
                 </div>
