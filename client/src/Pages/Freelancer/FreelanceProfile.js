@@ -1,7 +1,16 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 export default function FreelanceProfile() {
-    
+  const [freelancer, setFreelancer] = useState([]);
+
+  useEffect(() => {
+    axios.get("/freelancer").then((response) => {
+      console.log(response.data);
+      setFreelancer(response.data);
+    });
+  }, []);
+
   return (
     <main className="profile-page">
       <section className="relative block h-[400px]">
@@ -51,7 +60,7 @@ export default function FreelanceProfile() {
                 <div className="w-full px-4 lg:order-3 lg:w-4/12 lg:self-center lg:text-right">
                   <div className="px-3 py-6 sm:mt-0">
                     <button
-                      className="px-4 py-2 mb-1 text-xs font-bold text-white uppercase transition-all duration-150 ease-linear bg-pink-500 rounded shadow outline-none focus:outline-none hover:shadow-md active:bg-pink-600 sm:mr-2"
+                      className="px-4 py-2 mb-1 text-xs font-bold text-white uppercase transition-all duration-150 ease-linear bg-pink-500 rounded shadow outline-none hover:shadow-md focus:outline-none active:bg-pink-600 sm:mr-2"
                       type="button">
                       Connect
                     </button>

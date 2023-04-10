@@ -4,6 +4,7 @@
 const express = require("express");
 const router = express.Router();
 const Freelancer = require("../models/freelancerModel");
+const passport = require("passport");
 // use the freelancer model thats is exported from server.js
 router.post("/freelancer/info", (req, res) => {
   const {
@@ -57,6 +58,19 @@ router.get("/freelancer/info", (req, res) => {
   });
 });
 
+router.get("/freelancer", (req, res) => {
+  //use the cokkie to get the user id
+  const id = req.cookies.user_id;
+  Freelancer.findById(id, (error, freelancer) => {
+    if (error) {
+      console.log(error);
+    } else {
+      // console.log(freelancer);
+      res.json(freelancer);
+    }
+  });
+});
+
 // get a freelancer profile by id
 router.get("/freelancer/:id", (req, res) => {
   Freelancer.findById(req.params.id, (error, freelancer) => {
@@ -82,8 +96,7 @@ router.put("/freelancer/darkmode/:id", (req, res) => {
         if (error) {
           console.log(error);
         } else {
-          // console.log(freelancer.darkMode);
-          console.log("Darkmode updated successfully!");
+          // console.log("Darkmode updated successfully!");
         }
       });
     }

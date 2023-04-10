@@ -18,7 +18,7 @@ export default function Login() {
       .post("/login", { email, password, accountType })
       .then((res) => {
         if (res.data === "verified") {
-          window.location.href = "/dashboard";
+          window.location.href = "/profile";
         }
       })
       .catch((err) => {

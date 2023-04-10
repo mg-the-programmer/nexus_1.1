@@ -156,20 +156,53 @@ export default function Example(props) {
                           leaveFrom="transform opacity-100 scale-100"
                           leaveTo="transform opacity-0 scale-95">
                           <Menu.Items className="absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                            {userNavigation.map((item) => (
-                              <Menu.Item key={item.name}>
-                                {({ active }) => (
-                                  <a
-                                    href={item.href}
-                                    className={classNames(
-                                      active ? "bg-gray-100" : "",
-                                      "block px-4 py-2 text-sm text-gray-700"
-                                    )}>
-                                    {item.name}
-                                  </a>
-                                )}
-                              </Menu.Item>
-                            ))}
+                            <Menu.Item key="Your Profile">
+                              {({ active }) => (
+                                <a
+                                  href="/profile"
+                                  className={classNames(
+                                    active ? "bg-gray-100" : "",
+                                    "block px-4 py-2 text-sm text-gray-700"
+                                  )}>
+                                  Your Profile
+                                </a>
+                              )}
+                            </Menu.Item>
+                            <Menu.Item key="Settings">
+                              {({ active }) => (
+                                <a
+                                  href="/settings"
+                                  className={classNames(
+                                    active ? "bg-gray-100" : "",
+                                    "block px-4 py-2 text-sm text-gray-700"
+                                  )}>
+                                  Settings
+                                </a>
+                              )}
+                            </Menu.Item>
+                            <Menu.Item key="Sign Out">
+                              {({ active }) => (
+                                <a
+                                  onClick={() => {
+                                    axios
+                                      .get("/logout")
+                                      .then((res) => {
+                                        if (res.data === "logged out") {
+                                          window.location.href = "/signin";
+                                        }
+                                      })
+                                      .catch((error) => {
+                                        console.log(error);
+                                      });
+                                  }}
+                                  className={classNames(
+                                    active ? "bg-gray-100" : "",
+                                    "block px-4 py-2 text-sm text-gray-700 hover:cursor-pointer"
+                                  )}>
+                                  Log Out
+                                </a>
+                              )}
+                            </Menu.Item>
                           </Menu.Items>
                         </Transition>
                       </Menu>
@@ -243,6 +276,18 @@ export default function Example(props) {
                     </button>
                   </div>
                   <div className="px-2 mt-3 space-y-1">
+                    <Menu.Item key="Your Profile">
+                      {({ active }) => (
+                        <a
+                          href="/profile"
+                          className={classNames(
+                            active ? "bg-gray-100" : "",
+                            "block px-4 py-2 text-sm text-gray-700"
+                          )}>
+                          Your Profile
+                        </a>
+                      )}
+                    </Menu.Item>
                     <Disclosure.Button
                       key="Your Profile"
                       as="a"
@@ -261,14 +306,21 @@ export default function Example(props) {
                       key="Sign out"
                       as="a"
                       onClick={() => {
-                        axios.get("/logout").then((res) => {
-                          window.location.href = res.data;
-                        });
+                        axios
+                          .get("/logout")
+                          .then((res) => {
+                            if (res.data === "logged out") {
+                              window.location.href = "/signin";
+                            }
+                          })
+                          .catch((error) => {
+                            console.log(error);
+                          });
                       }}
-                      className="block px-3 py-2 text-base font-medium text-gray-400 rounded-md hover:bg-gray-700 hover:text-white">
+                      href="/"
+                      className="block px-3 py-2 text-base font-medium text-gray-400 rounded-md hover:cursor-pointer hover:bg-gray-700 hover:text-white">
                       Sign out
                     </Disclosure.Button>
-                    ))}
                   </div>
                 </div>
               </Disclosure.Panel>

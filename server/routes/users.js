@@ -85,6 +85,10 @@ router.post("/login", (req, res, next) => {
         console.error(err);
         return res.status(500).send("Internal Server Error");
       }
+      console.log(user);
+      user.id = user._id.toString();
+      req.session.user_id = user.id; // save user ID in the session
+      req.session.save(); // save the session
       console.log("User logged in successfully!");
       return res.send("verified");
     });
@@ -140,8 +144,14 @@ router.get("/checkauth", (req, res) => {
 });
 // Logout
 router.get("/logout", (req, res) => {
-  req.logout();
-  res.send("/signin");
+  req.logout((err) => {
+    if (err) {
+      console.log(err);
+      return next(err);
+    }
+    console.log("User logged out successfully!");
+    res.send("logged out");
+  });
 });
 
 module.exports = router;
