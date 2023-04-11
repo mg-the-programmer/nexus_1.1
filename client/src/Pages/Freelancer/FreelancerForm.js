@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TagSection from "../../components/TagSection.js";
 import ToggleButton from "react-toggle-button";
 import { FaGithub } from "react-icons/fa";
@@ -16,10 +16,21 @@ function FreelancerForm({ darkmode }) {
   const [jobTitle, setJobTitle] = useState("");
   const [description, setDescription] = useState("");
   const [jobSuccessRate, setJobSuccessRate] = useState("99");
+  const [user_id, setUserId] = useState("");
 
+  useEffect(() => {
+    axios.get("/auth").then((res) => {
+      if (res.data === "not verified") {
+        window.location.href = "/signin";
+      } else {
+        console.log(res.data);
+        setUserId(res.data._id);
+      }
+    });
+  }, []);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     axios
       .post("/freelancer/info", {
         name,
@@ -33,27 +44,16 @@ function FreelancerForm({ darkmode }) {
         jobTitle,
         description,
         jobSuccessRate,
-      }
-      )
+        user_id,
+      })
       .then((res) => {
         alert("Freelancer added successfully");
         console.log(res);
         // window.location.href = res.request.responseURL;
-
       })
       .catch((err) => {
         console.log(err);
       });
-
-    // try {
-    //   const response = await axios.post("/freelancer/info");
-    //   console.log("response:", response);
-    // } catch (error) {
-    //   console.error("error:", error);
-    //   alert(error.response.data.error);
-    // }
-
-    // Send form data to server or do something else
   };
 
   const handleTagsChange = (newSkills) => {

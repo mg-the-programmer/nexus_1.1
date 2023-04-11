@@ -19,6 +19,7 @@ router.post("/freelancer/info", (req, res) => {
     jobTitle,
     description,
     jobSuccessRate,
+    user_id,
   } = req.body;
 
   const newFreelancer = new Freelancer({
@@ -33,6 +34,7 @@ router.post("/freelancer/info", (req, res) => {
     jobTitle: jobTitle,
     description: description,
     jobSuccess: jobSuccessRate,
+    user_id: user_id,
   });
 
   newFreelancer.save((error) => {
@@ -58,17 +60,14 @@ router.get("/freelancer/info", (req, res) => {
   });
 });
 
-router.get("/freelancer", (req, res) => {
+router.get("/auth", (req, res) => {
   //use the cokkie to get the user id
-  const id = req.cookies.user_id;
-  Freelancer.findById(id, (error, freelancer) => {
-    if (error) {
-      console.log(error);
-    } else {
-      // console.log(freelancer);
-      res.json(freelancer);
-    }
-  });
+  if (req.isAuthenticated()) {
+    res.json(req.user);
+  } else {
+    console.log("User is not authenticated");
+    res.send("not verified");
+  }
 });
 
 // get a freelancer profile by id
@@ -78,6 +77,16 @@ router.get("/freelancer/:id", (req, res) => {
       console.log(error);
     } else {
       // console.log(freelancer);
+      res.json(freelancer);
+    }
+  });
+});
+
+router.get("/freelancerDetails", (req, res) => {
+  Freelancer.findOne({ user_id: req.user._id }, (error, freelancer) => {
+    if (error) {
+      console.log(error);
+    } else {
       res.json(freelancer);
     }
   });

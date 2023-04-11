@@ -5,12 +5,20 @@ export default function FreelanceProfile() {
   const [freelancer, setFreelancer] = useState([]);
 
   useEffect(() => {
-    axios.get("/freelancer").then((response) => {
-      console.log(response.data);
-      setFreelancer(response.data);
+    axios.get("/auth").then((response) => {
+      if (response.data === "not verified") {
+        window.location.href = "/signin";
+      } else {
+        console.log(response.data);
+        // setFreelancer(response.data);
+      }
+    });
+    axios.get("/freelancerDetails").then((res) => {
+      console.log(res.data);
+      setFreelancer(res.data);
     });
   }, []);
-
+  console.log(freelancer);
   return (
     <main className="profile-page">
       <section className="relative block h-[400px]">
@@ -93,11 +101,11 @@ export default function FreelanceProfile() {
               </div>
               <div className="mt-12 text-center">
                 <h3 className="mb-2 text-4xl font-semibold leading-normal text-blueGray-700">
-                  Jenna Stones
+                  {freelancer.name}
                 </h3>
                 <div className="mt-0 mb-2 text-sm font-bold leading-normal uppercase text-blueGray-400">
                   <i className="mr-2 text-lg fas fa-map-marker-alt text-blueGray-400" />
-                  Los Angeles, California
+                  Bucharest, Romania
                 </div>
                 <div className="mt-10 mb-2 text-blueGray-600">
                   <i className="mr-2 text-lg fas fa-briefcase text-blueGray-400" />
@@ -112,11 +120,7 @@ export default function FreelanceProfile() {
                 <div className="flex flex-wrap justify-center">
                   <div className="w-full px-4 lg:w-9/12">
                     <p className="mb-4 text-lg leading-relaxed text-blueGray-700">
-                      An artist of considerable range, Jenna the name taken by
-                      Melbourne-raised, Brooklyn-based Nick Murphy writes,
-                      performs and records all of his own music, giving it a
-                      warm, intimate feel with a solid groove structure. An
-                      artist of considerable range.
+                      {freelancer.description}
                     </p>
                     <a href="#pablo" className="font-normal text-pink-500">
                       Show more

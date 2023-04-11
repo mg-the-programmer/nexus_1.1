@@ -89,6 +89,8 @@ router.post("/login", (req, res, next) => {
       user.id = user._id.toString();
       req.session.user_id = user.id; // save user ID in the session
       req.session.save(); // save the session
+      console.log("session id", req.session.user_id);
+      console.log("session", req.session);
       console.log("User logged in successfully!");
       return res.send("verified");
     });

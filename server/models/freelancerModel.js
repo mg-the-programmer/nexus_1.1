@@ -15,6 +15,7 @@ const freelancerSchema = new Schema({
   experience: { type: String },
   githubLink: { type: String },
   darkMode: { type: Boolean },
+  user_id: { type: String },
 });
 
 const freelancer = mongoose.model("freelancer", freelancerSchema);
