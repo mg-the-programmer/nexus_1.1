@@ -57,24 +57,32 @@ function App() {
       path: "*",
       element: <ProjectsView />,
     },
-
   ]);
 
   // const routing = useRoutes(routes);
   const [isDarkMode, setIsDarkMode] = useState();
   //create a loading state
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    axios
-      .get("/freelancer/64115415247d2e83c2af8532")
-      .then((res) => {
-        setIsDarkMode(res.data.darkMode);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  const [loading, setLoading] = useState(false);
+  const [userDetails, setUserDetails] = useState([]);
+  const [userId, setUserId] = useState("");
+
+  //have to fix dark mode
+  // useEffect(() => {
+  //   axios.get("/freelancerDetails").then((res) => {
+  //     setUserDetails(res.data);
+  //     setUserId(res.data._id);
+  //     console.log(res.data._id);
+  //   });
+  // }, []);
+  // axios
+  //   .get(`/freelancer/${userId}`)
+  //   .then((res) => {
+  //     console.log(res.data);
+  //     setIsDarkMode(res.data.darkMode);
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
 
   function handleDarkModeChange(value) {
     setIsDarkMode(value);
@@ -91,7 +99,9 @@ function App() {
       <div>Loading...</div>
     ) : (
       <div className={`App ${mode}  `}>
-        {!isAuthPage && <Navbar onDarkModeChange={handleDarkModeChange} />}
+        {!isAuthPage && (
+          <Navbar userId={userId} onDarkModeChange={handleDarkModeChange} />
+        )}
         {routing}
       </div>
     )

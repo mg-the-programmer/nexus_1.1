@@ -34,28 +34,48 @@ router.post("/freelancer/info", (req, res) => {
     jobTitle: jobTitle,
     description: description,
     jobSuccess: jobSuccessRate,
+    darkMode: false,
     user_id: user_id,
   });
 
-  newFreelancer.save((error) => {
-    if (error) {
-      console.log(error);
+  Freelancer.findOne({ user_id: user_id }, (err, freelancer) => {
+    if (err) {
+      console.log(err);
+    } else if (freelancer) {
+      // if the freelancer already exists, update it with the new data
+      Freelancer.updateOne(
+        { user_id: user_id },
+        { $set: { ...newFreelancer.toObject(), _id: freelancer._id } },
+        (error, result) => {
+          if (error) {
+            console.log(error);
+          } else {
+            console.log("Freelancer updated successfully!");
+            res.json({ message: "success" });
+          }
+        }
+      );
     } else {
-      console.log("New Freelancer saved successfully!");
-      res.json({ message: "success" });
-      // res.redirect("/dashboard");
+      // if the freelancer doesn't exist, create a new one
+      newFreelancer.save((error) => {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log("New Freelancer saved successfully!");
+          res.json({ message: "success" });
+        }
+      });
     }
   });
 });
 
 // get all freelancer profiles
 router.get("/freelancer/info", (req, res) => {
-  Freelancer.find({}, (error, freelancers) => {
+  Freelancer.findOne({ user_id: req.user._id }, (error, freelancer) => {
     if (error) {
       console.log(error);
     } else {
-      // console.log(freelancers);cccl
-      res.json(freelancers);
+      res.json(freelancer);
     }
   });
 });
@@ -63,6 +83,7 @@ router.get("/freelancer/info", (req, res) => {
 router.get("/auth", (req, res) => {
   //use the cokkie to get the user id
   if (req.isAuthenticated()) {
+    console.log("User is authenticated");
     res.json(req.user);
   } else {
     console.log("User is not authenticated");

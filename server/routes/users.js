@@ -70,31 +70,62 @@ router.get("/dashboard", (req, res) => {
   // console.log(req.user);
 });
 router.post("/login", (req, res, next) => {
+  accountType = req.body.accountType;
   passport.authenticate("local", (err, user, info) => {
     if (err) {
       console.error(err);
-      return res.status(500).send("Internal Server Error");
+      return res.status(500).json("Internal Server Error");
     }
     if (!user) {
       console.error(info.message);
       return res.status(401).send("Unauthorized");
     }
-    console.log("User logged in successfully!");
-    req.logIn(user, (err) => {
-      if (err) {
-        console.error(err);
-        return res.status(500).send("Internal Server Error");
+    signedupUsers.findOne(
+      {
+        username: user.username,
+        password: user.password,
+      },
+      (err, signupUser) => {
+        console.log(signupUser);
+        console.log(signupUser.accountType);
+        console.log(accountType);
+        if (err) {
+          console.error(err);
+          return res.status(500).send("Internal Server Error");
+        }
+        if (!signupUser) {
+          console.error("Invalid username, password");
+          return res.status(401).json({
+            head: "Credentials",
+            message: "Invalid username, password",
+          });
+        }
+        if (signupUser.accountType !== accountType) {
+          console.error(
+            "Invalid account type. Please check your account type, email, and password."
+          );
+          return res.json({
+            head: "Account Type",
+            message:
+              "Invalid account type. Please check your account type, email, and password.",
+          });
+        }
+
+        console.log("User logged in successfully!");
+        req.logIn(user, (err) => {
+          if (err) {
+            console.error(err);
+            return res.status(500).send("Internal Server Error");
+          }
+          console.log(user);
+          user.id = user._id.toString();
+          req.session.user_id = user.id; // save user ID in the session
+          req.session.save();
+          console.log("User logged in successfully!");
+          return res.send("verified");
+        });
       }
-      console.log(user);
-      user.id = user._id.toString();
-      req.session.user_id = user.id; // save user ID in the session
-      req.session.save(); // save the session
-      console.log("session id", req.session.user_id);
-      console.log("session", req.session);
-      console.log("User logged in successfully!");
-      return res.send("verified");
-    });
-    // res.send("verified");
+    );
   })(req, res, next);
 });
 

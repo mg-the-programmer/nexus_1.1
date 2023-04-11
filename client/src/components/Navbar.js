@@ -36,7 +36,7 @@ function classNames(...classes) {
 }
 
 export default function Example(props) {
-  const [isdarkmode, setisdarkmode] = useState();
+  const [isdarkmode, setisdarkmode] = useState(false);
 
   // useEffect(() => {
   //   axios
@@ -56,19 +56,21 @@ export default function Example(props) {
     props.onDarkModeChange(!isdarkmode);
   };
 
-  useEffect(() => {
-    axios
-      .put("/freelancer/darkmode/64115415247d2e83c2af8532", {
-        darkMode: isdarkmode,
-      })
-      .then((res) => {
-        console.log(res.data.darkMode);
-        // alert("success");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [isdarkmode]);
+  //have to fix dark mode
+
+  // useEffect(() => {
+  //   axios
+  //     .put(`/freelancer/darkmode/${props.userId}`, {
+  //       darkMode: isdarkmode,
+  //     })
+  //     .then((res) => {
+  //       console.log(res.data.darkMode);
+  //       // alert("success");
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, [isdarkmode]);
 
   //use the darkmode from /freelancer/info api
 
@@ -78,8 +80,8 @@ export default function Example(props) {
         <Disclosure as="nav" className="bg-gray-800">
           {({ open }) => (
             <>
-              <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-                <div className="flex items-center justify-between h-16">
+              <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div className="flex h-16 items-center justify-between">
                   <div className="flex items-center ">
                     <div className="flex-shrink-0">
                       <a href="dashboard">
@@ -91,7 +93,7 @@ export default function Example(props) {
                       </a>
                     </div>
                     <div className="hidden md:block">
-                      <div className="flex items-center justify-center ml-10 space-x-4">
+                      <div className="ml-10 flex items-center justify-center space-x-4">
                         {navigation.map((item) => (
                           <a
                             key={item.name}
@@ -110,38 +112,38 @@ export default function Example(props) {
                     </div>
                   </div>
                   <div className="hidden md:block">
-                    <div className="flex items-center ml-4 gap-x-2 md:ml-6">
+                    <div className="ml-4 flex items-center gap-x-2 md:ml-6">
                       <button onClick={() => changeDarkmode()}>
                         {isdarkmode ? (
-                          <MoonIcon className="w-6 h-6 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" />
+                          <MoonIcon className="h-6 w-6 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" />
                         ) : (
-                          <SunIcon className="w-6 h-6 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" />
+                          <SunIcon className="h-6 w-6 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" />
                         )}
                       </button>
 
                       <button
                         type="button"
-                        className="p-1 text-gray-400 bg-gray-800 rounded-full hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                        className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         <span className="sr-only">View notifications</span>
 
                         <a href="/messages">
                           <ChatBubbleOvalLeftIcon
-                            className="w-6 h-6"
+                            className="h-6 w-6"
                             aria-hidden="true"
                           />
                         </a>
                       </button>
-                      <button className="p-1 -m-1 text-gray-400 bg-gray-800 rounded-full hover:text-white focus:outline-none ">
+                      <button className="-m-1 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none ">
                         <BookmarkIcon className={`h-6 w-6`} />
                       </button>
 
                       {/* Profile dropdown */}
                       <Menu as="div" className="relative ml-3">
                         <div>
-                          <Menu.Button className="flex items-center max-w-xs text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                          <Menu.Button className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                             <span className="sr-only">Open user menu</span>
                             <img
-                              className="w-8 h-8 rounded-full"
+                              className="h-8 w-8 rounded-full"
                               src={user.imageUrl}
                               alt=""
                             />
@@ -155,7 +157,7 @@ export default function Example(props) {
                           leave="transition ease-in duration-75"
                           leaveFrom="transform opacity-100 scale-100"
                           leaveTo="transform opacity-0 scale-95">
-                          <Menu.Items className="absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                          <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                             <Menu.Item key="Your Profile">
                               {({ active }) => (
                                 <a
@@ -208,18 +210,18 @@ export default function Example(props) {
                       </Menu>
                     </div>
                   </div>
-                  <div className="flex -mr-2 md:hidden">
+                  <div className="-mr-2 flex md:hidden">
                     {/* Mobile menu button */}
-                    <Disclosure.Button className="inline-flex items-center justify-center p-2 text-gray-400 bg-gray-800 rounded-md hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    <Disclosure.Button className="inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="sr-only">Open main menu</span>
                       {open ? (
                         <XMarkIcon
-                          className="block w-6 h-6"
+                          className="block h-6 w-6"
                           aria-hidden="true"
                         />
                       ) : (
                         <Bars3Icon
-                          className="block w-6 h-6"
+                          className="block h-6 w-6"
                           aria-hidden="true"
                         />
                       )}
@@ -229,7 +231,7 @@ export default function Example(props) {
               </div>
 
               <Disclosure.Panel className="md:hidden">
-                <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
                   {navigation.map((item) => (
                     <Disclosure.Button
                       key={item.name}
@@ -246,11 +248,11 @@ export default function Example(props) {
                     </Disclosure.Button>
                   ))}
                 </div>
-                <div className="pt-4 pb-3 border-t border-gray-700">
+                <div className="border-t border-gray-700 pt-4 pb-3">
                   <div className="flex items-center px-5">
                     <div className="flex-shrink-0">
                       <img
-                        className="w-10 h-10 rounded-full"
+                        className="h-10 w-10 rounded-full"
                         src={user.imageUrl}
                         alt=""
                       />
@@ -265,17 +267,17 @@ export default function Example(props) {
                     </div>
                     <button
                       type="button"
-                      className="flex-shrink-0 p-1 ml-auto text-gray-400 bg-gray-800 rounded-full hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                      className="ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="sr-only">View notifications</span>
                       <a href="/messages">
                         <ChatBubbleOvalLeftIcon
-                          className="w-6 h-6"
+                          className="h-6 w-6"
                           aria-hidden="true"
                         />
                       </a>
                     </button>
                   </div>
-                  <div className="px-2 mt-3 space-y-1">
+                  <div className="mt-3 space-y-1 px-2">
                     <Menu.Item key="Your Profile">
                       {({ active }) => (
                         <a
@@ -292,14 +294,14 @@ export default function Example(props) {
                       key="Your Profile"
                       as="a"
                       href="/profile"
-                      className="block px-3 py-2 text-base font-medium text-gray-400 rounded-md hover:bg-gray-700 hover:text-white">
+                      className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">
                       Your Profile
                     </Disclosure.Button>
                     <Disclosure.Button
                       key="Settings"
                       as="a"
                       href="/settings"
-                      className="block px-3 py-2 text-base font-medium text-gray-400 rounded-md hover:bg-gray-700 hover:text-white">
+                      className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">
                       Settings
                     </Disclosure.Button>
                     <Disclosure.Button
@@ -318,7 +320,7 @@ export default function Example(props) {
                           });
                       }}
                       href="/"
-                      className="block px-3 py-2 text-base font-medium text-gray-400 rounded-md hover:cursor-pointer hover:bg-gray-700 hover:text-white">
+                      className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:cursor-pointer hover:bg-gray-700 hover:text-white">
                       Sign out
                     </Disclosure.Button>
                   </div>

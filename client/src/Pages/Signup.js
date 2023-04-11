@@ -5,7 +5,7 @@ import ErrorAlert from "../components/ErrorAlert";
 const backgroundImg =
   "https://images.unsplash.com/photo-1494621930069-4fd4b2e24a11?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80";
 export default function Signup() {
-  const [accountType, setAccountType] = useState("client");
+  const [accountType, setAccountType] = useState("");
   const [firstName, setFirstName] = useState("Mani");
   const [lastName, setLastName] = useState("Gandan");
   const [email, setEmail] = useState("alphagameroffical@gmail.com");
@@ -25,6 +25,12 @@ export default function Signup() {
   const formValidation = (e) => {
     // e.preventDefault();
     console.log("submitted");
+
+    accountType === "" &&
+      setIsError([
+        ...isError,
+        { head: "Account Type", message: "Please select Account Type" },
+      ]);
 
     phone.length !== 10 &&
       setIsError([
@@ -83,15 +89,15 @@ export default function Signup() {
   return (
     <>
       <section className="z-0 bg-white dark:bg-gray-900">
-        <div className="flex justify-center min-h-screen ">
+        <div className="flex min-h-screen justify-center ">
           <div
             className="hidden bg-cover lg:block lg:w-2/5"
             style={{
               backgroundImage: `url(${backgroundImg})`,
             }}></div>
-          <div className="flex items-center w-full max-w-3xl p-8 mx-auto lg:w-3/5 lg:px-12">
+          <div className="mx-auto flex w-full max-w-3xl items-center p-8 lg:w-3/5 lg:px-12">
             <div className="w-full">
-              <h1 className="text-2xl font-semibold tracking-wider text-gray-800 capitalize dark:text-white">
+              <h1 className="text-2xl font-semibold capitalize tracking-wider text-gray-800 dark:text-white">
                 Get your free account now.
               </h1>
               <p className="mt-4 text-gray-500 dark:text-gray-400">
@@ -112,7 +118,7 @@ export default function Signup() {
                     onClick={() => setAccountType("client")}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="w-6 h-6"
+                      className="h-6 w-6"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -127,14 +133,14 @@ export default function Signup() {
                   </button>
                   <button
                     className={`${
-                      accountType === "worker"
+                      accountType === "freelancer"
                         ? selectedAccountType
                         : unselectedAccountType
                     }`}
-                    onClick={() => setAccountType("worker")}>
+                    onClick={() => setAccountType("freelancer")}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="w-6 h-6"
+                      className="h-6 w-6"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -145,15 +151,15 @@ export default function Signup() {
                         d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                       />
                     </svg>
-                    <span className="mx-2">worker</span>
+                    <span className="mx-2">freelancer</span>
                   </button>
                 </div>
               </div>
               <form
                 onSubmit={handleSubmit}
-                className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
+                className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div>
-                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
+                  <label className="mb-2 block text-sm text-gray-600 dark:text-gray-200">
                     First Name
                   </label>
                   <input
@@ -162,11 +168,11 @@ export default function Signup() {
                     onChange={(e) => setFirstName(e.target.value)}
                     type="text"
                     placeholder="John"
-                    className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-400 focus:ring-opacity-40 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:placeholder-gray-600 dark:focus:border-blue-400"
+                    className="mt-2 block w-full rounded-lg border border-gray-200 bg-white px-5 py-3 text-gray-700 placeholder-gray-400 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-400 focus:ring-opacity-40 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:placeholder-gray-600 dark:focus:border-blue-400"
                   />
                 </div>
                 <div>
-                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
+                  <label className="mb-2 block text-sm text-gray-600 dark:text-gray-200">
                     Last name
                   </label>
                   <input
@@ -174,11 +180,11 @@ export default function Signup() {
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
                     placeholder="Snow"
-                    className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-400 focus:ring-opacity-40 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:placeholder-gray-600 dark:focus:border-blue-400"
+                    className="mt-2 block w-full rounded-lg border border-gray-200 bg-white px-5 py-3 text-gray-700 placeholder-gray-400 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-400 focus:ring-opacity-40 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:placeholder-gray-600 dark:focus:border-blue-400"
                   />
                 </div>
                 <div>
-                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
+                  <label className="mb-2 block text-sm text-gray-600 dark:text-gray-200">
                     Phone number
                   </label>
                   <input
@@ -188,11 +194,11 @@ export default function Signup() {
                     }}
                     type="text"
                     placeholder="XXXX-XXXXXX"
-                    className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-400 focus:ring-opacity-40 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:placeholder-gray-600 dark:focus:border-blue-400"
+                    className="mt-2 block w-full rounded-lg border border-gray-200 bg-white px-5 py-3 text-gray-700 placeholder-gray-400 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-400 focus:ring-opacity-40 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:placeholder-gray-600 dark:focus:border-blue-400"
                   />
                 </div>
                 <div>
-                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
+                  <label className="mb-2 block text-sm text-gray-600 dark:text-gray-200">
                     Email address
                   </label>
                   <input
@@ -202,11 +208,11 @@ export default function Signup() {
                       setEmail(e.target.value);
                     }}
                     placeholder="johnsnow@example.com"
-                    className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-400 focus:ring-opacity-40 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:placeholder-gray-600 dark:focus:border-blue-400"
+                    className="mt-2 block w-full rounded-lg border border-gray-200 bg-white px-5 py-3 text-gray-700 placeholder-gray-400 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-400 focus:ring-opacity-40 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:placeholder-gray-600 dark:focus:border-blue-400"
                   />
                 </div>
                 <div>
-                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
+                  <label className="mb-2 block text-sm text-gray-600 dark:text-gray-200">
                     Password
                   </label>
                   <input
@@ -216,11 +222,11 @@ export default function Signup() {
                     onChange={(e) => {
                       setPassword(e.target.value);
                     }}
-                    className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-400 focus:ring-opacity-40 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:placeholder-gray-600 dark:focus:border-blue-400"
+                    className="mt-2 block w-full rounded-lg border border-gray-200 bg-white px-5 py-3 text-gray-700 placeholder-gray-400 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-400 focus:ring-opacity-40 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:placeholder-gray-600 dark:focus:border-blue-400"
                   />
                 </div>
                 <div>
-                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
+                  <label className="mb-2 block text-sm text-gray-600 dark:text-gray-200">
                     Confirm password
                   </label>
                   <input
@@ -230,17 +236,17 @@ export default function Signup() {
                     onChange={(e) => {
                       setConfirmPassword(e.target.value);
                     }}
-                    className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-400 focus:ring-opacity-40 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:placeholder-gray-600 dark:focus:border-blue-400"
+                    className="mt-2 block w-full rounded-lg border border-gray-200 bg-white px-5 py-3 text-gray-700 placeholder-gray-400 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-400 focus:ring-opacity-40 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:placeholder-gray-600 dark:focus:border-blue-400"
                   />
                 </div>
 
                 <button
-                  className="flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
+                  className="flex w-full transform items-center justify-between rounded-lg bg-blue-500 px-6 py-3 text-sm capitalize tracking-wide text-white transition-colors duration-300 hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
                   type="submit">
                   <span>Sign Up </span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="w-5 h-5 rtl:-scale-x-100"
+                    className="h-5 w-5 rtl:-scale-x-100"
                     viewBox="0 0 20 20"
                     fill="currentColor">
                     <path
@@ -255,7 +261,7 @@ export default function Signup() {
           </div>
         </div>
       </section>
-      <div className="fixed flex flex-col notifications bottom-7 right-7 gap-y-3 ">
+      <div className="notifications fixed bottom-7 right-7 flex flex-col gap-y-3 ">
         {isError.map((error) => (
           <ErrorAlert head={error.head} message={error.message} />
           //create a timeout for .5s
