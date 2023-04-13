@@ -25,7 +25,10 @@ export default function Login() {
       .then((res) => {
         setIsError((prevError) => [...prevError, res.data]);
         if (res.data === "verified") {
-          window.location.href = "/profile";
+          if (accountType === "client") {
+            window.location.href = "/dashboard/client";
+          } else if (accountType === "freelancer")
+            window.location.href = "/dashboard/freelancer";
         }
       })
       .catch((err) => {

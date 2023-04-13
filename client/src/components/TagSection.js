@@ -30,6 +30,7 @@ function TagSection({ onTagsChange }) {
   const handleDeleteTag = (tag) => {
     const newTags = tags.filter((t) => t !== tag);
     setTags(newTags);
+    onTagsChange(newTags); // Call the onTagsChange function and pass the new tags array
   };
 
   return (

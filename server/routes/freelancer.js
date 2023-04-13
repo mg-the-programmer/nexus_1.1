@@ -69,6 +69,16 @@ router.post("/freelancer/info", (req, res) => {
   });
 });
 
+router.get("/allFreelancers", (req, res) => {
+  Freelancer.find({}, (error, freelancer) => {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log(freelancer);
+      res.json(freelancer);
+    }
+  });
+});
 // get all freelancer profiles
 router.get("/freelancer/info", (req, res) => {
   Freelancer.findOne({ user_id: req.user._id }, (error, freelancer) => {

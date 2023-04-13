@@ -74,8 +74,6 @@ export default function Signup() {
         if (res.data === "created") {
           window.location.href = "/signin";
         }
-        // console.log(res.status);
-        // console.log(res.data);
       })
       .catch((err) => {
         console.log(err);

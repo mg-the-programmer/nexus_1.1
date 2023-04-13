@@ -62,7 +62,9 @@ router.get("/users", (req, res) => {
 router.get("/dashboard", (req, res) => {
   if (req.isAuthenticated()) {
     console.log("User is authenticated");
-    res.send("verified");
+    //send the user details to the client
+    console.log(req.user.accountType);
+    res.send({ verified: true, accountType: req.user.accountType });
   } else {
     console.log("User is not authenticated");
     res.send("not verified");

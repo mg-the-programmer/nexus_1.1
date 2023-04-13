@@ -15,6 +15,7 @@ import Navbar from "./components/Navbar";
 import Dashboard from "./Pages/Client/Dashboard";
 import FreelancerForm from "./Pages/Freelancer/FreelancerForm";
 import FreelancerInfo from "./Pages/Freelancer/FreelancerInfo";
+import FDashboard from "./Pages/Freelancer/FDashboard";
 import ProjectsView from "./Pages/Client/ProjectsView";
 import ChatPage from "./Pages/ChatPage";
 import axios from "axios";
@@ -42,8 +43,12 @@ function App() {
       element: <ChatPage />,
     },
     {
-      path: "/dashboard",
+      path: "/dashboard/client",
       element: <Dashboard />,
+    },
+    {
+      path: "/dashboard/freelancer",
+      element: <FDashboard />,
     },
     {
       path: "/projects",

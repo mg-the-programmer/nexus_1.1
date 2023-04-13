@@ -20,7 +20,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Example() {
+export default function FDashboard() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const [posts, setPosts] = useState([]);
   // use the freelancer info from the backend
@@ -32,8 +32,8 @@ export default function Example() {
         if (res.data.verified) {
           console.log("Authenticated");
           console.log(res.data.accountType);
-          if (res.data.accountType === "freelancer") {
-            window.location.href = "/dashboard/freelancer";
+          if (res.data.accountType === "client") {
+            window.location.href = "/dashboard/client";
           }
         } else {
           window.location.href = "/signin";
@@ -178,7 +178,7 @@ export default function Example() {
         <div className="border-b border-gray-200 bg-white ">
           <div className="mx-auto flex max-w-7xl items-center justify-between px-2 pt-6 pb-6 sm:px-6 lg:px-8 ">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 ">
-              Client Dashboard
+              Freelancer Dashboard
             </h1>
 
             <div className="flex items-center pr-2 ">

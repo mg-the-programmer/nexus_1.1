@@ -61,7 +61,6 @@ function FreelancerForm({ darkmode }) {
       .then((res) => {
         alert("Freelancer added successfully");
         console.log(res);
-        // window.location.href = res.request.responseURL;
       })
       .catch((err) => {
         console.log(err);
@@ -160,7 +159,6 @@ function FreelancerForm({ darkmode }) {
           name="resume"
           onChange={handleResumeChange}
           className="w-full rounded-md border p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-          required
         />
       </div>
       <div className="">
