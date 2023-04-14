@@ -3,6 +3,7 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
   BellIcon,
+  BookmarkIcon,
   ChatBubbleOvalLeftIcon,
   InboxIcon,
   MoonIcon,
@@ -20,14 +21,14 @@ const user = {
     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
 };
 const navigation = [
-  { name: "Dashboard", href: "/dashboard", current: false },
-  { name: "Projects", href: "#", current: false },
+  { name: "Dashboard", href: "/dashboard/client", current: false },
+  { name: "Projects", href: "/projects", current: false },
 ];
 
 const userNavigation = [
   { name: "Your Profile", href: "/profile" },
   { name: "Settings", href: "/settings" },
-  { name: "Sign out", href: "/signin" },
+  { name: "Sign out" },
 ];
 
 function classNames(...classes) {
@@ -35,7 +36,7 @@ function classNames(...classes) {
 }
 
 export default function Example(props) {
-  const [isdarkmode, setisdarkmode] = useState();
+  const [isdarkmode, setisdarkmode] = useState(false);
 
   // useEffect(() => {
   //   axios
@@ -55,19 +56,21 @@ export default function Example(props) {
     props.onDarkModeChange(!isdarkmode);
   };
 
-  useEffect(() => {
-    axios
-      .put("/freelancer/darkmode/64115415247d2e83c2af8532", {
-        darkMode: isdarkmode,
-      })
-      .then((res) => {
-        console.log(res.data.darkMode);
-        // alert("success");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [isdarkmode]);
+  //have to fix dark mode
+
+  // useEffect(() => {
+  //   axios
+  //     .put(`/freelancer/darkmode/${props.userId}`, {
+  //       darkMode: isdarkmode,
+  //     })
+  //     .then((res) => {
+  //       console.log(res.data.darkMode);
+  //       // alert("success");
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, [isdarkmode]);
 
   //use the darkmode from /freelancer/info api
 
@@ -109,7 +112,7 @@ export default function Example(props) {
                     </div>
                   </div>
                   <div className="hidden md:block">
-                    <div className="ml-4 flex items-center md:ml-6">
+                    <div className="ml-4 flex items-center gap-x-2 md:ml-6">
                       <button onClick={() => changeDarkmode()}>
                         {isdarkmode ? (
                           <MoonIcon className="h-6 w-6 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" />
@@ -120,7 +123,7 @@ export default function Example(props) {
 
                       <button
                         type="button"
-                        className="ml-2 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                        className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         <span className="sr-only">View notifications</span>
 
                         <a href="/messages">
@@ -129,6 +132,9 @@ export default function Example(props) {
                             aria-hidden="true"
                           />
                         </a>
+                      </button>
+                      <button className="-m-1 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none ">
+                        <BookmarkIcon className={`h-6 w-6`} />
                       </button>
 
                       {/* Profile dropdown */}
@@ -152,20 +158,53 @@ export default function Example(props) {
                           leaveFrom="transform opacity-100 scale-100"
                           leaveTo="transform opacity-0 scale-95">
                           <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                            {userNavigation.map((item) => (
-                              <Menu.Item key={item.name}>
-                                {({ active }) => (
-                                  <a
-                                    href={item.href}
-                                    className={classNames(
-                                      active ? "bg-gray-100" : "",
-                                      "block px-4 py-2 text-sm text-gray-700"
-                                    )}>
-                                    {item.name}
-                                  </a>
-                                )}
-                              </Menu.Item>
-                            ))}
+                            <Menu.Item key="Your Profile">
+                              {({ active }) => (
+                                <a
+                                  href="/profile"
+                                  className={classNames(
+                                    active ? "bg-gray-100" : "",
+                                    "block px-4 py-2 text-sm text-gray-700"
+                                  )}>
+                                  Your Profile
+                                </a>
+                              )}
+                            </Menu.Item>
+                            <Menu.Item key="Settings">
+                              {({ active }) => (
+                                <a
+                                  href="/settings"
+                                  className={classNames(
+                                    active ? "bg-gray-100" : "",
+                                    "block px-4 py-2 text-sm text-gray-700"
+                                  )}>
+                                  Settings
+                                </a>
+                              )}
+                            </Menu.Item>
+                            <Menu.Item key="Sign Out">
+                              {({ active }) => (
+                                <a
+                                  onClick={() => {
+                                    axios
+                                      .get("/logout")
+                                      .then((res) => {
+                                        if (res.data === "logged out") {
+                                          window.location.href = "/signin";
+                                        }
+                                      })
+                                      .catch((error) => {
+                                        console.log(error);
+                                      });
+                                  }}
+                                  className={classNames(
+                                    active ? "bg-gray-100" : "",
+                                    "block px-4 py-2 text-sm text-gray-700 hover:cursor-pointer"
+                                  )}>
+                                  Log Out
+                                </a>
+                              )}
+                            </Menu.Item>
                           </Menu.Items>
                         </Transition>
                       </Menu>
@@ -239,15 +278,39 @@ export default function Example(props) {
                     </button>
                   </div>
                   <div className="mt-3 space-y-1 px-2">
-                    {userNavigation.map((item) => (
-                      <Disclosure.Button
-                        key={item.name}
-                        as="a"
-                        href={item.href}
-                        className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">
-                        {item.name}
-                      </Disclosure.Button>
-                    ))}
+                    <Disclosure.Button
+                      key="Your Profile"
+                      as="a"
+                      href="/profile"
+                      className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">
+                      Your Profile
+                    </Disclosure.Button>
+                    <Disclosure.Button
+                      key="Settings"
+                      as="a"
+                      href="/settings"
+                      className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">
+                      Settings
+                    </Disclosure.Button>
+                    <Disclosure.Button
+                      key="Sign out"
+                      as="a"
+                      onClick={() => {
+                        axios
+                          .get("/logout")
+                          .then((res) => {
+                            if (res.data === "logged out") {
+                              window.location.href = "/signin";
+                            }
+                          })
+                          .catch((error) => {
+                            console.log(error);
+                          });
+                      }}
+                      href="/"
+                      className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:cursor-pointer hover:bg-gray-700 hover:text-white">
+                      Sign out
+                    </Disclosure.Button>
                   </div>
                 </div>
               </Disclosure.Panel>

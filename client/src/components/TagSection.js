@@ -1,8 +1,15 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 function TagSection({ onTagsChange }) {
   const [tags, setTags] = useState([]);
-  
+
+  useEffect(() => {
+    axios.get("/freelancerDetails").then((res) => {
+      setTags([...res.data.skills]);
+    });
+  }, []);
+
   const handleKeyDown = (e) => {
     if (e.key === "," || e.key === "Enter") {
       e.preventDefault();
@@ -23,14 +30,15 @@ function TagSection({ onTagsChange }) {
   const handleDeleteTag = (tag) => {
     const newTags = tags.filter((t) => t !== tag);
     setTags(newTags);
+    onTagsChange(newTags); // Call the onTagsChange function and pass the new tags array
   };
 
   return (
-    <div className="flex flex-wrap items-center tags-container">
+    <div className="tags-container flex flex-wrap items-center">
       {tags.map((tag) => (
         <div
           key={tag}
-          className="flex items-center px-2 py-1 mb-2 mr-2 text-sm text-white bg-blue-500 rounded-md tag">
+          className="tag mb-2 mr-2 flex items-center rounded-md bg-blue-500 px-2 py-1 text-sm text-white">
           <span>{tag}</span>
           <button
             onClick={() => handleDeleteTag(tag)}
@@ -41,7 +49,7 @@ function TagSection({ onTagsChange }) {
       ))}
       <br />
       <textarea
-        className="w-full p-2 px-2 py-1 border rounded-md tags-input focus:outline-none focus:ring-2 focus:ring-blue-400"
+        className="tags-input w-full rounded-md border p-2 px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
         placeholder="Add tags (separated by commas)"
         onKeyDown={handleKeyDown}
       />

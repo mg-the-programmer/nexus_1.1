@@ -4,6 +4,7 @@
 const express = require("express");
 const router = express.Router();
 const Freelancer = require("../models/freelancerModel");
+const passport = require("passport");
 // use the freelancer model thats is exported from server.js
 router.post("/freelancer/info", (req, res) => {
   const {
@@ -18,6 +19,7 @@ router.post("/freelancer/info", (req, res) => {
     jobTitle,
     description,
     jobSuccessRate,
+    user_id,
   } = req.body;
 
   const newFreelancer = new Freelancer({
@@ -32,29 +34,71 @@ router.post("/freelancer/info", (req, res) => {
     jobTitle: jobTitle,
     description: description,
     jobSuccess: jobSuccessRate,
+    darkMode: false,
+    user_id: user_id,
   });
 
-  newFreelancer.save((error) => {
-    if (error) {
-      console.log(error);
+  Freelancer.findOne({ user_id: user_id }, (err, freelancer) => {
+    if (err) {
+      console.log(err);
+    } else if (freelancer) {
+      // if the freelancer already exists, update it with the new data
+      Freelancer.updateOne(
+        { user_id: user_id },
+        { $set: { ...newFreelancer.toObject(), _id: freelancer._id } },
+        (error, result) => {
+          if (error) {
+            console.log(error);
+          } else {
+            console.log("Freelancer updated successfully!");
+            res.json({ message: "success" });
+          }
+        }
+      );
     } else {
-      console.log("New Freelancer saved successfully!");
+      // if the freelancer doesn't exist, create a new one
+      newFreelancer.save((error) => {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log("New Freelancer saved successfully!");
+          res.json({ message: "success" });
+        }
+      });
     }
   });
-
-  res.json({ message: "success" });
 });
 
-// get all freelancer profiles
-router.get("/freelancer/info", (req, res) => {
-  Freelancer.find({}, (error, freelancers) => {
+router.get("/allFreelancers", (req, res) => {
+  Freelancer.find({}, (error, freelancer) => {
     if (error) {
       console.log(error);
     } else {
-      console.log(freelancers);
-      res.json(freelancers);
+      console.log(freelancer);
+      res.json(freelancer);
     }
   });
+});
+// get all freelancer profiles
+router.get("/freelancer/info", (req, res) => {
+  Freelancer.findOne({ user_id: req.user._id }, (error, freelancer) => {
+    if (error) {
+      console.log(error);
+    } else {
+      res.json(freelancer);
+    }
+  });
+});
+
+router.get("/auth", (req, res) => {
+  //use the cokkie to get the user id
+  if (req.isAuthenticated()) {
+    console.log("User is authenticated");
+    res.json(req.user);
+  } else {
+    console.log("User is not authenticated");
+    res.send("not verified");
+  }
 });
 
 // get a freelancer profile by id
@@ -64,6 +108,16 @@ router.get("/freelancer/:id", (req, res) => {
       console.log(error);
     } else {
       // console.log(freelancer);
+      res.json(freelancer);
+    }
+  });
+});
+
+router.get("/freelancerDetails", (req, res) => {
+  Freelancer.findOne({ user_id: req.user._id }, (error, freelancer) => {
+    if (error) {
+      console.log(error);
+    } else {
       res.json(freelancer);
     }
   });
@@ -82,8 +136,7 @@ router.put("/freelancer/darkmode/:id", (req, res) => {
         if (error) {
           console.log(error);
         } else {
-          console.log(freelancer.darkMode);
-          console.log("Darkmode updated successfully!");
+          // console.log("Darkmode updated successfully!");
         }
       });
     }

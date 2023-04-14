@@ -5,13 +5,13 @@ import ErrorAlert from "../components/ErrorAlert";
 const backgroundImg =
   "https://images.unsplash.com/photo-1494621930069-4fd4b2e24a11?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80";
 export default function Signup() {
-  const [accountType, setAccountType] = useState("client");
+  const [accountType, setAccountType] = useState("");
   const [firstName, setFirstName] = useState("Mani");
   const [lastName, setLastName] = useState("Gandan");
   const [email, setEmail] = useState("alphagameroffical@gmail.com");
   const [phone, setPhone] = useState("9843029028");
-  const [password, setPassword] = useState("dfdff");
-  const [confirmPassword, setConfirmPassword] = useState("dfdf");
+  const [password, setPassword] = useState("12345678");
+  const [confirmPassword, setConfirmPassword] = useState("12345678");
   const [isPasswordShown, setIsPasswordShown] = useState(false);
   const [isConfirmPasswordShown, setIsConfirmPasswordShown] = useState(false);
 
@@ -25,6 +25,12 @@ export default function Signup() {
   const formValidation = (e) => {
     // e.preventDefault();
     console.log("submitted");
+
+    accountType === "" &&
+      setIsError([
+        ...isError,
+        { head: "Account Type", message: "Please select Account Type" },
+      ]);
 
     phone.length !== 10 &&
       setIsError([
@@ -65,13 +71,14 @@ export default function Signup() {
       .then((res) => {
         // console.log(res);
         setIsError((prevError) => [...prevError, res.data]);
-        console.log(res.data);
+        if (res.data === "created") {
+          window.location.href = "/signin";
+        }
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  console.log(isError);
 
   const errorHandler = () => {
     console.log("error handler");
@@ -124,11 +131,11 @@ export default function Signup() {
                   </button>
                   <button
                     className={`${
-                      accountType === "worker"
+                      accountType === "freelancer"
                         ? selectedAccountType
                         : unselectedAccountType
                     }`}
-                    onClick={() => setAccountType("worker")}>
+                    onClick={() => setAccountType("freelancer")}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-6 w-6"
@@ -142,7 +149,7 @@ export default function Signup() {
                         d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                       />
                     </svg>
-                    <span className="mx-2">worker</span>
+                    <span className="mx-2">freelancer</span>
                   </button>
                 </div>
               </div>
@@ -230,26 +237,23 @@ export default function Signup() {
                     className="mt-2 block w-full rounded-lg border border-gray-200 bg-white px-5 py-3 text-gray-700 placeholder-gray-400 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-400 focus:ring-opacity-40 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:placeholder-gray-600 dark:focus:border-blue-400"
                   />
                 </div>
-                <a
-                  href="dashboard
-                ">
-                  <button
-                    className="flex w-full transform items-center justify-between rounded-lg bg-blue-500 px-6 py-3 text-sm capitalize tracking-wide text-white transition-colors duration-300 hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
-                    type="submit">
-                    <span>Sign Up </span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5 rtl:-scale-x-100"
-                      viewBox="0 0 20 20"
-                      fill="currentColor">
-                      <path
-                        fillRule="evenodd"
-                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </button>
-                </a>
+
+                <button
+                  className="flex w-full transform items-center justify-between rounded-lg bg-blue-500 px-6 py-3 text-sm capitalize tracking-wide text-white transition-colors duration-300 hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
+                  type="submit">
+                  <span>Sign Up </span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5 rtl:-scale-x-100"
+                    viewBox="0 0 20 20"
+                    fill="currentColor">
+                    <path
+                      fillRule="evenodd"
+                      d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </button>
               </form>
             </div>
           </div>

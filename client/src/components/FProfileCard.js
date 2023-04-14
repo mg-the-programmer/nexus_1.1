@@ -5,12 +5,11 @@ export default function FProfileCard({ post }) {
   const [isBookmarked, setIsBookmarked] = useState(false);
   post.price = "120K";
   post.hourRate = "18";
-  post.jobSuccess = "100%";
   post.imageUrl =
     "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80";
   return (
     <article
-      key={post.id}
+      key={post._id}
       className="mx-2 flex flex-col items-start justify-between gap-y-2.5 rounded-md bg-white p-6 shadow hover:shadow-md ">
       <div className="relative flex w-full items-center gap-x-4">
         <div className="hs-tooltip inline-block">
@@ -68,7 +67,7 @@ export default function FProfileCard({ post }) {
           <span className="text-gray-600"> earned</span>
         </p>
         <p className="text-md font-medium">
-          <span className="text-bold text-gray-900"> {post.jobSuccess}</span>
+          <span className="text-bold text-gray-900"> {post.jobSuccess}%</span>
           <span className="text-gray-600"> Job Success</span>
           <div className="h-1 w-full rounded-full bg-gray-200 dark:bg-gray-700">
             <div
@@ -104,7 +103,7 @@ export default function FProfileCard({ post }) {
 
       <div className="callForAction flex w-full justify-end gap-x-4 px-2 ">
         <button className="text-sm font-medium text-blue-700 hover:text-blue-900">
-          <a href="profile">View Details</a>
+          <a href={`/freelancer/${post._id}`}>View Details</a>
         </button>
         <button
           type="button"

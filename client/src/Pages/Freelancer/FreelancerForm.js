@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TagSection from "../../components/TagSection.js";
 import ToggleButton from "react-toggle-button";
 import { FaGithub } from "react-icons/fa";
@@ -16,25 +16,33 @@ function FreelancerForm({ darkmode }) {
   const [jobTitle, setJobTitle] = useState("");
   const [description, setDescription] = useState("");
   const [jobSuccessRate, setJobSuccessRate] = useState("99");
+  const [user_id, setUserId] = useState("");
 
+  useEffect(() => {
+    axios.get("/auth").then((res) => {
+      if (res.data === "not verified") {
+        window.location.href = "/signin";
+      } else {
+        console.log(res.data);
+        setUserId(res.data._id);
+        axios.get("/freelancerDetails").then((res) => {
+          console.log(res.data);
+          setName(res.data.name);
+          setEmail(res.data.email);
+          setRate(res.data.rate);
+          setIsAvailable(res.data.isAvailable);
+          setGithubLink(res.data.githubLink);
+          setExperience(res.data.experience);
+          setJobTitle(res.data.jobTitle);
+          setDescription(res.data.description);
+          setJobSuccessRate(res.data.jobSuccess);
+        });
+      }
+    });
+  }, []);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // alert(JSON.stringify({ name, email, skills, rate, resume }, null, 2));
-    //send data to server
-    // const formData = new FormData();
-    // formData.append("name", name);
-    // formData.append("email", email);
-    // formData.append("skills", skills);
-    // formData.append("rate", rate);
-    // formData.append("resume", resume);
-    // formData.append("isAvailable", isAvailable);
-    // formData.append("githubLink", githubLink);
-    // formData.append("experience", experience);
-    // formData.append("jobTitle", jobTitle);
-    // formData.append("description", description);
 
-    //use axios to send data to server
-    console.log(skills);
     axios
       .post("/freelancer/info", {
         name,
@@ -48,25 +56,15 @@ function FreelancerForm({ darkmode }) {
         jobTitle,
         description,
         jobSuccessRate,
+        user_id,
       })
       .then((res) => {
         alert("Freelancer added successfully");
-        window.location.href = "/dashboard";
         console.log(res);
       })
       .catch((err) => {
         console.log(err);
       });
-
-    // try {
-    //   const response = await axios.post("/freelancer/info");
-    //   console.log("response:", response);
-    // } catch (error) {
-    //   console.error("error:", error);
-    //   alert(error.response.data.error);
-    // }
-
-    // Send form data to server or do something else
   };
 
   const handleTagsChange = (newSkills) => {
@@ -161,7 +159,6 @@ function FreelancerForm({ darkmode }) {
           name="resume"
           onChange={handleResumeChange}
           className="w-full rounded-md border p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-          required
         />
       </div>
       <div className="">
