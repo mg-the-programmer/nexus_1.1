@@ -1,13 +1,15 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-function TagSection({ onTagsChange }) {
+function TagSection({ onTagsChange, isPostJob = false }) {
   const [tags, setTags] = useState([]);
 
   useEffect(() => {
-    axios.get("/freelancerDetails").then((res) => {
-      setTags([...res.data.skills]);
-    });
+    if (!isPostJob) {
+      axios.get("/freelancerDetails").then((res) => {
+        setTags([...res.data.skills]);
+      });
+    }
   }, []);
 
   const handleKeyDown = (e) => {

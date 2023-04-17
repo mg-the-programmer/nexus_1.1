@@ -19,6 +19,7 @@ import FDashboard from "./Pages/Freelancer/FDashboard";
 import ProjectsView from "./Pages/Client/ProjectsView";
 import ChatPage from "./Pages/ChatPage";
 import axios from "axios";
+import PostJob from "./Pages/Client/PostJob";
 
 function App() {
   const routing = useRoutes([
@@ -49,6 +50,10 @@ function App() {
     {
       path: "/dashboard/freelancer",
       element: <FDashboard />,
+    },
+    {
+      path: "/postjob",
+      element: <PostJob />,
     },
     {
       path: "/projects",

@@ -1,11 +1,17 @@
 import { DocumentDuplicateIcon } from "@heroicons/react/24/outline";
-import React, { useState } from "react";
-
+import React, { useEffect, useRef, useState } from "react";
+import MessageBody from "./MessageBody";
 export default function ChatMessage() {
+  const containerRef = useRef(null);
+  useEffect(() => {
+    const container = containerRef.current;
+    container.scrollTop = container.scrollHeight;
+  }, []);
   const dp =
     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80";
 
   const [isTyping, setIsTyping] = useState(true);
+  const [message, setMessage] = useState("");
   return (
     <div className="relative flex h-full flex-col">
       <div className="contactInfo flex items-center gap-x-2 bg-white p-2 ">
@@ -16,7 +22,7 @@ export default function ChatMessage() {
             alt="Image Description"
           />
           <span
-            className={` absolute top-10 left-10 block h-2.5 w-2.5 rounded-full ${
+            className={` absolute top-9 left-10 block h-2.5 w-2.5 rounded-full ${
               true ? "bg-green-400" : "bg-red-400"
             }  ring-2 ring-white`}></span>
         </div>
@@ -31,7 +37,100 @@ export default function ChatMessage() {
           )}
         </div>
       </div>
-      <div className="absolute bottom-0 w-full ">
+      <div className="overflow-auto py-1" ref={containerRef}>
+        <MessageBody
+          sender={"me"}
+          timestamp={"8:08 PM"}
+          message={"Hii from Me"}
+        />
+        <MessageBody
+          sender={"Mani"}
+          timestamp={"8:08 PM"}
+          message={"Hii from Me"}
+        />
+        <MessageBody
+          sender={"me"}
+          timestamp={"8:08 PM"}
+          message={"Hii from Me"}
+        />
+        <MessageBody
+          sender={"Mani"}
+          timestamp={"8:08 PM"}
+          message={"Hii from Me"}
+        />
+        <MessageBody
+          sender={"me"}
+          timestamp={"8:08 PM"}
+          message={"Hii from Me"}
+        />
+        <MessageBody
+          sender={"Mani"}
+          timestamp={"8:08 PM"}
+          message={"Hii from Me"}
+        />
+        <MessageBody
+          sender={"me"}
+          timestamp={"8:08 PM"}
+          message={"Hii from Me"}
+        />
+        <MessageBody
+          sender={"Mani"}
+          timestamp={"8:08 PM"}
+          message={"Hii from Me"}
+        />
+        <MessageBody
+          sender={"me"}
+          timestamp={"8:08 PM"}
+          message={"Hii from Me"}
+        />
+        <MessageBody
+          sender={"Mani"}
+          timestamp={"8:08 PM"}
+          message={"Hii from Me"}
+        />
+        <MessageBody
+          sender={"me"}
+          timestamp={"8:08 PM"}
+          message={"Hii from Me"}
+        />
+        <MessageBody
+          sender={"Mani"}
+          timestamp={"8:08 PM"}
+          message={"Hii from Me"}
+        />
+        <MessageBody
+          sender={"me"}
+          timestamp={"8:08 PM"}
+          message={"Hii from Me"}
+        />
+        <MessageBody
+          sender={"Mani"}
+          timestamp={"8:08 PM"}
+          message={"Hii from Me"}
+        />
+        <MessageBody
+          sender={"me"}
+          timestamp={"8:08 PM"}
+          message={"Hii from Me"}
+        />
+        <MessageBody
+          sender={"Mani"}
+          timestamp={"8:08 PM"}
+          message={"Hii from Me"}
+        />
+        <MessageBody
+          sender={"me"}
+          timestamp={"8:08 PM"}
+          message={"Hii from Me"}
+        />
+        <MessageBody
+          sender={"Mani"}
+          timestamp={"8:08 PM"}
+          message={"Hii from Me"}
+        />
+      </div>
+
+      <div className="mt-auto w-full ">
         {/* <div className="inline-flex items-center justify-center w-5 h-5 text-xs font-medium text-white bg-red-500 border-2 border-white rounded-full">
           2
         </div> */}
@@ -69,7 +168,11 @@ export default function ChatMessage() {
               rows={1}
               className="mx-4 block w-full rounded-lg border border-gray-300 bg-white p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
               placeholder="Your message..."
-              defaultValue={""}
+              onChange={(e) => {
+                setMessage(e.target.value);
+              }}
+              onFocus={(e) => setIsTyping(false)}
+              defaultValue={message}
             />
             <button
               type="submit"

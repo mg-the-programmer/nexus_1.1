@@ -7,6 +7,7 @@ import {
   ChatBubbleOvalLeftIcon,
   InboxIcon,
   MoonIcon,
+  PencilSquareIcon,
   SunIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
@@ -113,6 +114,15 @@ export default function Example(props) {
                   </div>
                   <div className="hidden md:block">
                     <div className="ml-4 flex items-center gap-x-2 md:ml-6">
+                      {window.location.pathname === "/dashboard/freelancer" ? (
+                        <button
+                          onClick={() => (window.location.href = "/postjob")}
+                          className="mr-1 flex items-center space-x-2 rounded-md bg-blue-600 px-3 py-2 text-white hover:bg-blue-700">
+                          <PencilSquareIcon className="h-5 w-5 text-white" />
+                          <a className="text-sm font-medium">Post a Job</a>
+                        </button>
+                      ) : null}
+
                       <button onClick={() => changeDarkmode()}>
                         {isdarkmode ? (
                           <MoonIcon className="h-6 w-6 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" />
@@ -120,7 +130,6 @@ export default function Example(props) {
                           <SunIcon className="h-6 w-6 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" />
                         )}
                       </button>
-
                       <button
                         type="button"
                         className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
@@ -136,7 +145,6 @@ export default function Example(props) {
                       <button className="-m-1 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none ">
                         <BookmarkIcon className={`h-6 w-6`} />
                       </button>
-
                       {/* Profile dropdown */}
                       <Menu as="div" className="relative ml-3">
                         <div>

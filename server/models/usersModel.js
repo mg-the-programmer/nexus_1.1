@@ -10,6 +10,7 @@ const userRegister = new Schema({
   accountType: { type: String, required: true },
 });
 
+
 userRegister.plugin(passportLocalMongoose);
 
 const signedupUsers = mongoose.model("signedupUsers", userRegister);

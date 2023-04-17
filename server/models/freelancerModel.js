@@ -7,7 +7,7 @@ const freelancerSchema = new Schema({
   name: { type: String },
   email: { type: String },
   skills: { type: [String] },
-  rate: { type: String },
+  rate: { type: Number },
   isAvailable: { type: Boolean },
   jobTitle: { type: String },
   description: { type: String },
