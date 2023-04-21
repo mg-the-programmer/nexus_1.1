@@ -1,5 +1,4 @@
 // create a freelancer model for mongodb
-
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 

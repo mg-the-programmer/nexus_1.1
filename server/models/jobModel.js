@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const projectSchema = new mongoose.Schema(
+const jobSchema = new mongoose.Schema(
   {
     title: {
       type: String,
@@ -19,37 +19,17 @@ const projectSchema = new mongoose.Schema(
       required: true,
     },
     timeline: {
-      start: {
-        type: Date,
-        required: true,
-      },
-      end: {
-        type: Date,
-        required: true,
-      },
+      type: String,
     },
-    skills: {
+    requiredSkills: {
       type: [String],
       required: true,
     },
-    files: {
-      type: [String],
-    },
-    communication: {
-      type: String,
-      required: true,
-    },
-    payment: {
-      type: String,
-      required: true,
-    },
-    location: {
-      type: String,
-    },
+    client_id: { type: String },
   },
   { timestamps: true }
 );
 
-const Project = mongoose.model("Project", projectSchema);
+const Job = mongoose.model("Job", jobSchema);
 
-module.exports = Project;
+module.exports = Job;

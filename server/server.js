@@ -38,6 +38,8 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/", require("./routes/users"));
 app.use("/", require("./routes/freelancer"));
+app.use("/", require("./routes/client"));
+app.use("/", require("./routes/message"));
 
 app.listen(port, () => {
   console.log("Server started on port 5000");

@@ -19,6 +19,7 @@
     "mongodb": "5.0",
     "mongoose": "^6.9.0",
     "nodemon": "^2.0.20",
+    "open-graph-scraper": "^5.2.3",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^8.0.0"

@@ -114,14 +114,23 @@ export default function Example(props) {
                   </div>
                   <div className="hidden md:block">
                     <div className="ml-4 flex items-center gap-x-2 md:ml-6">
-                      {window.location.pathname === "/dashboard/freelancer" ? (
+                      {window.location.pathname === "/dashboard/client" ? (
                         <button
                           onClick={() => (window.location.href = "/postjob")}
                           className="mr-1 flex items-center space-x-2 rounded-md bg-blue-600 px-3 py-2 text-white hover:bg-blue-700">
                           <PencilSquareIcon className="h-5 w-5 text-white" />
                           <a className="text-sm font-medium">Post a Job</a>
                         </button>
-                      ) : null}
+                      ) : (
+                        <button
+                          onClick={() =>
+                            (window.location.href = "/postprojects")
+                          }
+                          className="mr-1 flex items-center space-x-2 rounded-md bg-blue-600 px-3 py-2 text-white hover:bg-blue-700">
+                          <PencilSquareIcon className="h-5 w-5 text-white" />
+                          <a className="text-sm font-medium">Post Projects</a>
+                        </button>
+                      )}
 
                       <button onClick={() => changeDarkmode()}>
                         {isdarkmode ? (

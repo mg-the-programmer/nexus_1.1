@@ -9,6 +9,7 @@ import {
   Squares2X2Icon,
 } from "@heroicons/react/20/solid";
 import FProfileCard from "../../components/FProfileCard";
+import JobCard from "../../components/JobCard";
 import axios from "axios";
 import {
   subCategories,
@@ -46,7 +47,7 @@ export default function FDashboard() {
 
   useEffect(() => {
     axios
-      .get("/allFreelancers")
+      .get("/allJobs")
       .then((res) => {
         console.log(res.data);
         setPosts(res.data);
@@ -320,7 +321,7 @@ export default function FDashboard() {
               <div className="lg:col-span-3">
                 <div className="mx-auto grid max-w-2xl grid-cols-1 gap-y-7 gap-x-8 lg:mx-0 lg:max-w-none ">
                   {posts.map((post) => (
-                    <FProfileCard post={post} />
+                    <JobCard post={post} />
                   ))}
                 </div>
               </div>

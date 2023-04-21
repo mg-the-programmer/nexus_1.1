@@ -1,31 +1,46 @@
 const express = require("express");
 const router = express.Router();
-const JobModel = require("../models/jobModel.js");
+const Jobs = require("../models/jobModel.js");
 
 //create a route for the client
 router.post("/addJob", (req, res) => {
   const {
     title,
-    salary,
-    company,
-    experience,
-    postDate,
     description,
-    email,
-    phone,
+    category,
+    budget,
+    timeline,
+    requiredSkills,
+    client_id,
   } = req.body;
-  const newJob = new JobModel({
+  const newJob = new Jobs({
     title,
-    salary,
-    company,
-    experience,
-    postDate,
     description,
-    email,
-    phone,
+    category,
+    budget,
+    timeline,
+    requiredSkills,
+    client_id,
   });
-  newJob.save();
-  res.send("Job added successfully");
+  newJob.save((err, job) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(201).send(job);
+    }
+  });
+});
+
+router.get("/allJobs", (req, res) => {
+  Jobs.find({}, (error, jobs) => {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log(jobs);
+      res.json(jobs);
+    }
+  });
 });
 
 // router.get("/getJobs",(req,res)  )
+module.exports = router;

@@ -4,6 +4,7 @@
 const express = require("express");
 const router = express.Router();
 const Freelancer = require("../models/freelancerModel");
+const Projects = require("../models/projectsModel");
 const passport = require("passport");
 // use the freelancer model thats is exported from server.js
 router.post("/freelancer/info", (req, res) => {
@@ -119,6 +120,28 @@ router.get("/freelancerDetails", (req, res) => {
       console.log(error);
     } else {
       res.json(freelancer);
+    }
+  });
+});
+
+router.post("/postProjects", (req, res) => {
+  const projectDetails = req.body;
+  Projects.create(projectDetails, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(data);
+      res.json(data);
+    }
+  });
+});
+
+router.get("/allProjects", (req, res) => {
+  Projects.find({}, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(data);
     }
   });
 });

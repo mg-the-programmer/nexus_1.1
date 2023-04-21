@@ -6,11 +6,10 @@ import axios from "axios";
 export default function PostJob() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
-  const [budget, setBudget] = useState("");
-  const [timeline, setTimeline] = useState("");
-  const [requiredSkills, setRequiredSkills] = useState("");
-  const [client_id, setClientId] = useState("");
+  const [url, setUrl] = useState("");
+  const [tags, settags] = useState("");
+  const [creator_id, setcreatorId] = useState("");
+  const [creator, setcreator] = useState("");
 
   useEffect(() => {
     axios.get("/auth").then((res) => {
@@ -18,29 +17,29 @@ export default function PostJob() {
         window.location.href = "/signin";
       } else {
         console.log(res.data);
-        setClientId(res.data._id);
+        setcreatorId(res.data._id);
+        setcreator(res.data.firstName);
+        console.log(res.data.firstName);
       }
     });
   }, []);
   const handleTagsChange = (newSkills) => {
-    setRequiredSkills([...newSkills]);
+    settags([...newSkills]);
     // Do something with the tags array here
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     axios
-      .post("/addJob", {
+      .post("/postProjects", {
         title,
         description,
-        category,
-        budget,
-        timeline,
-        requiredSkills,
-        client_id,
+        creator,
+        creator_id,
+        tags,
       })
       .then((res) => {
-        alert("Job Posted successfully");
+        alert("Project Posted successfully");
         console.log(res);
       })
       .catch((err) => {
@@ -51,17 +50,18 @@ export default function PostJob() {
 
   return (
     <>
-      <Header title="Post Job" />
+      <Header title="Post Projects" />
       <div className="mx-auto max-w-6xl">
         <div>
           <div className=" md:grid md:grid-cols-3 md:gap-6">
             <div className="md:col-span-1">
               <div className="sticky top-20 p-5 sm:p-5 sm:pb-0 ">
                 <h1 className="text-4xl font-bold text-gray-900">
-                  Let the freelancer do the work and relax
+                  Let's turn your personal projects into reality!
                 </h1>
                 <p className="mt-3 text-base text-gray-600">
-                  Here you can post your job and let the freelancer do the work
+                  Here you can post your projects and let the clients know how
+                  much rizz you have .
                 </p>
 
                 <svg
@@ -185,7 +185,21 @@ export default function PostJob() {
             <div className="mt-5 md:col-span-2 md:mt-0">
               <form onSubmit={handleSubmit}>
                 <div className="p-6 shadow sm:overflow-hidden sm:rounded-md ">
-                  <div className="mb-4">
+                  <div className="mb-2 -mt-1 flex rounded-md shadow-sm">
+                    <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">
+                      https://
+                    </span>
+                    <input
+                      type="text"
+                      name="company-website"
+                      id="company-website"
+                      value={url}
+                      onChange={(e) => setUrl(e.target.value)}
+                      className="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      placeholder="www.example.com"
+                    />
+                  </div>
+                  <div className="mb-2">
                     <label
                       htmlFor="title"
                       className="mb-2 block font-medium text-gray-700">
@@ -201,7 +215,7 @@ export default function PostJob() {
                       className="w-full rounded-md border border-gray-400 p-2"
                     />
                   </div>
-                  <div className="mb-4">
+                  <div className="mb-2">
                     <label
                       htmlFor="description"
                       className="mb-2 block font-medium text-gray-700">
@@ -216,59 +230,12 @@ export default function PostJob() {
                       className="w-full rounded-md border border-gray-400 p-2"
                     />
                   </div>
-                  <div className="mb-4">
-                    <label
-                      htmlFor="category"
-                      className="mb-2 block font-medium text-gray-700">
-                      Category
-                    </label>
-                    <input
-                      type="text"
-                      id="category"
-                      name="category"
-                      value={category}
-                      onChange={(e) => setCategory(e.target.value)}
-                      placeholder="Enter project category"
-                      className="w-full rounded-md border border-gray-400 p-2"
-                    />
-                  </div>
-                  <div className="mb-4">
-                    <label
-                      htmlFor="budget"
-                      className="mb-2 block font-medium text-gray-700">
-                      Budget
-                    </label>
-                    <input
-                      type="text"
-                      id="budget"
-                      name="budget"
-                      value={budget}
-                      onChange={(e) => setBudget(e.target.value)}
-                      placeholder="Enter estimated budget"
-                      className="w-full rounded-md border border-gray-400 p-2"
-                    />
-                  </div>
-                  <div className="mb-4">
-                    <label
-                      htmlFor="timeline"
-                      className="mb-2 block font-medium text-gray-700">
-                      Timeline
-                    </label>
-                    <input
-                      type="text"
-                      id="timeline"
-                      name="timeline"
-                      value={timeline}
-                      onChange={(e) => setTimeline(e.target.value)}
-                      placeholder="Enter expected timeline in months"
-                      className="w-full rounded-md border border-gray-400 p-2"
-                    />
-                  </div>
-                  <div className="mb-4">
+
+                  <div className="mb-2">
                     <label
                       htmlFor="skills"
                       className="mb-2 block font-medium text-gray-700">
-                      Skills Required
+                      Tags
                     </label>
                     <TagSection
                       onTagsChange={handleTagsChange}
