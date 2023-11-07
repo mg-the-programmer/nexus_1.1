@@ -71,6 +71,7 @@ function App() {
   const [userDetails, setUserDetails] = useState([]);
   const [userId, setUserId] = useState("");
 
+  //Commit Test
   //have to fix dark mode
   // useEffect(() => {
   //   axios.get("/freelancerDetails").then((res) => {
