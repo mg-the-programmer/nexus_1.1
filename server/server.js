@@ -37,6 +37,10 @@ app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+});
+
 app.use("/", require("./routes/users"));
 app.use("/", require("./routes/freelancer"));
 
