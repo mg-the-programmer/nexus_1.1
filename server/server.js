@@ -34,7 +34,7 @@ app.use(
 
 app.use(
   cors({
-    origin: "http://nexus-freelance.azurewebsites.net",
+    origin: "https://nexus-freelance.azurewebsites.net",
     credentials: true,
   })
 );
