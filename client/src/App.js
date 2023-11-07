@@ -55,7 +55,7 @@ function App() {
       element: <ProjectsView />,
     },
     {
-      path: "/freelancer/info",
+      path: "/dashboard/freelancer/info",
       element: <FreelancerForm />,
     },
     {

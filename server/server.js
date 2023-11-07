@@ -11,8 +11,9 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 const uri =
-  "mongodb+srv://manigandan:manigandan@cluster0.oyky4iz.mongodb.net/nexusdb";
+  "mongodb+srv://manigandanc2003:manigandanc2003@cluster0.jtlnbvg.mongodb.net/?retryWrites=true&w=majority";
 
+mongoose.set("strictQuery", true);
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 const connection = mongoose.connection;
 
